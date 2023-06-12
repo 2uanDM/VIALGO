@@ -33,6 +33,11 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+
+        for (int i = 1; i < 3; i++) {
+            System.out.println("Adu");
+        }
+        System.out.println("Hello");
     }
 
 }
