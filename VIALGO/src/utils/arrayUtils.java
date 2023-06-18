@@ -1,6 +1,6 @@
 package utils;
 
-// We provide 3 basic static methods for Array includes finding maximun, minimun element and resizing the array length
+// We provide 3 basic static methods for Array includes finding maximun, minimun element and resizing the array length.
 public abstract class arrayUtils {
     public static int max(int[] array) {
         int maxElement = array[0];
