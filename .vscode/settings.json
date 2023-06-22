@@ -1,5 +1,7 @@
 {
-  "java.configuration.updateBuildConfiguration": "interactive",
-  "editor.formatOnSave": true,
-  "cSpell.enabled": false
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
 }
