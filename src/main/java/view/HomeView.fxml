@@ -8,34 +8,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.view.home.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.HomeController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3bfbf" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1280.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="696.0" layoutX="12.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1256.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0" />
       <HBox layoutX="14.0" layoutY="411.0" spacing="5.0">
          <children>
-            <Button id="bubbleSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../../resources/style/home.css" />
-            <Button id="quickSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../../resources/style/home.css" />
-            <Button id="insertionSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../../resources/style/home.css" />
+            <Button id="bubbleSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
+            <Button id="quickSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
+            <Button id="insertionSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="192.0" layoutY="21.0" prefHeight="175.0" prefWidth="960.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="194.0">
          <children>
             <ImageView fitHeight="243.0" fitWidth="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/assets/home/logo_VIALGO.png" />
+                  <Image url="@../../resources/assets/home/logo_VIALGO.png" />
                </image>
             </ImageView>
          </children>
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="475.0" layoutY="253.0" prefHeight="75.0" prefWidth="337.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="469.0">
          <children>
-            <Button id="aboutButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../../resources/style/home.css">
+            <Button id="aboutButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button id="helpButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../../resources/style/home.css">
+            <Button id="helpButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
@@ -46,7 +46,7 @@
          <children>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/assets/home/bubble_sort_bar.png" />
+                  <Image url="@../../resources/assets/home/bubble_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" right="3.0" top="5.0" />
@@ -54,7 +54,7 @@
             </ImageView>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/assets/home/quick_sort_bar.png" />
+                  <Image url="@../../resources/assets/home/quick_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="2.0" right="2.0" top="5.0" />
@@ -62,7 +62,7 @@
             </ImageView>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/assets/home/insertion_sort_bar.png" />
+                  <Image url="@../../resources/assets/home/insertion_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="3.0" top="5.0" />

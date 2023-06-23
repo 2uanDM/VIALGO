@@ -1,4 +1,4 @@
-package main.java.view.insertionsort;
+package main.java.controller;
 
 public class InsertionSortController {
 

@@ -1,4 +1,4 @@
-package main.java.view.home;
+package main.java.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +21,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rBundle) {
         // Welcome sound
         AudioClip welcomeSound = new AudioClip(
-                this.getClass().getResource("../../../resources/sound/chime.wav").toString());
+                this.getClass().getResource("../../resources/sound/chime.wav").toString());
         welcomeSound.setVolume(0.5);
         welcomeSound.play();
     }

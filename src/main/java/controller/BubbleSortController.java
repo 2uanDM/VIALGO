@@ -1,4 +1,4 @@
-package main.java.view.bubblesort;
+package main.java.controller;
 
 public class BubbleSortController {
 
