@@ -14,9 +14,9 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="696.0" layoutX="12.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1256.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0" />
       <HBox layoutX="14.0" layoutY="411.0" spacing="5.0">
          <children>
-            <Button id="bubbleSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
-            <Button id="quickSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
-            <Button id="insertionSortHover" mnemonicParsing="false" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
+            <Button id="bubbleSortHover" mnemonicParsing="false" onAction="#switchToBubbleSortView" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
+            <Button id="quickSortHover" mnemonicParsing="false" onAction="#switchToQuickSortView" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
+            <Button id="insertionSortHover" mnemonicParsing="false" onAction="#switchToInsertionSortView" prefHeight="296.0" prefWidth="414.0" stylesheets="@../../resources/style/home.css" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="192.0" layoutY="21.0" prefHeight="175.0" prefWidth="960.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="194.0">

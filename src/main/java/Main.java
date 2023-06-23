@@ -13,18 +13,32 @@ public class Main extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage homeStage) throws Exception {
-        Scene homeScene = new Scene(loadFXML("../java/view/HomeView.fxml"), 1280, 720);
-        homeStage.setTitle("VIALGO");
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    public void start(Stage stage) {
+        try {
+            scene = new Scene(loadFXML("./view/HomeView.fxml"), 1280, 720);
+            stage.setTitle("VIALGO");
+            stage.setScene(scene);
+            stage.show();
+        }
+
+        catch (IOException e) {
+            System.out.println("Error loading HomeView.fxml: " + e.getMessage());
+        }
+
     }
 
-    // This method is used for setting root of the current Stage
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    // This method is used for setting root Node for the main scene
+    public static void setRoot(String fxml) {
+        try {
+            scene.setRoot(loadFXML(fxml));
+        }
+
+        catch (IOException e) {
+            System.err.println("Error loading " + fxml + ": " + e.getMessage());
+        }
     }
 
+    // This is a support method returning the root Node from an fxml file
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
         return fxmlLoader.load();

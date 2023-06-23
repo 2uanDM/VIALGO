@@ -1,5 +1,5 @@
 package main.java.controller;
 
-public class BubbleSortController {
+public class BubbleSortController extends SortController {
 
 }

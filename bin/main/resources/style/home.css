@@ -39,19 +39,19 @@
 }
 
 #bubbleSortHover:hover {
-    -fx-background-image: url("../assets/home/test.gif");
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
 }
 
 #quickSortHover:hover {
-    -fx-background-image: url("../assets/home/quicksort_hover_front.png");
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
 }
 
 #insertionSortHover:hover {
-    -fx-background-image: url("../assets/home/insertionsort_hover_front.png");
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
 }

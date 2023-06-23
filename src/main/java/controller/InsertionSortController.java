@@ -1,5 +1,5 @@
 package main.java.controller;
 
-public class InsertionSortController {
+public class InsertionSortController extends SortController {
 
 }
