@@ -12,17 +12,21 @@
 /* Button styles on hover */
 #helpButton:hover {
     -fx-background-image: url("../assets/home/help_hover.png");
+    -fx-background-radius: 6px;
 }
 
 #aboutButton:hover {
     -fx-background-image: url("../assets/home/about_hover.png");
+    -fx-background-radius: 6px;
 }
 
 /* Button styles when pressed */
 #helpButton:pressed {
     -fx-background-image: url("../assets/home/help_button.png");
+    -fx-background-radius: 6px;
 }
 
 #aboutButton:pressed {
     -fx-background-image: url("../assets/home/about_button.png");
+    -fx-background-radius: 6px;
 }
