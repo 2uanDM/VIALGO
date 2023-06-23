@@ -1,0 +1,28 @@
+/* Default button styles */
+#helpButton {
+    -fx-background-image: url("../assets/home/help_button.png");
+    -fx-background-radius: 6px;
+}
+
+#aboutButton {
+    -fx-background-image: url("../assets/home/about_button.png");
+    -fx-background-radius: 6px;
+}
+
+/* Button styles on hover */
+#helpButton:hover {
+    -fx-background-image: url("../assets/home/help_hover.png");
+}
+
+#aboutButton:hover {
+    -fx-background-image: url("../assets/home/about_hover.png");
+}
+
+/* Button styles when pressed */
+#helpButton:pressed {
+    -fx-background-image: url("../assets/home/help_button.png");
+}
+
+#aboutButton:pressed {
+    -fx-background-image: url("../assets/home/about_button.png");
+}

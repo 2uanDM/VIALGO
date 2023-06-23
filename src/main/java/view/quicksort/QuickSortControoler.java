@@ -1,4 +1,4 @@
-package main.java.view.insertionsort;
+package main.java.view.quicksort;
 
 public class QuickSortControoler {
 
