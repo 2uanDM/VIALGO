@@ -3,7 +3,6 @@ package main.java.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,7 +27,7 @@ public class HomeController implements Initializable {
     @FXML
     private Button insertionSortHover;
 
-    public void switchToBubbleSortView(ActionEvent e) {
+    public void switchToBubbleSortView() {
         try {
             Main.setRoot("./view/BubbleSortView.fxml");
         } catch (Exception error) {
@@ -36,7 +35,7 @@ public class HomeController implements Initializable {
         }
     }
 
-    public void switchToQuickSortView(ActionEvent e) {
+    public void switchToQuickSortView() {
         try {
             Main.setRoot("./view/QuickSortView.fxml");
         } catch (Exception error) {
@@ -44,7 +43,7 @@ public class HomeController implements Initializable {
         }
     }
 
-    public void switchToInsertionSortView(ActionEvent e) {
+    public void switchToInsertionSortView() {
         try {
             Main.setRoot("./view/InsertionSortView.fxml");
         } catch (Exception error) {
