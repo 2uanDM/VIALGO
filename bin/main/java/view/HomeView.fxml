@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="243.0" fitWidth="456.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/assets/home/logo_VIALGO.png" />
+                  <Image url="@../../resources/assets/HomeView/logo_VIALGO.png" />
                </image>
             </ImageView>
          </children>
