@@ -60,11 +60,13 @@
 #helpButton:pressed {
     -fx-background-image: url("../assets/home/help_button.png");
     -fx-background-radius: 6px;
+    -fx-rotate: 10;
 }
 
 #aboutButton:pressed {
     -fx-background-image: url("../assets/home/about_button.png");
     -fx-background-radius: 6px;
+    -fx-rotate: 10;
 }
 
 /* #bubbleSortHover:pressed {
