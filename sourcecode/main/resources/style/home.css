@@ -1,0 +1,88 @@
+/* Default button styles */
+#helpButton {
+    -fx-background-image: url("../assets/home/help_button.png");
+    -fx-background-radius: 6px;
+}
+
+#aboutButton {
+    -fx-background-image: url("../assets/home/about_button.png");
+    -fx-background-radius: 6px;
+}
+
+#bubbleSortHover {
+    -fx-background-image: url("../assets/home/bubbleshort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#quickSortHover {
+    -fx-background-image: url("../assets/home/quicksort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#insertionSortHover {
+    -fx-background-image: url("../assets/home/insertionsort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+/* Button styles on hover */
+#helpButton:hover {
+    -fx-background-image: url("../assets/home/help_hover.png");
+    -fx-background-radius: 6px;
+}
+
+#aboutButton:hover {
+    -fx-background-image: url("../assets/home/about_hover.png");
+    -fx-background-radius: 6px;
+}
+
+#bubbleSortHover:hover {
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#quickSortHover:hover {
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#insertionSortHover:hover {
+    -fx-background-image: url("../assets/home/logo_VIALGO.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+/* Button styles when pressed */
+#helpButton:pressed {
+    -fx-background-image: url("../assets/home/help_button.png");
+    -fx-background-radius: 6px;
+    -fx-rotate: 10;
+}
+
+#aboutButton:pressed {
+    -fx-background-image: url("../assets/home/about_button.png");
+    -fx-background-radius: 6px;
+    -fx-rotate: 10;
+}
+
+/* #bubbleSortHover:pressed {
+    -fx-background-image: url("../assets/home/bubbleshort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#quickSortHover:pressed {
+    -fx-background-image: url("../assets/home/quicksort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+}
+
+#insertionSortHover:pressed {
+    -fx-background-image: url("../assets/home/insertionsort_hover_front.png");
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+} */
