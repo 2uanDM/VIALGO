@@ -60,7 +60,7 @@ public abstract class SortController implements Initializable {
         }
     }
 
-    public void showMenuActionOptions() {
+    public void clickedShowMenuActionOptions() {
         /*
          * This action method is used for showing or closing the left side bar menu
          * options
