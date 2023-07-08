@@ -6,12 +6,16 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.util.Duration;
 import main.java.Main;
 
 public abstract class SortController implements Initializable {
+
+    private boolean arrowPointRight;
 
     @FXML
     private Button menuActionButton;
@@ -36,6 +40,9 @@ public abstract class SortController implements Initializable {
             createArrayButton.setVisible(false);
             sortButton.setVisible(false);
         });
+
+        // Intially, the arrowPosition is true ~ point to the right
+        arrowPointRight = true;
     }
 
     public void backToHomePage() {
@@ -43,7 +50,7 @@ public abstract class SortController implements Initializable {
          * This action method is used for back to home page button.
          * 
          * The .notStartApp() method tells the program that it backs
-         * to the HomePage from a sorting view, so the startup sound will not play.
+         * to the HomePage from a sorting view, so the startup sound will not be played.
          */
         try {
             HomeController.notStartApp();
@@ -58,10 +65,23 @@ public abstract class SortController implements Initializable {
          * This action method is used for showing or closing the left side bar menu
          * options
          */
+
+        // Set visible for the first level MenuItems
         boolean isVisible = createArrayButton.isVisible();
-        // System.out.println(isVisible);
         createArrayButton.setVisible(!isVisible);
         sortButton.setVisible(!isVisible);
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), menuActionArrow);
+        if (arrowPointRight) {
+            rotateTransition.setByAngle(180);
+            arrowPointRight = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            arrowPointRight = true;
+        }
+        rotateTransition.play();
+
     }
 
 }
