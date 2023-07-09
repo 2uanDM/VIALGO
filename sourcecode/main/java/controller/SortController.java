@@ -2,14 +2,19 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.Main;
 
@@ -29,6 +34,9 @@ public abstract class SortController implements Initializable {
     @FXML
     private Button sortButton;
 
+    @FXML
+    private Button testButton;
+
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
         /*
@@ -41,7 +49,7 @@ public abstract class SortController implements Initializable {
             sortButton.setVisible(false);
         });
 
-        // Intially, the arrowPosition is true ~ point to the right
+        // Intially, the arrowPointRight is true ~ point to the right
         arrowPointRight = true;
     }
 
@@ -82,6 +90,32 @@ public abstract class SortController implements Initializable {
         }
         rotateTransition.play();
 
+    }
+
+    public void createRectangle() {
+        HBox centerHBox = new HBox();
+        Rectangle r = new Rectangle();
+        r.setX(50);
+        r.setY(50);
+        r.setWidth(200);
+        r.setHeight(100);
+        AnchorPane currentPane = (AnchorPane) testButton.getScene().getRoot();
+
+        // Set alignment and position for centerHBox
+        centerHBox.setAlignment(Pos.CENTER);
+        AnchorPane.setTopAnchor(centerHBox, 0.0);
+        AnchorPane.setBottomAnchor(centerHBox, 0.0);
+        AnchorPane.setLeftAnchor(centerHBox, 0.0);
+        AnchorPane.setRightAnchor(centerHBox, 0.0);
+
+        // Add r to centerHBox
+        centerHBox.getChildren().add(r);
+
+        // Update the UI on the JavaFX application thread
+        Platform.runLater(() -> {
+            // Add centerHBox to currentPane
+            currentPane.getChildren().add(centerHBox);
+        });
     }
 
 }

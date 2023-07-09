@@ -31,9 +31,7 @@ public class Main extends Application {
     public static void setRoot(String fxml) {
         try {
             scene.setRoot(loadFXML(fxml));
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("Error loading " + fxml + ": " + e.getMessage());
         }
     }
