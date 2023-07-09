@@ -1,12 +1,12 @@
-package SortingAlgorithms;
+package main.java.sorting;
 
-import utils.arrayUtils;
+import main.java.utils.arrayUtils;
 
 public abstract class arraySort {
 /**
  * Store Log variable for tracking
- * int[][] arrayLog: arrayLog[i][j] store the array after changing i times
- * int[][] tempLog: tempLog[i][j] store the part of the array that using in i-th calculation steps.
+ * int[][] arrayLog: arrayLog[i] store the array after changing i times
+ * int[][] tempLog: tempLog[i] store the part of the array that using in i-th calculation steps.
  * int[][] pointerLog: save the poiters using in the i-th calculation steps.
  * String[] messageLog: save the message in the i-th calculator steps.
  */
@@ -34,11 +34,20 @@ public abstract class arraySort {
         return messageLogs;
     }
 
-    public arraySort() {
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public arraySort(int[] inputArray) {
+        // the first element when stepCount=0 store the original array
+        this.inputArray = inputArray;
         this.arrayLogs = new int[1][inputArray.length];
         this.tempLogs = new int[1][inputArray.length];
         this.pointerLogs = new int[1][2];  // depend on the sorting algorithms, we use up to 2 pointerLog
         this.messageLogs = new String[1];
+
+        this.arrayLogs[0] = inputArray;
+        this.messageLogs[0] = "We did not change anything in the array";
     }
 
     public abstract void sort();

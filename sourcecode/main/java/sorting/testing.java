@@ -1,6 +1,6 @@
-package SortingAlgorithms;
+package main.java.sorting;
 
-import utils.arrayUtils;
+import main.java.utils.arrayUtils;
 
 public class testing {
     public static void main(String[] args) {

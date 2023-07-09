@@ -1,4 +1,4 @@
-package utils;
+package main.java.utils;
 
 // We provide 3 basic static methods for Array includes finding maximun, minimun element and resizing the array length.
 public abstract class arrayUtils {
@@ -53,6 +53,25 @@ public abstract class arrayUtils {
         String[] newArray = new String[newLength];
         //copy values to the new array
         for (int i = 0; i < oldLength; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
+    }
+
+    public static int[] copyArray(int[] array, int fromIndex, int toIndex) {
+        // copy the given array to a new array from to fromIndex index to toIndex index
+        // not copy the element at the toIndex index
+        int[] newArray = new int[array.length];
+        for (int i= fromIndex; i < toIndex; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
+    }
+
+    public static int[] copyArray(int[] array) {
+        // copy the entire array
+        int[] newArray = new int[array.length];
+        for (int i= 0; i < array.length; i++) {
             newArray[i] = array[i];
         }
         return newArray;

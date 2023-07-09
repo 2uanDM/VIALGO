@@ -86,16 +86,6 @@ public abstract class SortController implements Initializable {
         }
         rotateTransition.play();
     }
-    
-    public double calculateRectangleWidth() {
-        // Calculate the width dynamically
-        return 200; // Example value
-    }
-
-    public double calculateRectangleHeight() {
-        // Calculate the height dynamically
-        return 150; // Example value
-    }
 
 
 }
