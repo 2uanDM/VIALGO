@@ -10,6 +10,7 @@ import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import main.java.Main;
 
@@ -28,6 +29,9 @@ public abstract class SortController implements Initializable {
 
     @FXML
     private Button sortButton;
+
+    @FXML
+    private VBox parentController;
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -81,7 +85,6 @@ public abstract class SortController implements Initializable {
             arrowPointRight = true;
         }
         rotateTransition.play();
-
     }
 
 }
