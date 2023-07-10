@@ -46,7 +46,7 @@
          <children>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/assets/home/bubble_sort_bar.png" />
+                  <Image url="@../../resources/assets/HomeView/bubble_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" right="3.0" top="5.0" />
@@ -54,7 +54,7 @@
             </ImageView>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/assets/home/quick_sort_bar.png" />
+                  <Image url="@../../resources/assets/HomeView/quick_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="2.0" right="2.0" top="5.0" />
@@ -62,7 +62,7 @@
             </ImageView>
             <ImageView fitHeight="49.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/assets/home/insertion_sort_bar.png" />
+                  <Image url="@../../resources/assets/HomeView/insertion_sort_bar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="3.0" top="5.0" />

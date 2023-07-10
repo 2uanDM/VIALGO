@@ -1,8 +1,12 @@
 #menuActionButton {
     -fx-background-image: url("../assets/SortView/menuActionColor.png");
+    -fx-background-color: black;
 }
 
 #menuActionPane {
     -fx-background-image: url("../assets/SortView/menuActionColor.png");
 }
 
+#backButton {
+    -fx-background-image: url("../assets/HomeView/about_button.png");
+}

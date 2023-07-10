@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -27,6 +28,8 @@
          <image>
             <Image url="@../../resources/assets/SortView/menuActionArrow.png" />
          </image>
-      </ImageView>  
+      </ImageView>
+      <Button layoutX="606.0" layoutY="529.0" mnemonicParsing="false" onAction="#createRectangle" text="Button" />
+      <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />   
    </children>
 </AnchorPane>
