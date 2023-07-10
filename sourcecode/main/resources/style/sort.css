@@ -49,7 +49,3 @@
     -fx-cursor: hand;
     -fx-background-image: url("../assets/SortView/backButton_hover.png");
 }
-
-.rightArrow {
-    -fx-rotate: 180;
-}

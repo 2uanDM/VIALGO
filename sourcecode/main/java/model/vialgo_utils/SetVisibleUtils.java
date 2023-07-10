@@ -68,20 +68,22 @@ public class SetVisibleUtils {
     private TranslateTransition createTranslateTransition(Node node, boolean leftToRight, boolean leftSideBar) {
         double nodeWidth = getWidth(node);
 
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.3), node);
+        TranslateTransition translateTransition;
 
         double fromX, toX;
         if (leftSideBar) {
+            translateTransition = new TranslateTransition(Duration.seconds(0.3), node);
             fromX = leftToRight ? -nodeWidth : 0;
             toX = leftToRight ? 0 : -nodeWidth - 50;
         } else {
-            fromX = leftToRight ? nodeWidth : 0;
-            toX = leftToRight ? 0 : nodeWidth + 50;
+            translateTransition = new TranslateTransition(Duration.seconds(0.5), node);
+            fromX = leftToRight ? 0 : nodeWidth + 50;
+            toX = leftToRight ? nodeWidth + 50 : 0;
         }
 
         translateTransition.setFromX(fromX);
         translateTransition.setToX(toX);
-        translateTransition.setInterpolator(Interpolator.EASE_OUT);
+        translateTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         return translateTransition;
     }

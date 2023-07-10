@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -23,10 +24,30 @@ import main.java.model.vialgo_utils.SetVisibleUtils;
 
 public abstract class SortController implements Initializable {
 
-    private boolean arrowPointRight;
+    private boolean menuActionArrowPointRight;
+    private boolean sortExplainArrowPointLeft;
+    private boolean pseudoCodeArrowPointLeft;
 
     @FXML
     private ImageView aEqualsImageView;
+
+    @FXML
+    private ImageView menuActionArrow;
+
+    @FXML
+    private TextField enterArrayTextField;
+
+    @FXML
+    private TextField sortExplainationTextField;
+
+    @FXML
+    private TextArea pseudoCodeTextArea;
+
+    @FXML
+    private ImageView pseudoCodeArrow;
+
+    @FXML
+    private ImageView sortExplainArrow;
 
     @FXML
     private HBox columnsHBox;
@@ -35,13 +56,7 @@ public abstract class SortController implements Initializable {
     private Button createArrayButton;
 
     @FXML
-    private TextField enterArrayTextField;
-
-    @FXML
     private Button goButton;
-
-    @FXML
-    private ImageView menuActionArrow;
 
     @FXML
     private Button menuActionButton;
@@ -55,9 +70,19 @@ public abstract class SortController implements Initializable {
     @FXML
     private Button sortedArrayButton;
 
+    @FXML
+    private Button sortExplainButton;
+
+    @FXML
+    private Button pseudoCodeButton;
+
     ArrayList<Node> menuActionOptionsChilds = new ArrayList<Node>();
 
     ArrayList<Node> createArrayButtonChilds = new ArrayList<Node>();
+
+    ArrayList<Node> sortExplainButtonChilds = new ArrayList<Node>();
+
+    ArrayList<Node> pseudoCodeButtonChilds = new ArrayList<Node>();
 
     SetVisibleUtils worker;
 
@@ -76,6 +101,8 @@ public abstract class SortController implements Initializable {
             aEqualsImageView.setVisible(false);
             enterArrayTextField.setVisible(false);
             goButton.setVisible(false);
+            sortExplainationTextField.setVisible(false);
+            pseudoCodeTextArea.setVisible(false);
         });
 
         // Prepare Component Hierachy for menuActionButton;
@@ -89,8 +116,14 @@ public abstract class SortController implements Initializable {
         createArrayButtonChilds.add(enterArrayTextField);
         createArrayButtonChilds.add(goButton);
 
-        // Intially, the arrowPointRight is true ~ point to the right
-        arrowPointRight = true;
+        // Prepare Component Hierachy for sortExplainButton
+        sortExplainButtonChilds.add(sortExplainationTextField);
+
+        // Prepare Component Hierachy for pseudoCodeButton
+        pseudoCodeButtonChilds.add(pseudoCodeTextArea);
+
+        // Intially, the menuActionArrowPointRight is true ~ point to the right
+        menuActionArrowPointRight = true;
     }
 
     public void backToHomePage() {
@@ -126,12 +159,12 @@ public abstract class SortController implements Initializable {
 
         // Rotating the arrow 180 degrees when being clicked
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), menuActionArrow);
-        if (arrowPointRight) {
+        if (menuActionArrowPointRight) {
             rotateTransition.setByAngle(180);
-            arrowPointRight = false;
+            menuActionArrowPointRight = false;
         } else {
             rotateTransition.setByAngle(-180);
-            arrowPointRight = true;
+            menuActionArrowPointRight = true;
         }
         rotateTransition.play();
     }
@@ -142,7 +175,42 @@ public abstract class SortController implements Initializable {
          * 
          */
         worker = new SetVisibleUtils(this.createArrayButtonChilds);
-        worker.changeVisibleStatus(true, true, "fade");
+        if (goButton.isVisible() == false)
+            worker.changeVisibleStatus(true, true, "fade");
+    }
+
+    public void showSortExplaination() {
+        worker = new SetVisibleUtils(sortExplainButtonChilds);
+        boolean isVisible = sortExplainationTextField.isVisible();
+        worker.changeVisibleStatus(false, !isVisible, "translate");
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), sortExplainArrow);
+        if (sortExplainArrowPointLeft) {
+            rotateTransition.setByAngle(180);
+            sortExplainArrowPointLeft = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            sortExplainArrowPointLeft = true;
+        }
+        rotateTransition.play();
+    }
+
+    public void showPseudoCode() {
+        worker = new SetVisibleUtils(pseudoCodeButtonChilds);
+        boolean isVisible = pseudoCodeTextArea.isVisible();
+        worker.changeVisibleStatus(false, !isVisible, "translate");
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), pseudoCodeArrow);
+        if (pseudoCodeArrowPointLeft) {
+            rotateTransition.setByAngle(180);
+            pseudoCodeArrowPointLeft = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            pseudoCodeArrowPointLeft = true;
+        }
+        rotateTransition.play();
     }
 
     public void createRectangle() {
