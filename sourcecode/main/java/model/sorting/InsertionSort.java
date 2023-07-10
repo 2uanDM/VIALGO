@@ -1,11 +1,11 @@
-package main.java.sorting;
+package main.java.model.sorting;
 
 import java.util.Arrays;
 
-import main.java.utils.arrayUtils;
+import main.java.model.utils.arrayUtils;
 
-public class insertionSort extends arraySort {
-    public insertionSort(int[] inputArray) {
+public class InsertionSort extends ArraySort {
+    public InsertionSort(int[] inputArray) {
         super(inputArray);
     }
 

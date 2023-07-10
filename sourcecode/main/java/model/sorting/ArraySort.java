@@ -1,8 +1,8 @@
-package main.java.sorting;
+package main.java.model.sorting;
 
-import main.java.utils.arrayUtils;
+import main.java.model.utils.arrayUtils;
 
-public abstract class arraySort {
+public abstract class ArraySort {
 /**
  * Store Log variable for tracking
  * int[][] arrayLog: arrayLog[i] store the array after changing i times
@@ -38,7 +38,7 @@ public abstract class arraySort {
         return stepCount;
     }
 
-    public arraySort(int[] inputArray) {
+    public ArraySort(int[] inputArray) {
         // the first element when stepCount=0 store the original array
         this.inputArray = inputArray;
         this.arrayLogs = new int[1][inputArray.length];

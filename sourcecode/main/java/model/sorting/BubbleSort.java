@@ -1,11 +1,11 @@
-package main.java.sorting;
+package main.java.model.sorting;
 
 import java.util.Arrays;
 
-import main.java.utils.arrayUtils;
+import main.java.model.utils.arrayUtils;
 
-public class bubbleSort extends arraySort {
-    public bubbleSort(int[] inputArray) {
+public class BubbleSort extends ArraySort {
+    public BubbleSort(int[] inputArray) {
         super(inputArray);
         System.out.println(Arrays.toString(this.arrayLogs[0]));
     }
@@ -41,7 +41,6 @@ public class bubbleSort extends arraySort {
 
                     System.out.println(Arrays.toString(newArray));
                     System.out.println(messageLog);
-
 
                 }
             }

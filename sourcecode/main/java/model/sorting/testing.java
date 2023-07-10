@@ -1,8 +1,8 @@
-package main.java.sorting;
+package main.java.model.sorting;
 
 import java.util.Arrays;
 
-import main.java.utils.arrayUtils;
+import main.java.model.utils.arrayUtils;
 
 public class testing {
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class testing {
         // System.out.println(Arrays.toString(testArray));
         // obj.sort();
 
-        bubbleSort bubble = new bubbleSort(testArray);
+        BubbleSort bubble = new BubbleSort(testArray);
         bubble.sort();
 
     }
