@@ -13,9 +13,12 @@ public class testing {
         // System.out.println(maxEle);
         // System.out.println(testArray.length);
         
-        insertionSort obj = new insertionSort(testArray);
-        System.out.println(Arrays.toString(testArray));
-        obj.sort();
+        // insertionSort obj = new insertionSort(testArray);
+        // System.out.println(Arrays.toString(testArray));
+        // obj.sort();
+
+        bubbleSort bubble = new bubbleSort(testArray);
+        bubble.sort();
 
     }
 }

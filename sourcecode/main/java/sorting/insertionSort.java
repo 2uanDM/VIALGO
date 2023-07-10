@@ -59,7 +59,10 @@ public class insertionSort extends arraySort {
             
 
         } 
-
+        System.out.println("Start");
+        for (int[] array: arrayLogs) {
+            System.out.println(Arrays.toString(array));
+        }
 
     }
     
