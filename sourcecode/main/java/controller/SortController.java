@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.Main;
+
+import main.java.model.vialgo_utils.SetVisibleUtils;
 
 public abstract class SortController implements Initializable {
 
@@ -52,6 +55,12 @@ public abstract class SortController implements Initializable {
     @FXML
     private Button sortedArrayButton;
 
+    ArrayList<Node> menuActionOptionsChilds = new ArrayList<Node>();
+
+    ArrayList<Node> createArrayButtonChilds = new ArrayList<Node>();
+
+    SetVisibleUtils worker;
+
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
         /*
@@ -68,6 +77,17 @@ public abstract class SortController implements Initializable {
             enterArrayTextField.setVisible(false);
             goButton.setVisible(false);
         });
+
+        // Prepare Component Hierachy for menuActionButton;
+        menuActionOptionsChilds.add(createArrayButton);
+        menuActionOptionsChilds.add(sortButton);
+
+        // Prepare Component Hierachy for createArrayButton
+        createArrayButtonChilds.add(randomArrayButton);
+        createArrayButtonChilds.add(sortedArrayButton);
+        createArrayButtonChilds.add(aEqualsImageView);
+        createArrayButtonChilds.add(enterArrayTextField);
+        createArrayButtonChilds.add(goButton);
 
         // Intially, the arrowPointRight is true ~ point to the right
         arrowPointRight = true;
@@ -94,34 +114,15 @@ public abstract class SortController implements Initializable {
          * options
          */
 
-        TranslateTransition createArrayButtonAnimation, sortButtonAnimation;
-
-        // Set visible for the first level MenuItems
+        worker = new SetVisibleUtils(this.menuActionOptionsChilds);
         boolean isVisible = createArrayButton.isVisible();
-        if (isVisible == true) {
+        worker.changeVisibleStatus(true, !isVisible, "translate");
 
-            // Create hide animation for first level MenuItems
-            createArrayButtonAnimation = createTranslateTransition(createArrayButton, false);
-            sortButtonAnimation = createTranslateTransition(sortButton, false);
-
-            // Still hide second level MenuItems Until the createArrayButton is clicked
-            randomArrayButton.setVisible(false);
-            sortedArrayButton.setVisible(false);
-            aEqualsImageView.setVisible(false);
-            enterArrayTextField.setVisible(false);
-            goButton.setVisible(false);
-        } else {
-            // Create show animation for first level MenuItems
-            createArrayButton.setVisible(!isVisible);
-            sortButton.setVisible(!isVisible);
-            createArrayButtonAnimation = createTranslateTransition(createArrayButton, true);
-            sortButtonAnimation = createTranslateTransition(sortButton, true);
+        if (isVisible) {
+            // Hide second level MenuItems if their parent (MenuItems) also be hided
+            worker = new SetVisibleUtils(this.createArrayButtonChilds);
+            worker.changeVisibleStatus(true, !isVisible, "fade");
         }
-
-        // Create a ParallelTransition to play all wipe transitions simultaneously
-        ParallelTransition parallelTransition = new ParallelTransition(
-                createArrayButtonAnimation,
-                sortButtonAnimation);
 
         // Rotating the arrow 180 degrees when being clicked
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), menuActionArrow);
@@ -132,16 +133,6 @@ public abstract class SortController implements Initializable {
             rotateTransition.setByAngle(-180);
             arrowPointRight = true;
         }
-
-        // Only when the hide animation finished, those button will be set not visible
-        if (isVisible == true) {
-            parallelTransition.setOnFinished(event -> {
-                createArrayButton.setVisible(false);
-                sortButton.setVisible(false);
-            });
-        }
-
-        parallelTransition.play();
         rotateTransition.play();
     }
 
@@ -150,49 +141,8 @@ public abstract class SortController implements Initializable {
          * This action method is used for showing create array options
          * 
          */
-
-        // Create a FadeTransition for each component
-        FadeTransition randomArrayFade = createFadeTransition(randomArrayButton);
-        FadeTransition sortedArrayFade = createFadeTransition(sortedArrayButton);
-        FadeTransition aEqualsFade = createFadeTransition(aEqualsImageView);
-        FadeTransition enterArrayFade = createFadeTransition(enterArrayTextField);
-        FadeTransition goButtonFade = createFadeTransition(goButton);
-
-        // Create a ParallelTransition to play all fade transitions simultaneously
-        ParallelTransition parallelTransition = new ParallelTransition(
-                randomArrayFade,
-                sortedArrayFade,
-                aEqualsFade,
-                enterArrayFade,
-                goButtonFade);
-
-        // Show the components by making them visible
-        randomArrayButton.setVisible(true);
-        sortedArrayButton.setVisible(true);
-        aEqualsImageView.setVisible(true);
-        enterArrayTextField.setVisible(true);
-        goButton.setVisible(true);
-
-        // Play the fade-in animation
-        parallelTransition.play();
-    }
-
-    private FadeTransition createFadeTransition(Node node) {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), node);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        return fadeTransition;
-    }
-
-    private TranslateTransition createTranslateTransition(Node node, boolean leftToRight) {
-        int createArrayButtonWidth = 110;
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.3), node);
-        double fromX = leftToRight ? -createArrayButtonWidth : 0;
-        double toX = leftToRight ? 0 : -createArrayButtonWidth - 50;
-        translateTransition.setFromX(fromX);
-        translateTransition.setToX(toX);
-        translateTransition.setInterpolator(Interpolator.EASE_OUT);
-        return translateTransition;
+        worker = new SetVisibleUtils(this.createArrayButtonChilds);
+        worker.changeVisibleStatus(true, true, "fade");
     }
 
     public void createRectangle() {
