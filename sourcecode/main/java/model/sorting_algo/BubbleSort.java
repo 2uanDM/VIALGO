@@ -2,7 +2,7 @@ package main.java.model.sorting_algo;
 
 import java.util.Arrays;
 
-import main.java.model.utils.ArrayUtils;
+import main.java.model.vialgo_utils.ArrayUtils;
 
 public class BubbleSort extends SortingAlgorithm {
     public BubbleSort(int[] inputArray) {

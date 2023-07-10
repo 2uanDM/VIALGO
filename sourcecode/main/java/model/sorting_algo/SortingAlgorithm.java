@@ -1,6 +1,6 @@
 package main.java.model.sorting_algo;
 
-import main.java.model.utils.ArrayUtils;
+import main.java.model.vialgo_utils.ArrayUtils;
 
 public abstract class SortingAlgorithm {
     /**

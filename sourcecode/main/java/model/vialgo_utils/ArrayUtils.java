@@ -1,8 +1,6 @@
-package main.java.model.utils;
+package main.java.model.vialgo_utils;
 
-// We provide 3 basic static methods for Array includes finding maximun, minimun element and resizing the array length.
-
-public abstract class ArrayUtils {
+public class ArrayUtils {
     public static int max(int[] array) {
         int maxElement = array[0];
         for (int i : array) {
