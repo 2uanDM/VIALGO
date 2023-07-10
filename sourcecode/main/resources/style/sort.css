@@ -5,4 +5,9 @@
 #menuActionPane {
     -fx-background-image: url("../assets/SortView/menuActionColor.png");
 }
-
+#backButton {
+    -fx-background-image: url("../assets/SortView/back_button.png");
+}
+#backButton:hover {
+    -fx-background-image: url("../assets/HomeView/back_hover.png");
+}

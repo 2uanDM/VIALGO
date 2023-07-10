@@ -28,6 +28,8 @@ public abstract class SortController implements Initializable {
 
     @FXML
     private Button sortButton;
+    @FXML
+    private Button backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
