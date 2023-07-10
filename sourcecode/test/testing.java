@@ -1,18 +1,17 @@
-package main.java.model.sorting;
+package test;
 
-import java.util.Arrays;
-
-import main.java.model.utils.arrayUtils;
+import main.java.model.sorting_algo.BubbleSort;
+import main.java.model.utils.ArrayUtils;
 
 public class testing {
     public static void main(String[] args) {
-        int[] testArray = {6, 5, 4, 3, 2, 1};
-        int minEle = arrayUtils.min(testArray);
-        int maxEle = arrayUtils.max(testArray);
+        int[] testArray = { 6, 5, 4, 3, 2, 1 };
+        int minEle = ArrayUtils.min(testArray);
+        int maxEle = ArrayUtils.max(testArray);
         // System.out.println(minEle);
         // System.out.println(maxEle);
         // System.out.println(testArray.length);
-        
+
         // insertionSort obj = new insertionSort(testArray);
         // System.out.println(Arrays.toString(testArray));
         // obj.sort();
