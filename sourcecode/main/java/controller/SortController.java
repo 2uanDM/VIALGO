@@ -188,7 +188,7 @@ public abstract class SortController implements Initializable {
         int createArrayButtonWidth = 110;
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.3), node);
         double fromX = leftToRight ? -createArrayButtonWidth : 0;
-        double toX = leftToRight ? 0 : -createArrayButtonWidth - 100;
+        double toX = leftToRight ? 0 : -createArrayButtonWidth - 50;
         translateTransition.setFromX(fromX);
         translateTransition.setToX(toX);
         translateTransition.setInterpolator(Interpolator.EASE_OUT);

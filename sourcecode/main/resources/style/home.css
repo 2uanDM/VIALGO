@@ -2,58 +2,71 @@
 #helpButton {
     -fx-background-image: url("../assets/HomeView/help_button.png");
     -fx-background-radius: 6px;
+
 }
 
 #aboutButton {
     -fx-background-image: url("../assets/HomeView/about_button.png");
     -fx-background-radius: 6px;
+
 }
 
 #bubbleSortHover {
     -fx-background-image: url("../assets/HomeView/bubbleshort_hover_front.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+
 }
 
 #quickSortHover {
     -fx-background-image: url("../assets/HomeView/quicksort_hover_front.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+
 }
 
 #insertionSortHover {
     -fx-background-image: url("../assets/HomeView/insertionsort_hover_front.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+
 }
 
 /* Button styles on hover */
 #helpButton:hover {
     -fx-background-image: url("../assets/HomeView/help_hover.png");
     -fx-background-radius: 6px;
+    -fx-cursor: hand;
 }
 
 #aboutButton:hover {
     -fx-background-image: url("../assets/HomeView/about_hover.png");
     -fx-background-radius: 6px;
+    -fx-cursor: hand;
 }
 
 #bubbleSortHover:hover {
     -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+    -fx-cursor: hand;
+
 }
 
 #quickSortHover:hover {
     -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+    -fx-cursor: hand;
+
 }
 
 #insertionSortHover:hover {
     -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
+    -fx-cursor: hand;
+
 }
 
 /* Button styles when pressed */
@@ -68,21 +81,3 @@
     -fx-background-radius: 6px;
     -fx-rotate: 10;
 }
-
-/* #bubbleSortHover:pressed {
-    -fx-background-image: url("../assets/HomeView/bubbleshort_hover_front.png");
-    -fx-border-color: gray;
-    -fx-border-width: 2px;
-}
-
-#quickSortHover:pressed {
-    -fx-background-image: url("../assets/HomeView/quicksort_hover_front.png");
-    -fx-border-color: gray;
-    -fx-border-width: 2px;
-}
-
-#insertionSortHover:pressed {
-    -fx-background-image: url("../assets/HomeView/insertionsort_hover_front.png");
-    -fx-border-color: gray;
-    -fx-border-width: 2px;
-} */

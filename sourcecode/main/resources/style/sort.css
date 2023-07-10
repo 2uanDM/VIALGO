@@ -1,12 +1,52 @@
 #menuActionButton {
     -fx-background-image: url("../assets/SortView/menuActionColor.png");
     -fx-background-color: black;
+    -fx-cursor: hand;
 }
 
 #menuActionPane {
     -fx-background-image: url("../assets/SortView/menuActionColor.png");
+    -fx-cursor: hand;
+}
+
+#sortExplain {
+    -fx-background-image: url("../assets/SortView/sortExplainColor.png");
+    -fx-background-color: black;
+    -fx-cursor: hand;
+}
+
+#sortExplainationTextField {
+    -fx-background-color: rgb(217, 81, 60);
+    -fx-background-radius: 0px;
+}
+
+#pseudoCodeTextArea {
+    -fx-control-inner-background: rgb(217, 81, 60);
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+#pseudoCodeTextArea .text {
+    -fx-line-spacing: 8px;
+    -fx-text-fill: white;
+}
+
+#pseudoCodeTextArea {
+    -fx-control-inner-background: rgb(217, 81, 60);
+    -fx-background-radius: 0px;
 }
 
 #backButton {
-    -fx-background-image: url("../assets/HomeView/about_button.png");
+    -fx-background-image: url("../assets/SortView/backButton.png");
+    -fx-background-color: black;
+    -fx-background-radius: 7px;
+}
+
+#backButton:hover {
+    -fx-cursor: hand;
+    -fx-background-image: url("../assets/SortView/backButton_hover.png");
+}
+
+.rightArrow {
+    -fx-rotate: 180;
 }
