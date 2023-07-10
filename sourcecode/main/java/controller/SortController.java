@@ -93,7 +93,6 @@ public abstract class SortController implements Initializable {
         }
         rotateTransition.setInterpolator(Interpolator.EASE_BOTH);
         rotateTransition.play();
-
     }
 
     public void createRectangle() {
