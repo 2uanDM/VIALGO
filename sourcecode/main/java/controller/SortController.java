@@ -2,7 +2,6 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 
 import java.net.URL;
 import java.util.Random;
@@ -14,7 +13,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

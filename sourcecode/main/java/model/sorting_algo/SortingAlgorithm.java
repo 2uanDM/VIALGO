@@ -1,4 +1,4 @@
-package main.java.sorting_algo;
+package main.java.model.sorting_algo;
 
 import utils.ArrayUtils;
 
