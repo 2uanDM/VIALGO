@@ -53,7 +53,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button id="backButton" layoutX="1115.0" layoutY="5.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="30.0" prefWidth="70.0" stylesheets="@../../resources/style/sort.css" />
+      <Button id="backButton" layoutX="1138.0" layoutY="5.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="30.0" prefWidth="70.0" stylesheets="@../../resources/style/sort.css" />
       <Button id="menuActionPane" fx:id="goButton" layoutX="715.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" stylesheets="@../../resources/style/sort.css" text="Go" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -69,26 +69,26 @@
             <Image url="@../../resources/assets/SortView/Bubble%20Sort.png" />
          </image>
       </ImageView>
-      <Button id="sortExplain" fx:id="sortExplainButton" layoutX="1250.0" layoutY="420.0" mnemonicParsing="false" onAction="#showMenuActionOptions" prefHeight="40.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" />
-      <ImageView fx:id="sortExplainArrow" fitHeight="15.0" fitWidth="13.0" layoutX="1259.0" layoutY="434.0" onMouseClicked="#showMenuActionOptions" pickOnBounds="true" preserveRatio="true" styleClass="rightArrow">
-         <image>
-            <Image url="@../../resources/assets/SortView/menuActionArrow.png" />
-         </image>
-      </ImageView>
       <TextField id="sortExplainationTextField" fx:id="sortExplainationTextField" editable="false" layoutX="813.0" layoutY="421.0" prefHeight="40.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button id="sortExplain" fx:id="sortExplainButton1" layoutX="1250.0" layoutY="465.0" mnemonicParsing="false" onAction="#showMenuActionOptions" prefHeight="200.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" />
-      <TextArea id="pseudoCodeTextArea" editable="false" layoutX="813.0" layoutY="464.0" prefHeight="200.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css" text="do&#10;  swapped = false&#10;  for i = 1 to indexOfLastUnsortedElement-1&#10;    if leftElement &gt; rightElement&#10;      swap(leftElement, rightElement)&#10;      swapped = true; ++swapCounter&#10;while swapped">
+      <Button id="sortExplainButton" fx:id="sortExplainButton" layoutX="1250.0" layoutY="420.0" mnemonicParsing="false" onAction="#showSortExplaination" prefHeight="40.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" />
+      <ImageView fx:id="sortExplainArrow" fitHeight="15.0" fitWidth="13.0" layoutX="1259.0" layoutY="434.0" onMouseClicked="#showSortExplaination" pickOnBounds="true" preserveRatio="true" styleClass="rightArrow">
+         <image>
+            <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
+         </image>
+      </ImageView>
+      <TextArea id="pseudoCodeTextArea" fx:id="pseudoCodeTextArea" editable="false" layoutX="813.0" layoutY="464.0" prefHeight="200.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css" text="do&#10;  swapped = false&#10;  for i = 1 to indexOfLastUnsortedElement-1&#10;    if leftElement &gt; rightElement&#10;      swap(leftElement, rightElement)&#10;      swapped = true; ++swapCounter&#10;while swapped">
          <font>
             <Font name="Courier New" size="16.0" />
          </font>
       </TextArea>
-      <ImageView fx:id="sortExplainArrow1" fitHeight="15.0" fitWidth="13.0" layoutX="1259.0" layoutY="556.0" onMouseClicked="#showMenuActionOptions" pickOnBounds="true" preserveRatio="true" styleClass="rightArrow">
+      <Button id="showPseudoCodeButton" fx:id="pseudoCodeButton" layoutX="1250.0" layoutY="465.0" mnemonicParsing="false" onAction="#showPseudoCode" prefHeight="200.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" />
+      <ImageView fx:id="pseudoCodeArrow" fitHeight="15.0" fitWidth="13.0" layoutX="1259.0" layoutY="556.0" onMouseClicked="#showPseudoCode" pickOnBounds="true" preserveRatio="true" styleClass="rightArrow">
          <image>
-            <Image url="@../../resources/assets/SortView/menuActionArrow.png" />
+            <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>   
    </children>

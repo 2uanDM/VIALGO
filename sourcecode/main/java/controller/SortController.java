@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -18,12 +20,34 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.Main;
 
+import main.java.model.vialgo_utils.SetVisibleUtils;
+
 public abstract class SortController implements Initializable {
 
-    private boolean arrowPointRight;
+    private boolean menuActionArrowPointRight;
+    private boolean sortExplainArrowPointLeft;
+    private boolean pseudoCodeArrowPointLeft;
 
     @FXML
     private ImageView aEqualsImageView;
+
+    @FXML
+    private ImageView menuActionArrow;
+
+    @FXML
+    private TextField enterArrayTextField;
+
+    @FXML
+    private TextField sortExplainationTextField;
+
+    @FXML
+    private TextArea pseudoCodeTextArea;
+
+    @FXML
+    private ImageView pseudoCodeArrow;
+
+    @FXML
+    private ImageView sortExplainArrow;
 
     @FXML
     private HBox columnsHBox;
@@ -32,13 +56,7 @@ public abstract class SortController implements Initializable {
     private Button createArrayButton;
 
     @FXML
-    private TextField enterArrayTextField;
-
-    @FXML
     private Button goButton;
-
-    @FXML
-    private ImageView menuActionArrow;
 
     @FXML
     private Button menuActionButton;
@@ -51,6 +69,22 @@ public abstract class SortController implements Initializable {
 
     @FXML
     private Button sortedArrayButton;
+
+    @FXML
+    private Button sortExplainButton;
+
+    @FXML
+    private Button pseudoCodeButton;
+
+    ArrayList<Node> menuActionOptionsChilds = new ArrayList<Node>();
+
+    ArrayList<Node> createArrayButtonChilds = new ArrayList<Node>();
+
+    ArrayList<Node> sortExplainButtonChilds = new ArrayList<Node>();
+
+    ArrayList<Node> pseudoCodeButtonChilds = new ArrayList<Node>();
+
+    SetVisibleUtils worker;
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -67,10 +101,29 @@ public abstract class SortController implements Initializable {
             aEqualsImageView.setVisible(false);
             enterArrayTextField.setVisible(false);
             goButton.setVisible(false);
+            sortExplainationTextField.setVisible(false);
+            pseudoCodeTextArea.setVisible(false);
         });
 
-        // Intially, the arrowPointRight is true ~ point to the right
-        arrowPointRight = true;
+        // Prepare Component Hierachy for menuActionButton;
+        menuActionOptionsChilds.add(createArrayButton);
+        menuActionOptionsChilds.add(sortButton);
+
+        // Prepare Component Hierachy for createArrayButton
+        createArrayButtonChilds.add(randomArrayButton);
+        createArrayButtonChilds.add(sortedArrayButton);
+        createArrayButtonChilds.add(aEqualsImageView);
+        createArrayButtonChilds.add(enterArrayTextField);
+        createArrayButtonChilds.add(goButton);
+
+        // Prepare Component Hierachy for sortExplainButton
+        sortExplainButtonChilds.add(sortExplainationTextField);
+
+        // Prepare Component Hierachy for pseudoCodeButton
+        pseudoCodeButtonChilds.add(pseudoCodeTextArea);
+
+        // Intially, the menuActionArrowPointRight is true ~ point to the right
+        menuActionArrowPointRight = true;
     }
 
     public void backToHomePage() {
@@ -94,54 +147,25 @@ public abstract class SortController implements Initializable {
          * options
          */
 
-        TranslateTransition createArrayButtonAnimation, sortButtonAnimation;
-
-        // Set visible for the first level MenuItems
+        worker = new SetVisibleUtils(this.menuActionOptionsChilds);
         boolean isVisible = createArrayButton.isVisible();
-        if (isVisible == true) {
+        worker.changeVisibleStatus(true, !isVisible, "translate");
 
-            // Create hide animation for first level MenuItems
-            createArrayButtonAnimation = createTranslateTransition(createArrayButton, false);
-            sortButtonAnimation = createTranslateTransition(sortButton, false);
-
-            // Still hide second level MenuItems Until the createArrayButton is clicked
-            randomArrayButton.setVisible(false);
-            sortedArrayButton.setVisible(false);
-            aEqualsImageView.setVisible(false);
-            enterArrayTextField.setVisible(false);
-            goButton.setVisible(false);
-        } else {
-            // Create show animation for first level MenuItems
-            createArrayButton.setVisible(!isVisible);
-            sortButton.setVisible(!isVisible);
-            createArrayButtonAnimation = createTranslateTransition(createArrayButton, true);
-            sortButtonAnimation = createTranslateTransition(sortButton, true);
+        if (isVisible) {
+            // Hide second level MenuItems if their parent (MenuItems) also be hided
+            worker = new SetVisibleUtils(this.createArrayButtonChilds);
+            worker.changeVisibleStatus(true, !isVisible, "fade");
         }
-
-        // Create a ParallelTransition to play all wipe transitions simultaneously
-        ParallelTransition parallelTransition = new ParallelTransition(
-                createArrayButtonAnimation,
-                sortButtonAnimation);
 
         // Rotating the arrow 180 degrees when being clicked
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), menuActionArrow);
-        if (arrowPointRight) {
+        if (menuActionArrowPointRight) {
             rotateTransition.setByAngle(180);
-            arrowPointRight = false;
+            menuActionArrowPointRight = false;
         } else {
             rotateTransition.setByAngle(-180);
-            arrowPointRight = true;
+            menuActionArrowPointRight = true;
         }
-
-        // Only when the hide animation finished, those button will be set not visible
-        if (isVisible == true) {
-            parallelTransition.setOnFinished(event -> {
-                createArrayButton.setVisible(false);
-                sortButton.setVisible(false);
-            });
-        }
-
-        parallelTransition.play();
         rotateTransition.play();
     }
 
@@ -150,49 +174,43 @@ public abstract class SortController implements Initializable {
          * This action method is used for showing create array options
          * 
          */
-
-        // Create a FadeTransition for each component
-        FadeTransition randomArrayFade = createFadeTransition(randomArrayButton);
-        FadeTransition sortedArrayFade = createFadeTransition(sortedArrayButton);
-        FadeTransition aEqualsFade = createFadeTransition(aEqualsImageView);
-        FadeTransition enterArrayFade = createFadeTransition(enterArrayTextField);
-        FadeTransition goButtonFade = createFadeTransition(goButton);
-
-        // Create a ParallelTransition to play all fade transitions simultaneously
-        ParallelTransition parallelTransition = new ParallelTransition(
-                randomArrayFade,
-                sortedArrayFade,
-                aEqualsFade,
-                enterArrayFade,
-                goButtonFade);
-
-        // Show the components by making them visible
-        randomArrayButton.setVisible(true);
-        sortedArrayButton.setVisible(true);
-        aEqualsImageView.setVisible(true);
-        enterArrayTextField.setVisible(true);
-        goButton.setVisible(true);
-
-        // Play the fade-in animation
-        parallelTransition.play();
+        worker = new SetVisibleUtils(this.createArrayButtonChilds);
+        if (goButton.isVisible() == false)
+            worker.changeVisibleStatus(true, true, "fade");
     }
 
-    private FadeTransition createFadeTransition(Node node) {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), node);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        return fadeTransition;
+    public void showSortExplaination() {
+        worker = new SetVisibleUtils(sortExplainButtonChilds);
+        boolean isVisible = sortExplainationTextField.isVisible();
+        worker.changeVisibleStatus(false, !isVisible, "translate");
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), sortExplainArrow);
+        if (sortExplainArrowPointLeft) {
+            rotateTransition.setByAngle(180);
+            sortExplainArrowPointLeft = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            sortExplainArrowPointLeft = true;
+        }
+        rotateTransition.play();
     }
 
-    private TranslateTransition createTranslateTransition(Node node, boolean leftToRight) {
-        int createArrayButtonWidth = 110;
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.3), node);
-        double fromX = leftToRight ? -createArrayButtonWidth : 0;
-        double toX = leftToRight ? 0 : -createArrayButtonWidth - 50;
-        translateTransition.setFromX(fromX);
-        translateTransition.setToX(toX);
-        translateTransition.setInterpolator(Interpolator.EASE_OUT);
-        return translateTransition;
+    public void showPseudoCode() {
+        worker = new SetVisibleUtils(pseudoCodeButtonChilds);
+        boolean isVisible = pseudoCodeTextArea.isVisible();
+        worker.changeVisibleStatus(false, !isVisible, "translate");
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), pseudoCodeArrow);
+        if (pseudoCodeArrowPointLeft) {
+            rotateTransition.setByAngle(180);
+            pseudoCodeArrowPointLeft = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            pseudoCodeArrowPointLeft = true;
+        }
+        rotateTransition.play();
     }
 
     public void createRectangle() {

@@ -9,8 +9,14 @@
     -fx-cursor: hand;
 }
 
-#sortExplain {
+#sortExplainButton {
     -fx-background-image: url("../assets/SortView/sortExplainColor.png");
+    -fx-background-color: black;
+    -fx-cursor: hand;
+}
+
+#showPseudoCodeButton {
+    -fx-background-image: url("../assets/SortView/pseudoCodeColor.png");
     -fx-background-color: black;
     -fx-cursor: hand;
 }
@@ -21,19 +27,16 @@
 }
 
 #pseudoCodeTextArea {
-    -fx-control-inner-background: rgb(217, 81, 60);
+    -fx-control-inner-background: rgb(30, 154, 42);
+    -fx-background-color: rgb(30, 154, 42);
     -fx-background-radius: 0px;
     -fx-text-fill: white;
+
 }
 
 #pseudoCodeTextArea .text {
     -fx-line-spacing: 8px;
     -fx-text-fill: white;
-}
-
-#pseudoCodeTextArea {
-    -fx-control-inner-background: rgb(217, 81, 60);
-    -fx-background-radius: 0px;
 }
 
 #backButton {
@@ -45,8 +48,4 @@
 #backButton:hover {
     -fx-cursor: hand;
     -fx-background-image: url("../assets/SortView/backButton_hover.png");
-}
-
-.rightArrow {
-    -fx-rotate: 180;
 }
