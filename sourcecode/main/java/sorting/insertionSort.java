@@ -34,11 +34,23 @@ public class insertionSort extends arraySort {
             }
             
             if (isChange) {
+                // we add Log to Logs
+
+                int[] arrayLog = newArray;
+                String messageLog = String.format("We move the element %d to the index %d", element, elementIndex);
+                // System.out.println(messageLog);        // for testing
+                int[] pointerLog = {element, elementIndex};
+                int[] tempLog = arrayUtils.copyArray(previousArray, elementIndex, sortedPart + 1);
+                this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
+
+                //copy previousArray to newArray
                 for (int i = elementIndex + 1; i < sortedPart + 1; i++) {
                     newArray[i] = previousArray[i-1];
                 }
                 previousArray = newArray;
-                System.out.println(Arrays.toString(newArray));
+                // System.out.println(Arrays.toString(newArray));            // for testing
+
+
             }
 
             // Here, we ensure that the sortedPart increases by 1
@@ -48,7 +60,6 @@ public class insertionSort extends arraySort {
             
 
         } 
-
 
 
     }

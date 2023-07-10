@@ -54,8 +54,8 @@ public abstract class arraySort {
 
     public void addLogs(int[] arrayLog, int[] tempLog, int[] pointerLog, String messageLog) {
         //check for the space
-        if (arrayLogs.length == this.stepCount) {
-            //when the Logs array is full
+        if (arrayLogs.length == this.stepCount ) {
+            //when the Logs array is full, array.length = n store only n-1 stepCount due to empty space at index 0
             arrayLogs = arrayUtils.Resize(arrayLogs);
             tempLogs = arrayUtils.Resize(tempLogs);
             pointerLogs = arrayUtils.Resize(pointerLogs);
