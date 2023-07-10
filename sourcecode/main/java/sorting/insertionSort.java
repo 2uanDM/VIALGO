@@ -12,16 +12,15 @@ public class insertionSort extends arraySort {
     public void sort() {
         int sortedPart = 1; // the number of element in the sorted part, and also is the index of first element in unsorted part
         // When sortedPart = inputArray.length, which means entire array is in SortedPart
-        int[] previousArray = this.inputArray;
 
         while ( sortedPart < inputArray.length) {
             boolean isChange = false;
             // start changing the array, then we need add 1 to this.stepCount
-            int[] newArray = arrayUtils.copyArray(previousArray);
-            int element = previousArray[sortedPart]; // element variable is the first element in unsorted part
+            int[] newArray = arrayUtils.copyArray(inputArray);
+            int element = inputArray[sortedPart]; // element variable is the first element in unsorted part
             int elementIndex = -1; // tracking where to put element in new array
             for (int i=0; i < sortedPart; i++) {
-                if (element > previousArray[i]) {
+                if (element > inputArray[i]) { 
                     // nothing happen, we need to move to the right of the array
                 }
                 else {  //element < this.inputArray[i] and element > this.inputArray[i+1]
@@ -40,14 +39,14 @@ public class insertionSort extends arraySort {
                 String messageLog = String.format("We move the element %d to the index %d", element, elementIndex);
                 // System.out.println(messageLog);        // for testing
                 int[] pointerLog = {element, elementIndex};
-                int[] tempLog = arrayUtils.copyArray(previousArray, elementIndex, sortedPart + 1);
+                int[] tempLog = arrayUtils.copyArray(inputArray, elementIndex, sortedPart + 1);
                 this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
-                //copy previousArray to newArray
+                //copy inputArray to newArray
                 for (int i = elementIndex + 1; i < sortedPart + 1; i++) {
-                    newArray[i] = previousArray[i-1];
+                    newArray[i] = inputArray[i-1];
                 }
-                previousArray = newArray;
+                inputArray = newArray;
                 // System.out.println(Arrays.toString(newArray));            // for testing
 
 
@@ -55,7 +54,7 @@ public class insertionSort extends arraySort {
 
             // Here, we ensure that the sortedPart increases by 1
             sortedPart ++;
-            
+            System.out.println(Arrays.toString(inputArray));
 
             
 
