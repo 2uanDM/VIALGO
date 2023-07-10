@@ -5,15 +5,18 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.Main;
@@ -35,7 +38,7 @@ public abstract class SortController implements Initializable {
     private Button sortButton;
 
     @FXML
-    private Button testButton;
+    private HBox columnsHBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -88,34 +91,33 @@ public abstract class SortController implements Initializable {
             rotateTransition.setByAngle(-180);
             arrowPointRight = true;
         }
+        rotateTransition.setInterpolator(Interpolator.EASE_BOTH);
         rotateTransition.play();
 
     }
 
     public void createRectangle() {
-        HBox centerHBox = new HBox();
+        // Create a new rectangle
+        Random t = new Random();
         Rectangle r = new Rectangle();
-        r.setX(50);
-        r.setY(50);
-        r.setWidth(200);
-        r.setHeight(100);
-        AnchorPane currentPane = (AnchorPane) testButton.getScene().getRoot();
+        r.setWidth(30);
+        r.setHeight(t.nextInt(230));
+        r.setFill(Color.rgb(t.nextInt(255), t.nextInt(255), t.nextInt(255)));
 
-        // Set alignment and position for centerHBox
-        centerHBox.setAlignment(Pos.CENTER);
-        AnchorPane.setTopAnchor(centerHBox, 0.0);
-        AnchorPane.setBottomAnchor(centerHBox, 0.0);
-        AnchorPane.setLeftAnchor(centerHBox, 0.0);
-        AnchorPane.setRightAnchor(centerHBox, 0.0);
+        // Set the initial position of the rectangle
+        r.setTranslateX(-50); // Start the rectangle outside the visible area
 
-        // Add r to centerHBox
-        centerHBox.getChildren().add(r);
+        // Add the rectangle to the HBox
+        columnsHBox.getChildren().add(r);
+        columnsHBox.setSpacing(10);
 
-        // Update the UI on the JavaFX application thread
-        Platform.runLater(() -> {
-            // Add centerHBox to currentPane
-            currentPane.getChildren().add(centerHBox);
-        });
+        // Create a TranslateTransition for the rectangle
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.2), r);
+        transition.setFromX(-50); // Start position
+        transition.setToX(0); // End position
+
+        // Play the animation
+        transition.play();
     }
 
 }
