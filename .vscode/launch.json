@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "InputParserUtils",
+      "request": "launch",
+      "mainClass": "main.java.model.vialgo_utils.InputParserUtils",
+      "projectName": "OOP.20222.17_6d30dfa4"
+    },
+    {
+      "type": "java",
       "name": "ArrayParserUtils",
       "request": "launch",
       "mainClass": "main.java.model.vialgo_utils.ArrayParserUtils",
