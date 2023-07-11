@@ -2,6 +2,7 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,17 +10,14 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.Main;
-
+import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 
 public abstract class SortController implements Initializable {
@@ -124,6 +122,11 @@ public abstract class SortController implements Initializable {
 
         // Intially, the menuActionArrowPointRight is true ~ point to the right
         menuActionArrowPointRight = true;
+        sortExplainArrowPointLeft = true;
+        pseudoCodeArrowPointLeft = true;
+
+        // Spacing for columns in HBox
+        columnsHBox.setSpacing(10);
     }
 
     public void backToHomePage() {
@@ -187,10 +190,10 @@ public abstract class SortController implements Initializable {
         // Rotating the arrow 180 degrees when being clicked
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), sortExplainArrow);
         if (sortExplainArrowPointLeft) {
-            rotateTransition.setByAngle(180);
+            rotateTransition.setByAngle(-180);
             sortExplainArrowPointLeft = false;
         } else {
-            rotateTransition.setByAngle(-180);
+            rotateTransition.setByAngle(180);
             sortExplainArrowPointLeft = true;
         }
         rotateTransition.play();
@@ -204,37 +207,46 @@ public abstract class SortController implements Initializable {
         // Rotating the arrow 180 degrees when being clicked
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.5), pseudoCodeArrow);
         if (pseudoCodeArrowPointLeft) {
-            rotateTransition.setByAngle(180);
+            rotateTransition.setByAngle(-180);
             pseudoCodeArrowPointLeft = false;
         } else {
-            rotateTransition.setByAngle(-180);
+            rotateTransition.setByAngle(180);
             pseudoCodeArrowPointLeft = true;
         }
         rotateTransition.play();
     }
 
-    public void createRectangle() {
-        // Create a new rectangle
-        Random t = new Random();
-        Rectangle r = new Rectangle();
-        r.setWidth(30);
-        r.setHeight(t.nextInt(230));
-        r.setFill(Color.rgb(t.nextInt(255), t.nextInt(255), t.nextInt(255)));
+    public void swapping() {
+        System.out.println("clicked");
 
-        // Set the initial position of the rectangle
-        r.setTranslateX(-50); // Start the rectangle outside the visible area
+        int col1Index = 0;
+        int col2Index = 4;
 
-        // Add the rectangle to the HBox
-        columnsHBox.getChildren().add(r);
-        columnsHBox.setSpacing(10);
+        ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
+        ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
 
-        // Create a TranslateTransition for the rectangle
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.2), r);
-        transition.setFromX(-50); // Start position
-        transition.setToX(0); // End position
-
-        // Play the animation
-        transition.play();
+        col1.swap(col2, 0.3);
     }
 
+    public void generateRandomArray() {
+        columnsHBox.getChildren().clear();
+        Random t = new Random();
+        int numberElements = t.nextInt(5, 20);
+        ArrayList<Integer> arrayVal = new ArrayList<Integer>();
+
+        // Generate a random array of integers
+        for (int i = 1; i <= numberElements; ++i) {
+            int randomValue = t.nextInt(1, 50);
+            arrayVal.add(randomValue);
+        }
+
+        // Add ColumnBars to HBox with respect to these values
+        for (int val : arrayVal) {
+            ColumnBar newColumn = new ColumnBar(val);
+            columnsHBox.getChildren().add(newColumn);
+        }
+
+        // Update HBox Layout
+        columnsHBox.layout();
+    }
 }
