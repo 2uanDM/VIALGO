@@ -18,6 +18,5 @@ public class testing {
 
         BubbleSort bubble = new BubbleSort(testArray);
         bubble.sort();
-
     }
 }

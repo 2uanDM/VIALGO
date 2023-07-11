@@ -32,8 +32,7 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow.png" />
          </image>
       </ImageView>
-      <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
-      <Button id="menuActionPane" fx:id="randomArrayButton" layoutX="145.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Random" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="randomArrayButton" layoutX="145.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateRandomArray" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Random" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -48,13 +47,13 @@
             <Image url="@../../resources/assets/SortView/aEquals.png" />
          </image>
       </ImageView>
-      <TextField fx:id="enterArrayTextField" layoutX="405.0" layoutY="572.0" prefHeight="40.0" prefWidth="300.0" promptText="Enter Array Here">
+      <TextField fx:id="enterArrayTextField" layoutX="405.0" layoutY="572.0" onAction="#generateCustomArray" prefHeight="40.0" prefWidth="300.0" promptText="Enter Array Here">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
       <Button id="backButton" layoutX="1138.0" layoutY="5.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="30.0" prefWidth="70.0" stylesheets="@../../resources/style/sort.css" />
-      <Button id="menuActionPane" fx:id="goButton" layoutX="715.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" stylesheets="@../../resources/style/sort.css" text="Go" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="goButton" layoutX="715.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="40.0" prefWidth="44.0" stylesheets="@../../resources/style/sort.css" text="Go" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -90,6 +89,8 @@
          <image>
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
-      </ImageView>   
+      </ImageView>
+      <Button layoutX="616.0" layoutY="452.0" mnemonicParsing="false" onAction="#swapping" text="Swap" />
+      <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />   
    </children>
 </AnchorPane>
