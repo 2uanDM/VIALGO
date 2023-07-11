@@ -2,7 +2,6 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -129,6 +128,7 @@ public abstract class SortController implements Initializable {
         columnsHBox.setSpacing(10);
     }
 
+    /*----------------------------------------Action Handler---------------------------------------- */
     public void backToHomePage() {
         /*
          * This action method is used for back to home page button.
@@ -248,5 +248,14 @@ public abstract class SortController implements Initializable {
 
         // Update HBox Layout
         columnsHBox.layout();
+    }
+
+    public void generateSortedArray() {
+        // Quốc code phần này nhé
+    }
+
+    public void generateCustomArray() {
+        String content = enterArrayTextField.getText();
+        System.out.println(content);
     }
 }
