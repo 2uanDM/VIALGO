@@ -62,15 +62,13 @@ public class ColumnBar extends Rectangle {
         TranslateTransition thisTransition = new TranslateTransition(Duration.seconds(duration), this);
         thisTransition.setToX(otherX - currentX);
         thisTransition.setInterpolator(Interpolator.EASE_BOTH);
-        // thisTransition.play();
 
         TranslateTransition otherTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
         otherTransition.setToX(currentX - otherX);
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
-        // otherTransition.play();
 
         // Create the color change back transition
-        Duration colorChangeBackDelay = Duration.seconds(0.7);
+        Duration colorChangeBackDelay = Duration.seconds(0.55);
 
         PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
         delayTransition.setOnFinished(event -> {
@@ -98,7 +96,10 @@ public class ColumnBar extends Rectangle {
     }
 
     private double getHeight(double value) {
-        return value / MAX_VALUE * (MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
+        // log scale for accepting very large number
+        double log_scale;
+        log_scale = 36 * Math.log(value) + 10;
+        return log_scale;
     }
 
     public Text getValueText() {
