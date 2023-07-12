@@ -23,6 +23,9 @@ public class InputParserUtils {
     private void parse() {
         // first, split the input
         String[] splitArray = this.input.split(",");
+        int[] numberArray;
+        numberArray = new int[splitArray.length];
+
         int index = 0;
         for (String strPart: splitArray) {
 
@@ -32,7 +35,7 @@ public class InputParserUtils {
             index ++;
         }
 // Now we ensure that input is splited by ",", store them in an array, and not exists space in each element
-
+        index = 0;
         for (String strPart: splitArray) {
             try {
                 int number = Integer.parseInt(strPart);
@@ -42,6 +45,16 @@ public class InputParserUtils {
 
         }
 // Here, we ensure that there is not any syntax error from user. But we still need more constraint about the value of integer.
+        for (String strPart: splitArray) {
+            int number = Integer.parseInt(strPart);
+            if (number < 1 || number > 50) {
+                // out of range error
+                System.out.print("Do not type any number out of range [1, 50]. Check the element: " + number);
+            }
+
+            numberArray[index] = number;
+            index ++;
+        }
 
 
         // for testing
@@ -67,7 +80,8 @@ public class InputParserUtils {
         // Sorry, you're restricted to values between 1 and 50 inclusive.(Out of range
         // number: -1.)
 
-        parser.setInput(test2);
-        System.out.println(parser.getArrayValue());
+        parser.setInput(test5);
+        parser.parse();
+        // System.out.println(parser.getArrayValue());
     }
 }
