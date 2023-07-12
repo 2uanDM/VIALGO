@@ -36,6 +36,7 @@ public class InputParserUtils {
             //convert to int datatype, then add to numberArray
             int number = Integer.parseInt(strPart);
             numberArray[i] = number;
+            i++;
         }
 
         return numberArray;

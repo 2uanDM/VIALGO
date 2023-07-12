@@ -18,6 +18,8 @@ import javafx.util.Duration;
 import main.java.Main;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.SetVisibleUtils;
+import main.java.model.vialgo_utils.InputParserUtils;
+
 
 public abstract class SortController implements Initializable {
 
@@ -257,6 +259,27 @@ public abstract class SortController implements Initializable {
 
     public void generateCustomArray() {
         String content = enterArrayTextField.getText();
-        System.out.println(content);
+
+        columnsHBox.getChildren().clear();
+        InputParserUtils parser = new InputParserUtils();
+        parser.setInput(content);
+
+        // check for the constraint
+        parser.parse();
+        if (parser.getErrorState()) {
+            // When the error occur, the user must type the input again
+            System.out.println("Please type again");
+        } else {
+            int[] arrayVal = parser.getArrayInput();
+            for (int value : arrayVal) {
+                System.out.println(value);
+                ColumnBar newColumn = new ColumnBar(value);
+                columnsHBox.getChildren().add(newColumn);
+            }
+
+            // Update HBox Layout
+            columnsHBox.layout();
+
+        }
     }
 }
