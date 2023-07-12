@@ -6,7 +6,7 @@ public class InputParserUtils {
 
     private ArrayList<Double> arrayValue = new ArrayList<Double>();
     private String input;
-
+    private boolean errorState = false;
     public ArrayList<Double> getArrayValue() {
         this.parse();
         return this.arrayValue;
@@ -15,12 +15,34 @@ public class InputParserUtils {
     public String getInput() {
         return this.input;
     }
+    public boolean getErrorState() {
+        return this.errorState;
+    }
 
     public void setInput(String input) {
         this.input = input;
     }
 
-    private void parse() {
+    public int[] getArrayInput() {
+        // only call the function when ensure that there is no syntax error from input
+        String[] splitArray = this.input.split(",");
+        int[] numberArray;
+        numberArray = new int[splitArray.length];
+        int i = 0;
+        for (String strPart: splitArray) {
+
+            //remove all the space in the string
+            strPart = strPart.replaceAll("\\s", "");
+            //convert to int datatype, then add to numberArray
+            int number = Integer.parseInt(strPart);
+            numberArray[i] = number;
+        }
+
+        return numberArray;
+
+    }
+
+    public void parse() {
         // first, split the input
         String[] splitArray = this.input.split(",");
         int[] numberArray;
@@ -40,6 +62,7 @@ public class InputParserUtils {
             try {
                 int number = Integer.parseInt(strPart);
             } catch(Exception e) {
+                this.errorState = true;
                 System.out.println("Check your input, remember that only type integer value, each integer is splited by a ','. Check near the part contain: " + e.getMessage());
             } 
 
@@ -49,6 +72,7 @@ public class InputParserUtils {
             int number = Integer.parseInt(strPart);
             if (number < 1 || number > 1000) {
                 // out of range error
+                this.errorState = true;
                 System.out.print("Do not type any number out of range [1, 1000]. Check the element: " + number);
             }
 
