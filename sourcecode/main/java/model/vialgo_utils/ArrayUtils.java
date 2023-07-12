@@ -75,4 +75,14 @@ public class ArrayUtils {
         }
         return newArray;
     }
+
+    public static String toString(int[] array) {
+        String string = "[";
+        for (int element : array) {
+            string += element + ", ";
+        }
+        string = string.substring(0, string.length() - 2);
+        string += "]";
+        return string;
+    }
 }
