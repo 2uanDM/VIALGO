@@ -75,7 +75,6 @@ public class ArrayUtils {
         }
         return newArray;
     }
-    
     public static String toString(int[] array) {
         String string = "[";
         for (int element : array) {
@@ -85,5 +84,4 @@ public class ArrayUtils {
         string += "]";
         return string;
     }
-
 }
