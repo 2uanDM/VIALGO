@@ -21,14 +21,56 @@ public class InputParserUtils {
     }
 
     private void parse() {
-        // Ngọc Quân code here
+        // first, split the input
+        String[] splitArray = this.input.split(",");
+        int[] numberArray;
+        numberArray = new int[splitArray.length];
+
+        int index = 0;
+        for (String strPart: splitArray) {
+
+            // first, remove all the space in the string
+            strPart = strPart.replaceAll("\\s", "");
+            splitArray[index] = strPart;
+            index ++;
+        }
+// Now we ensure that input is splited by ",", store them in an array, and not exists space in each element
+        index = 0;
+        for (String strPart: splitArray) {
+            try {
+                int number = Integer.parseInt(strPart);
+            } catch(Exception e) {
+                System.out.println("Check your input, remember that only type integer value, each integer is splited by a ','. Check near the part contain: " + e.getMessage());
+            } 
+
+        }
+// Here, we ensure that there is not any syntax error from user. But we still need more constraint about the value of integer.
+        for (String strPart: splitArray) {
+            int number = Integer.parseInt(strPart);
+            if (number < 1 || number > 50) {
+                // out of range error
+                System.out.print("Do not type any number out of range [1, 50]. Check the element: " + number);
+            }
+
+            numberArray[index] = number;
+            index ++;
+        }
+
+
+        // for testing
+        // for (String i: splitArray) {
+
+        //     int number = Integer.parseInt(i);
+        //     // System.out.println(number);  
+        // }
     }
 
     public static void main(String[] args) {
         InputParserUtils parser = new InputParserUtils();
-        String test1 = "29, 40 ;1,48, 43;a, 0";
+        String test = "0, 1, 2, 3, 4, 5";
+        String test1 = "29, ,40 ;1,48, 43;a, 0";
         // There seems to be an invalid element (not a number): 40 ;1
-        String test2 = " 29, ,40 ;1,48, 43;a, 0   ";
+        String test2 = " 29 ,40 ;1,48, 43;a, 0   ";
         // There seems to be a missing element (a duplicate comma somewhere perhaps?)
         String test3 = " 1,    36, 8, 3, 5";
         // [1,36,8,3,5]
@@ -38,7 +80,8 @@ public class InputParserUtils {
         // Sorry, you're restricted to values between 1 and 50 inclusive.(Out of range
         // number: -1.)
 
-        parser.setInput(test1);
-        System.out.println(parser.getArrayValue());
+        parser.setInput(test5);
+        parser.parse();
+        // System.out.println(parser.getArrayValue());
     }
 }
