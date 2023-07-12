@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ColumnBar extends Rectangle {
+    public static final Color defaultColor = Color.rgb(173, 216, 230);
     public static final double MAX_HEIGHT = 250.0;
     public static final double MIN_HEIGHT = 30.0;
     public static final double COL_WIDTH = 40.0;
@@ -20,7 +21,7 @@ public class ColumnBar extends Rectangle {
     public ColumnBar(double value) {
         this.setWidth(COL_WIDTH);
         this.setHeight(getHeight(value));
-        this.setFill(Color.rgb(173, 216, 230));
+        this.setFill(defaultColor);
 
         // Create text value at the bottom center of the column bar
         valueText = new Text(String.valueOf(value));
@@ -47,6 +48,12 @@ public class ColumnBar extends Rectangle {
         otherTransition.setToX(currentX - otherX);
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
         otherTransition.play();
+
+        otherTransition.setOnFinished(event -> {
+            this.setFill(defaultColor);
+            columnBar.setFill(defaultColor);
+        });
+
     }
 
     private double getHeight(double value) {
