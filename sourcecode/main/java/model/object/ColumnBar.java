@@ -1,6 +1,10 @@
 package main.java.model.object;
 
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -9,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ColumnBar extends Rectangle {
+    public static final Color DEFAULT_COLOR = Color.rgb(173, 216, 230);
     public static final double MAX_HEIGHT = 250.0;
     public static final double MIN_HEIGHT = 30.0;
     public static final double COL_WIDTH = 40.0;
@@ -20,7 +25,7 @@ public class ColumnBar extends Rectangle {
     public ColumnBar(double value) {
         this.setWidth(COL_WIDTH);
         this.setHeight(getHeight(value));
-        this.setFill(Color.rgb(173, 216, 230));
+        this.setFill(DEFAULT_COLOR);
 
         // Create text value at the bottom center of the column bar
         valueText = new Text(String.valueOf(value));
@@ -38,15 +43,58 @@ public class ColumnBar extends Rectangle {
         double currentX = this.getLayoutX();
         double otherX = columnBar.getLayoutX();
 
+        this.setFill(Color.BEIGE);
+        columnBar.setFill(Color.BEIGE);
+
+        // Create the color change animation
+        Duration colorChangeDuration = Duration.seconds(0.3);
+        Color newColor = Color.BEIGE;
+
+        KeyValue thisColorKeyValue = new KeyValue(this.fillProperty(), newColor);
+        KeyFrame thisColorKeyFrame = new KeyFrame(colorChangeDuration, thisColorKeyValue);
+        Timeline thisColorTimeline = new Timeline(thisColorKeyFrame);
+
+        KeyValue otherColorKeyValue = new KeyValue(columnBar.fillProperty(), newColor);
+        KeyFrame otherColorKeyFrame = new KeyFrame(colorChangeDuration, otherColorKeyValue);
+        Timeline otherColorTimeline = new Timeline(otherColorKeyFrame);
+
+        // create the translation animation
         TranslateTransition thisTransition = new TranslateTransition(Duration.seconds(duration), this);
         thisTransition.setToX(otherX - currentX);
         thisTransition.setInterpolator(Interpolator.EASE_BOTH);
-        thisTransition.play();
+        // thisTransition.play();
 
         TranslateTransition otherTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
         otherTransition.setToX(currentX - otherX);
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
-        otherTransition.play();
+        // otherTransition.play();
+
+        // Create the color change back transition
+        Duration colorChangeBackDelay = Duration.seconds(0.7);
+
+        PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
+        delayTransition.setOnFinished(event -> {
+            KeyValue thisColorBackKeyValue = new KeyValue(this.fillProperty(), DEFAULT_COLOR);
+            KeyFrame thisColorBackKeyFrame = new KeyFrame(colorChangeDuration, thisColorBackKeyValue);
+            Timeline thisColorBackTimeline = new Timeline(thisColorBackKeyFrame);
+
+            KeyValue otherColorBackKeyValue = new KeyValue(columnBar.fillProperty(), DEFAULT_COLOR);
+            KeyFrame otherColorBackKeyFrame = new KeyFrame(colorChangeDuration, otherColorBackKeyValue);
+            Timeline otherColorBackTimeline = new Timeline(otherColorBackKeyFrame);
+
+            thisColorBackTimeline.play();
+            otherColorBackTimeline.play();
+        });
+
+        // Play the color change animations
+        thisColorTimeline.setOnFinished(event -> {
+            thisTransition.play();
+            otherTransition.play();
+            delayTransition.play();
+        });
+
+        thisColorTimeline.play();
+
     }
 
     private double getHeight(double value) {

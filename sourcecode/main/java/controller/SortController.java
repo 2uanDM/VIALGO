@@ -219,8 +219,9 @@ public abstract class SortController implements Initializable {
     public void swapping() {
         System.out.println("clicked");
 
-        int col1Index = 0;
-        int col2Index = 4;
+        Random random = new Random();
+        int col1Index = random.nextInt(0, 5);
+        int col2Index = random.nextInt(6, 10);
 
         ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
         ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
