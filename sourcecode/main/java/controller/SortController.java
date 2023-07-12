@@ -218,12 +218,19 @@ public abstract class SortController implements Initializable {
 
     public void swapping() {
         System.out.println("clicked");
+        Random t = new Random();
+        int col1Index = t.nextInt(0, 3);
+        int col2Index = t.nextInt(3, 10);
 
-        int col1Index = 0;
-        int col2Index = 4;
+        System.out.println("col1: " + col1Index + "col2: " + col2Index);
 
         ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
         ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
+
+        columnsHBox.layout();
+
+        // Still need to swap ColumnBar with index `col1index` and `col2index` in
+        // ArrayList columnsHBox.getChildren()
 
         col1.swap(col2, 0.3);
     }
