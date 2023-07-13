@@ -47,9 +47,9 @@ public class InputParserUtils {
 // Here, we ensure that there is not any syntax error from user. But we still need more constraint about the value of integer.
         for (String strPart: splitArray) {
             int number = Integer.parseInt(strPart);
-            if (number < 1 || number > 50) {
+            if (number < 1 || number > 1000) {
                 // out of range error
-                System.out.print("Do not type any number out of range [1, 50]. Check the element: " + number);
+                System.out.print("Do not type any number out of range [1, 1000]. Check the element: " + number);
             }
 
             numberArray[index] = number;

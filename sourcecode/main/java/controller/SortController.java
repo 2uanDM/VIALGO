@@ -222,7 +222,10 @@ public abstract class SortController implements Initializable {
         int col1Index = t.nextInt(0, 3);
         int col2Index = t.nextInt(3, 10);
 
-        System.out.println("col1: " + col1Index + "col2: " + col2Index);
+
+        Random random = new Random();
+        int col1Index = random.nextInt(0, 5);
+        int col2Index = random.nextInt(6, 10);
 
         ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
         ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
@@ -243,7 +246,7 @@ public abstract class SortController implements Initializable {
 
         // Generate a random array of integers
         for (int i = 1; i <= numberElements; ++i) {
-            int randomValue = t.nextInt(1, 50);
+            int randomValue = t.nextInt(1, 1000);
             arrayVal.add(randomValue);
         }
 
