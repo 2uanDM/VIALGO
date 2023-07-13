@@ -84,4 +84,34 @@ public class ArrayUtils {
         string += "]";
         return string;
     }
+
+
+    
+    public static void NearlySort(int[] array, int frequency) {
+
+        for (int i = 0; i < array.length; i++){
+            for (int j = 0; j < array.length - i -1 ; j++){
+                if (array[j] < array[j+1]){
+                    swap(array, j, j+1);
+                }
+            }
+        }
+        for (int i = 0; i < frequency; i ++){
+            int first_id = (int) (Math.random() * array.length);
+            int second_id;
+            do {
+                second_id = (int) (Math.random() * array.length);
+            } while (first_id == second_id);
+            swap(array, first_id, second_id);
+        }
+
+
+    }
+    
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    
 }
