@@ -9,6 +9,13 @@
       "name": "InputParserUtils",
       "request": "launch",
       "mainClass": "main.java.model.vialgo_utils.InputParserUtils",
+      "projectName": "OOP_PROJECT_20222_47ff52ea"
+    },
+    {
+      "type": "java",
+      "name": "InputParserUtils",
+      "request": "launch",
+      "mainClass": "main.java.model.vialgo_utils.InputParserUtils",
       "projectName": "OOP.20222.17_6d30dfa4"
     },
     {

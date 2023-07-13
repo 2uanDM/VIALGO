@@ -16,10 +16,10 @@ import javafx.scene.image.*;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
-import main.java.Main;
 
-import main.java.input_exception.NumberOfValueException;
+import main.java.Main;
 import main.java.model.object.ColumnBar;
+import main.java.model.sorting_algo.BubbleSort;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.vialgo_utils.InputParserUtils;
 
@@ -28,13 +28,15 @@ public abstract class SortController implements Initializable {
     private boolean menuActionArrowPointRight;
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
-    public int[] arrayVal; // int[] arrayVal will store input when user generate custom array
 
     @FXML
     private ImageView aEqualsImageView;
 
     @FXML
     private ImageView menuActionArrow;
+
+    @FXML
+    public Label exceptionLabel;
 
     @FXML
     protected TextField enterArrayTextField;
@@ -47,9 +49,6 @@ public abstract class SortController implements Initializable {
 
     @FXML
     private ImageView pseudoCodeArrow;
-
-    @FXML
-    public Label exceptionLabel;
 
     @FXML
     private ImageView sortExplainArrow;
@@ -239,10 +238,7 @@ public abstract class SortController implements Initializable {
         }
 
         // Add ColumnBars to HBox with respect to these values
-        for (int val : arrayVal) {
-            ColumnBar newColumn = new ColumnBar(val);
-            columnsHBox.getChildren().add(newColumn);
-        }
+        addColumnBarToHBox(arrayVal);
 
         // Update HBox Layout
         columnsHBox.layout();
@@ -269,5 +265,23 @@ public abstract class SortController implements Initializable {
         columnsHBox.layout();
     }
 
-    public abstract void generateCustomArray();
+    public void generateCustomArray() {
+        String content = enterArrayTextField.getText();
+        exceptionLabel.setText("");
+
+        InputParserUtils parser = new InputParserUtils(exceptionLabel, content);
+        ArrayList<Integer> arrayVal = new ArrayList<Integer>();
+        arrayVal = parser.getArrayValue();
+
+        // Add ColumnBars to HBox with respect to these values
+        addColumnBarToHBox(arrayVal);
+    }
+
+    private void addColumnBarToHBox(ArrayList<Integer> arrayVal) {
+        columnsHBox.getChildren().clear();
+        for (int val : arrayVal) {
+            ColumnBar newColumn = new ColumnBar(val);
+            columnsHBox.getChildren().add(newColumn);
+        }
+    }
 }

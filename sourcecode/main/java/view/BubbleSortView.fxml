@@ -93,6 +93,9 @@
       </ImageView>
       <Button layoutX="616.0" layoutY="452.0" mnemonicParsing="false" onAction="#swapping" text="Swap" />
       <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
-      <Label fx:id="exceptionLabel" layoutX="365.0" layoutY="619.0" prefHeight="30.0" prefWidth="393.0" />   
+      <Label fx:id="exceptionLabel" layoutX="268.0" layoutY="617.0" prefHeight="30.0" prefWidth="530.0" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font></Label>   
    </children>
 </AnchorPane>

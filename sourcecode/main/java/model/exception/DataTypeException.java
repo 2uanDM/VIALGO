@@ -1,4 +1,4 @@
-package main.java.input_exception;
+package main.java.model.exception;
 
 public class DataTypeException extends Exception {
     public DataTypeException(String message) {
