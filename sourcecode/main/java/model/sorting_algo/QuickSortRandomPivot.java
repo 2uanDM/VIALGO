@@ -1,11 +1,8 @@
 package main.java.model.sorting_algo;
 import main.java.model.vialgo_utils.ArrayUtils;
-public class QuickSort extends SortingAlgorithm {
-    private int pivotChoice;
-
-    public QuickSort(int[] inputArray, int pivotChoice) {
+public class QuickSortRandomPivot extends SortingAlgorithm {
+    public QuickSortRandomPivot(int[] inputArray) {
         super(inputArray);
-        this.pivotChoice = pivotChoice;
     }
 
     public void sort() {
@@ -18,14 +15,7 @@ public class QuickSort extends SortingAlgorithm {
 
     private void quicksort(int low, int high) {
         if (low < high) {
-            int pivotIndex;
-            if (pivotChoice == 0) {
-                pivotIndex = low;
-            } else if (pivotChoice == 1) {
-                pivotIndex = high;
-            } else {
-                pivotIndex = getRandomPivotIndex(low, high);
-            }
+            int pivotIndex = getRandomPivotIndex(low, high);
             int partitionIndex = partition(low, high, pivotIndex);
 
             quicksort(low, partitionIndex - 1);
@@ -39,7 +29,7 @@ public class QuickSort extends SortingAlgorithm {
 
     private int partition(int low, int high, int pivotIndex) {
         int pivot = inputArray[pivotIndex];
-        System.out.println("Pivot Selected: " + pivot);
+        System.out.println("Pivot Selected:" + pivot);
         swap(pivotIndex, low);
 
         int i = low + 1;
