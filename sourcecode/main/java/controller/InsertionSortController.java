@@ -1,5 +1,21 @@
 package main.java.controller;
 
-public class InsertionSortController extends SortController {
+import java.util.Random;
 
+import main.java.model.object.ColumnBar;
+
+public class InsertionSortController extends SortController {
+    
+    public void swapping() {
+        System.out.println("clicked");
+
+        Random random = new Random();
+        int col1Index = random.nextInt(0, 5);
+        int col2Index = random.nextInt(6, 10);
+
+        ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
+        ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
+
+        col1.swap(col2, 0.3);
+    }
 }
