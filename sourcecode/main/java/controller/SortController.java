@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -16,10 +17,11 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import main.java.Main;
+
+import main.java.input_exception.NumberOfValueException;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.vialgo_utils.InputParserUtils;
-
 
 public abstract class SortController implements Initializable {
 
@@ -45,6 +47,9 @@ public abstract class SortController implements Initializable {
 
     @FXML
     private ImageView pseudoCodeArrow;
+
+    @FXML
+    public Label exceptionLabel;
 
     @FXML
     private ImageView sortExplainArrow;
@@ -243,8 +248,25 @@ public abstract class SortController implements Initializable {
         columnsHBox.layout();
     }
 
-    public void generateSortedArray() {
-        // Quốc code phần này nhé
+    public void generateSortedArray(boolean isNonDecreasing) {
+        int[] sortedArray = arrayVal.clone();
+
+        if (isNonDecreasing) {
+            Arrays.sort(sortedArray);
+        } else {
+            Arrays.sort(sortedArray);
+            for (int i = 0; i < sortedArray.length / 2; i++) {
+                int temp = sortedArray[i];
+                sortedArray[i] = sortedArray[sortedArray.length - 1 - i];
+                sortedArray[sortedArray.length - 1 - i] = temp;
+            }
+        }
+        columnsHBox.getChildren().clear();
+        for (int value : sortedArray) {
+            ColumnBar newColumn = new ColumnBar(value);
+            columnsHBox.getChildren().add(newColumn);
+        }
+        columnsHBox.layout();
     }
 
     public abstract void generateCustomArray();
