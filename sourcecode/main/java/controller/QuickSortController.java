@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import main.java.model.object.ColumnBar;
+import main.java.model.vialgo_utils.InputParserUtils;
 
 public class QuickSortController extends SortController {
 
@@ -24,6 +25,31 @@ public class QuickSortController extends SortController {
         col1.swap(col2, 0.3);
     }
 
+    public void generateCustomArray() {
+        String content = enterArrayTextField.getText();
+
+        columnsHBox.getChildren().clear();
+        InputParserUtils parser = new InputParserUtils();
+        parser.setInput(content);
+
+        // check for the constraint
+        parser.parse();
+        if (parser.getErrorState()) {
+            // When the error occur, the user must type the input again
+            System.out.println("Please type again");
+        } else {
+            int[] arrayVal = parser.getArrayInput();
+            for (int value : arrayVal) {
+                ColumnBar newColumn = new ColumnBar(value);
+                columnsHBox.getChildren().add(newColumn);
+            }
+
+            // Update HBox Layout
+            columnsHBox.layout();
+
+        }
+
+    }
 
 
 
