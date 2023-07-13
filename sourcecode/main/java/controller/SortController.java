@@ -18,12 +18,15 @@ import javafx.util.Duration;
 import main.java.Main;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.SetVisibleUtils;
+import main.java.model.vialgo_utils.InputParserUtils;
+
 
 public abstract class SortController implements Initializable {
 
     private boolean menuActionArrowPointRight;
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
+    public int[] arrayVal; // int[] arrayVal will store input when user generate custom array
 
     @FXML
     private ImageView aEqualsImageView;
@@ -32,7 +35,7 @@ public abstract class SortController implements Initializable {
     private ImageView menuActionArrow;
 
     @FXML
-    private TextField enterArrayTextField;
+    protected TextField enterArrayTextField;
 
     @FXML
     private TextField sortExplainationTextField;
@@ -47,7 +50,7 @@ public abstract class SortController implements Initializable {
     private ImageView sortExplainArrow;
 
     @FXML
-    private HBox columnsHBox;
+    protected HBox columnsHBox;
 
     @FXML
     private Button createArrayButton;
@@ -216,27 +219,7 @@ public abstract class SortController implements Initializable {
         rotateTransition.play();
     }
 
-    public void swapping() {
-        System.out.println("clicked");
-        Random t = new Random();
-        int col1Index = t.nextInt(0, 3);
-        int col2Index = t.nextInt(3, 10);
-
-
-        Random random = new Random();
-        int col1Index = random.nextInt(0, 5);
-        int col2Index = random.nextInt(6, 10);
-
-        ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
-        ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
-
-        columnsHBox.layout();
-
-        // Still need to swap ColumnBar with index `col1index` and `col2index` in
-        // ArrayList columnsHBox.getChildren()
-
-        col1.swap(col2, 0.3);
-    }
+    public abstract void swapping();
 
     public void generateRandomArray() {
         columnsHBox.getChildren().clear();
@@ -264,8 +247,5 @@ public abstract class SortController implements Initializable {
         // Quốc code phần này nhé
     }
 
-    public void generateCustomArray() {
-        String content = enterArrayTextField.getText();
-        System.out.println(content);
-    }
+    public abstract void generateCustomArray();
 }

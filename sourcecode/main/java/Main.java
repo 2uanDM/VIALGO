@@ -24,7 +24,6 @@ public class Main extends Application {
         catch (IOException e) {
             System.out.println("Error loading HomeView.fxml: " + e.getMessage());
         }
-
     }
 
     // This method is used for setting root Node for the main scene

@@ -48,13 +48,13 @@
             <Image url="@../../resources/assets/SortView/aEquals.png" />
          </image>
       </ImageView>
-      <TextField fx:id="enterArrayTextField" layoutX="405.0" layoutY="572.0" prefHeight="40.0" prefWidth="300.0" promptText="Enter Array Here">
+      <TextField fx:id="enterArrayTextField" layoutX="405.0" layoutY="572.0" onAction="#generateCustomArray" prefHeight="40.0" prefWidth="300.0" promptText="Enter Array Here">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
       <Button id="backButton" layoutX="1138.0" layoutY="5.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="30.0" prefWidth="70.0" stylesheets="@../../resources/style/sort.css" />
-      <Button id="menuActionPane" fx:id="goButton" layoutX="715.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="44.0" stylesheets="@../../resources/style/sort.css" text="Go" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="goButton" layoutX="715.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="40.0" prefWidth="44.0" stylesheets="@../../resources/style/sort.css" text="Go" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

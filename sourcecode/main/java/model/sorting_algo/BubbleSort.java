@@ -33,7 +33,7 @@ public class BubbleSort extends SortingAlgorithm {
 
                     // add Logs
                     int[] arrayLog = newArray;
-                    int[] pointerLog = { newArray[j + 1], newArray[j] };
+                    int[] pointerLog = { j+ 1, j };
                     int[] tempLog = {};
                     String messageLog = String.format("Swap element %d with the element %d", newArray[j + 1],
                             newArray[j]);
