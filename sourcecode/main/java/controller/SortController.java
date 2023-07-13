@@ -25,6 +25,8 @@ public abstract class SortController implements Initializable {
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
 
+    public static final double HBOX_SPACING = 10;
+
     @FXML
     private ImageView aEqualsImageView;
 
@@ -47,7 +49,7 @@ public abstract class SortController implements Initializable {
     private ImageView sortExplainArrow;
 
     @FXML
-    private HBox columnsHBox;
+    protected HBox columnsHBox;
 
     @FXML
     private Button createArrayButton;
@@ -82,6 +84,10 @@ public abstract class SortController implements Initializable {
     ArrayList<Node> pseudoCodeButtonChilds = new ArrayList<Node>();
 
     SetVisibleUtils worker;
+
+    ArrayList<ColumnBar> columns;
+
+    Random random = new Random();
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -125,10 +131,9 @@ public abstract class SortController implements Initializable {
         pseudoCodeArrowPointLeft = true;
 
         // Spacing for columns in HBox
-        columnsHBox.setSpacing(10);
+        columnsHBox.setSpacing(HBOX_SPACING);
     }
 
-    /*----------------------------------------Action Handler---------------------------------------- */
     public void backToHomePage() {
         /*
          * This action method is used for back to home page button.
@@ -173,10 +178,7 @@ public abstract class SortController implements Initializable {
     }
 
     public void showCreateArrayOptions() {
-        /*
-         * This action method is used for showing create array options
-         * 
-         */
+        // This action method is used for showing create array options
         worker = new SetVisibleUtils(this.createArrayButtonChilds);
         if (goButton.isVisible() == false)
             worker.changeVisibleStatus(true, true, "fade");
@@ -216,45 +218,55 @@ public abstract class SortController implements Initializable {
         rotateTransition.play();
     }
 
-    public void swapping() {
-        System.out.println("clicked");
-        Random t = new Random();
-        int col1Index = t.nextInt(0, 3);
-        int col2Index = t.nextInt(3, 10);
-
-        System.out.println("col1: " + col1Index + "col2: " + col2Index);
-
-        ColumnBar col1 = (ColumnBar) columnsHBox.getChildren().get(col1Index);
-        ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(col2Index);
-
-        columnsHBox.layout();
-
-        // Still need to swap ColumnBar with index `col1index` and `col2index` in
-        // ArrayList columnsHBox.getChildren()
-
-        col1.swap(col2, 0.3);
-    }
-
     public void generateRandomArray() {
+        // Clear all the Node in HBox
         columnsHBox.getChildren().clear();
-        Random t = new Random();
-        int numberElements = t.nextInt(5, 20);
+
+        // Create new ArrayList containing ColumnBars
+        columns = new ArrayList<ColumnBar>();
+
+        int numberElements = random.nextInt(5, 20);
         ArrayList<Integer> arrayVal = new ArrayList<Integer>();
 
         // Generate a random array of integers
         for (int i = 1; i <= numberElements; ++i) {
-            int randomValue = t.nextInt(1, 50);
+            int randomValue = random.nextInt(1, 50);
             arrayVal.add(randomValue);
         }
 
-        // Add ColumnBars to HBox with respect to these values
+        // Add ColumnBars to array with respect to these values
         for (int val : arrayVal) {
             ColumnBar newColumn = new ColumnBar(val);
-            columnsHBox.getChildren().add(newColumn);
+            columns.add(newColumn);
         }
 
+        // Print the index of created columns
+        for (Node node : columnsHBox.getChildren()) {
+            ColumnBar col = (ColumnBar) node;
+            System.out.print(col.getValue() + " ");
+        }
+
+        System.out.println("");
+
         // Update HBox Layout
+        columnsHBox.getChildren().setAll(columns);
         columnsHBox.layout();
+
+        // Set the localtoScene coordinate for each column
+        // for (Node node : columnsHBox.getChildren()) {
+        // ColumnBar col = (ColumnBar) node;
+        // double columnX = col.localToScene(col.getBoundsInLocal()).getMinX();
+        // double columnY = col.localToScene(col.getBoundsInLocal()).getMinY();
+
+        // }
+
+        for (ColumnBar col : columns) {
+            double columnX = col.localToScene(col.getBoundsInLocal()).getMinX();
+            col.setXCoordinate(columnX);
+
+            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate());
+        }
+
     }
 
     public void generateSortedArray() {
@@ -265,4 +277,6 @@ public abstract class SortController implements Initializable {
         String content = enterArrayTextField.getText();
         System.out.println(content);
     }
+
+    public abstract void swapping();
 }

@@ -54,12 +54,12 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
         // Welcome sound
-        if (startApp) {
-            AudioClip welcomeSound = new AudioClip(
-                    this.getClass().getResource("../../resources/sound/chime.wav").toString());
-            welcomeSound.setVolume(0.5);
-            welcomeSound.play();
-        }
+        // if (startApp) {
+        // AudioClip welcomeSound = new AudioClip(
+        // this.getClass().getResource("../../resources/sound/chime.wav").toString());
+        // welcomeSound.setVolume(0.5);
+        // welcomeSound.play();
+        // }
 
     }
 
