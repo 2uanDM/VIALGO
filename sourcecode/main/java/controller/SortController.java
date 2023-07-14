@@ -5,7 +5,8 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -19,7 +20,6 @@ import javafx.util.Duration;
 
 import main.java.Main;
 import main.java.model.object.ColumnBar;
-import main.java.model.sorting_algo.BubbleSort;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.vialgo_utils.InputParserUtils;
 
@@ -244,25 +244,28 @@ public abstract class SortController implements Initializable {
         columnsHBox.layout();
     }
 
-    public void generateSortedArray(boolean isNonDecreasing) {
-        int[] sortedArray = arrayVal.clone();
+    public void generateSortedArray() {
+        boolean isNonDecreasing = true;
+        Random t = new Random();
+        int numberElements = t.nextInt(5, 20);
+        ArrayList<Integer> arrayVal = new ArrayList<Integer>();
 
+        // Generate a random array of integers
+        for (int i = 1; i <= numberElements; ++i) {
+            int randomValue = t.nextInt(1, 50);
+            arrayVal.add(randomValue);
+        }
+
+        // Sort
         if (isNonDecreasing) {
-            Arrays.sort(sortedArray);
+            Collections.sort(arrayVal);
         } else {
-            Arrays.sort(sortedArray);
-            for (int i = 0; i < sortedArray.length / 2; i++) {
-                int temp = sortedArray[i];
-                sortedArray[i] = sortedArray[sortedArray.length - 1 - i];
-                sortedArray[sortedArray.length - 1 - i] = temp;
-            }
+            Collections.sort(arrayVal, Comparator.reverseOrder());
         }
-        columnsHBox.getChildren().clear();
-        for (int value : sortedArray) {
-            ColumnBar newColumn = new ColumnBar(value);
-            columnsHBox.getChildren().add(newColumn);
-        }
-        columnsHBox.layout();
+
+        // Add to HBox
+        addColumnBarToHBox(arrayVal);
+
     }
 
     public void generateCustomArray() {
