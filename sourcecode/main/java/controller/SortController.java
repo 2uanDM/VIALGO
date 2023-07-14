@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -89,6 +90,10 @@ public abstract class SortController implements Initializable {
     ArrayList<Node> pseudoCodeButtonChilds = new ArrayList<Node>();
 
     SetVisibleUtils worker;
+
+    ArrayList<ColumnBar> columns; // ArrayList store all columns created
+
+    Random random = new Random();
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -224,22 +229,18 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateRandomArray() {
-        columnsHBox.getChildren().clear();
-        Random t = new Random();
-        int numberElements = t.nextInt(5, 20);
-        ArrayList<Integer> arrayVal = new ArrayList<Integer>();
+        // Random number of elements
+        int numberElements = random.nextInt(5, 20);
 
         // Generate a random array of integers
+        ArrayList<Integer> arrayValue = new ArrayList<Integer>();
         for (int i = 1; i <= numberElements; ++i) {
-            int randomValue = t.nextInt(1, 1000);
-            arrayVal.add(randomValue);
+            int randomValue = random.nextInt(1, 1000);
+            arrayValue.add(randomValue);
         }
 
         // Add ColumnBars to HBox with respect to these values
-        addColumnBarToHBox(arrayVal);
-
-        // Update HBox Layout
-        columnsHBox.layout();
+        addColumnBarToHBox(arrayValue);
     }
 
     public void generateSortedArray() {
@@ -270,6 +271,7 @@ public abstract class SortController implements Initializable {
         String content = enterArrayTextField.getText();
         exceptionLabel.setText("");
 
+        // Parse the string into ArrayList<Integer> with predefined types of exception
         InputParserUtils parser = new InputParserUtils(exceptionLabel, content);
         ArrayList<Integer> arrayVal = new ArrayList<Integer>();
         arrayVal = parser.getArrayValue();
@@ -278,11 +280,26 @@ public abstract class SortController implements Initializable {
         addColumnBarToHBox(arrayVal);
     }
 
-    private void addColumnBarToHBox(ArrayList<Integer> arrayVal) {
-        columnsHBox.getChildren().clear();
-        for (int val : arrayVal) {
+    private void addColumnBarToHBox(ArrayList<Integer> arrayValue) {
+        columns = new ArrayList<ColumnBar>();
+
+        // Created list of ColumnBar object from list of integers
+        for (int val : arrayValue) {
             ColumnBar newColumn = new ColumnBar(val);
-            columnsHBox.getChildren().add(newColumn);
+            columns.add(newColumn);
+        }
+
+        // Add list of Columnbar to HBox
+        columnsHBox.getChildren().setAll(columns);
+        columnsHBox.layout();
+
+        // Add xCoordinate with respect to AnchorPane for each ColumnBar
+        for (ColumnBar col : columns) {
+            double xCoordinate = col.localToScene(col.getBoundsInLocal()).getMinX();
+            col.setXCoordinate(xCoordinate);
+
+            // Check the xCoordinate of each object
+            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate());
         }
     }
 
