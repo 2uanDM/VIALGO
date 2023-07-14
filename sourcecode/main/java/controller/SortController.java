@@ -223,8 +223,6 @@ public abstract class SortController implements Initializable {
         rotateTransition.play();
     }
 
-    public abstract void swapping();
-
     public void generateRandomArray() {
         columnsHBox.getChildren().clear();
         Random t = new Random();
@@ -287,4 +285,6 @@ public abstract class SortController implements Initializable {
             columnsHBox.getChildren().add(newColumn);
         }
     }
+
+    public abstract void swapping();
 }
