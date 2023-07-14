@@ -2,111 +2,108 @@ package main.java.model.vialgo_utils;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Label;
+
+import main.java.model.exception.DataTypeException;
+import main.java.model.exception.MinMaxValueException;
+import main.java.model.exception.NullException;
+import main.java.model.exception.NumberOfValueException;
+
 public class InputParserUtils {
 
-    private ArrayList<Double> arrayValue = new ArrayList<Double>();
+    private ArrayList<Integer> arrayValue = new ArrayList<Integer>();
     private String input;
-    private boolean errorState = false;
-    public ArrayList<Double> getArrayValue() {
+    private Label exceptionLabel;
+
+    // Constructor
+    public InputParserUtils(Label exceptionLabel, String input) {
+        this.exceptionLabel = exceptionLabel;
+        this.input = input;
+    }
+
+    // Getter
+    public ArrayList<Integer> getArrayValue() {
         this.parse();
         return this.arrayValue;
     }
 
-    public String getInput() {
-        return this.input;
-    }
-    public boolean getErrorState() {
-        return this.errorState;
-    }
-
+    // Setter
     public void setInput(String input) {
         this.input = input;
     }
 
-    public int[] getArrayInput() {
-        // only call the function when ensure that there is no syntax error from input
-        String[] splitArray = this.input.split(",");
-        int[] numberArray;
-        numberArray = new int[splitArray.length];
-        int i = 0;
-        for (String strPart: splitArray) {
-
-            //remove all the space in the string
-            strPart = strPart.replaceAll("\\s", "");
-            //convert to int datatype, then add to numberArray
-            int number = Integer.parseInt(strPart);
-            numberArray[i] = number;
-            i++;
-        }
-
-        return numberArray;
-
-    }
-
     public void parse() {
-        // first, split the input
-        String[] splitArray = this.input.split(",");
-        int[] numberArray;
-        numberArray = new int[splitArray.length];
+        // First, split the input
+        String content = this.input;
+        String[] splitedValues = content.split(",", -1);
 
-        int index = 0;
-        for (String strPart: splitArray) {
+        /*
+         * Flow of catching errors from input:
+         * Check empty input -> Check correct data type -> Check valid range -> Check
+         * number of elements
+         */
 
-            // first, remove all the space in the string
-            strPart = strPart.replaceAll("\\s", "");
-            splitArray[index] = strPart;
-            index ++;
-        }
-// Now we ensure that input is splited by ",", store them in an array, and not exists space in each element
-        index = 0;
-        for (String strPart: splitArray) {
-            try {
-                int number = Integer.parseInt(strPart);
-            } catch(Exception e) {
-                this.errorState = true;
-                System.out.println("Check your input, remember that only type integer value, each integer is splited by a ','. Check near the part contain: " + e.getMessage());
-            } 
-
-        }
-// Here, we ensure that there is not any syntax error from user. But we still need more constraint about the value of integer.
-        for (String strPart: splitArray) {
-            int number = Integer.parseInt(strPart);
-            if (number < 1 || number > 1000) {
-                // out of range error
-                this.errorState = true;
-                System.out.print("Do not type any number out of range [1, 1000]. Check the element: " + number);
+        try {
+            // Check empty input ?
+            if (content.isEmpty()) {
+                throw new NullException("The array should not be empty.");
             }
 
-            numberArray[index] = number;
-            index ++;
+            // Check correct data type
+            for (String value : splitedValues) {
+                try {
+                    Integer.parseInt(value.trim());
+                } catch (NumberFormatException e) {
+                    if (value == "") {
+                        throw new DataTypeException(
+                                "There seems to be a missing element (a duplicate comma somewhere perhaps?)");
+                    } else {
+                        throw new DataTypeException(
+                                "There seems to be an invalid element (not an integer): " + value);
+                    }
+                }
+            }
+
+            // Check valid range
+            for (String value : splitedValues) {
+                int number = Integer.parseInt(value);
+                if (number < 1 || number > 1000) {
+                    throw new MinMaxValueException("The values should be between 0 and 1000: " + number);
+                }
+            }
+
+            // Check number of elements
+            if (splitedValues.length > 20) {
+                throw new NumberOfValueException("The number of values should not exceed 20.");
+            }
+
+            arrayValue = getArrayInput();
+        } catch (NumberOfValueException e) {
+            // Display the exception message on the label
+            exceptionLabel.setText(e.getMessage());
+        } catch (NullException e) {
+            exceptionLabel.setText(e.getMessage());
+        } catch (MinMaxValueException e) {
+            exceptionLabel.setText(e.getMessage());
+        } catch (DataTypeException e) {
+            exceptionLabel.setText(e.getMessage());
         }
 
-
-        // for testing
-        // for (String i: splitArray) {
-
-        //     int number = Integer.parseInt(i);
-        //     // System.out.println(number);  
-        // }
     }
 
-    public static void main(String[] args) {
-        InputParserUtils parser = new InputParserUtils();
-        String test = "0, 1, 2, 3, 4, 5";
-        String test1 = "29, ,40 ;1,48, 43;a, 0";
-        // There seems to be an invalid element (not a number): 40 ;1
-        String test2 = " 29 ,40 ;1,48, 43;a, 0   ";
-        // There seems to be a missing element (a duplicate comma somewhere perhaps?)
-        String test3 = " 1,    36, 8, 3, 5";
-        // [1,36,8,3,5]
-        String test4 = "1,5,7,4,23";
-        // [1,5,7,4,23]
-        String test5 = "-1,5,8,2";
-        // Sorry, you're restricted to values between 1 and 50 inclusive.(Out of range
-        // number: -1.)
+    private ArrayList<Integer> getArrayInput() {
+        /*
+         * Only call this function when ensure that there is no syntax error from input
+         */
+        String[] splitedArray = this.input.split(",");
+        ArrayList<Integer> validNumberArray = new ArrayList<Integer>();
 
-        parser.setInput(test5);
-        parser.parse();
-        // System.out.println(parser.getArrayValue());
+        for (String value : splitedArray) {
+            // Convert to int datatype, then add to numberArray
+            int number = Integer.parseInt(value.trim());
+            validNumberArray.add(number);
+        }
+
+        return validNumberArray;
     }
 }

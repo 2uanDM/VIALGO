@@ -1,12 +1,6 @@
 package main.java.controller;
 
-import java.util.Random;
-import main.java.input_exception.DataTypeException;
-import main.java.input_exception.MinMaxValueException;
-import main.java.input_exception.NullException;
-import main.java.input_exception.NumberOfValueException;
 import main.java.model.object.ColumnBar;
-import main.java.model.vialgo_utils.InputParserUtils;
 import main.java.model.sorting_algo.BubbleSort;
 
 public class BubbleSortController extends SortController {
@@ -38,69 +32,6 @@ public class BubbleSortController extends SortController {
         ColumnBar col2 = (ColumnBar) columnsHBox.getChildren().get(secondColumnIndex);
 
         col1.swap(col2, 0.3);
-    }
-
-    public void generateCustomArray() {
-        String content = enterArrayTextField.getText();
-        exceptionLabel.setText("");
-
-        try {
-            // Custom code starts here
-            int numberOfValues = countNumberOfValues(content);
-            if (numberOfValues > 20) {
-                throw new NumberOfValueException("The number of values should not exceed 20.");
-            }
-            if (content.isEmpty()) {
-                throw new NullException("The array should not be empty.");
-            }
-            String[] values = content.split(",");
-            for (String value : values) {
-                try {
-                    Integer.parseInt(value.trim());
-                } catch (NumberFormatException e) {
-                    throw new DataTypeException("The values should be integers.");
-                }
-            }
-
-            columnsHBox.getChildren().clear();
-            InputParserUtils parser = new InputParserUtils();
-            parser.setInput(content);
-
-            // check for the constraint
-            parser.parse();
-            if (parser.getErrorState()) {
-                // When the error occurs, the user must type the input again
-                System.out.println("Please type again");
-            } else {
-                arrayVal = parser.getArrayInput();
-                obj = new BubbleSort(arrayVal);
-                for (int value : arrayVal) {
-                    if (value < 0 || value > 50) {
-                        throw new MinMaxValueException("The values should be between 0 and 50.");
-                    }
-
-                    ColumnBar newColumn = new ColumnBar(value);
-                    columnsHBox.getChildren().add(newColumn);
-                }
-
-                // Update HBox Layout
-                columnsHBox.layout();
-            }
-        } catch (NumberOfValueException e) {
-            // Display the exception message on the label
-            exceptionLabel.setText(e.getMessage());
-        } catch (NullException e) {
-            exceptionLabel.setText(e.getMessage());
-        } catch (MinMaxValueException e) {
-            exceptionLabel.setText(e.getMessage());
-        } catch (DataTypeException e) {
-            exceptionLabel.setText(e.getMessage());
-        }
-    }
-
-    private int countNumberOfValues(String input) {
-        String[] splitArray = input.split(",");
-        return splitArray.length;
     }
 
 }

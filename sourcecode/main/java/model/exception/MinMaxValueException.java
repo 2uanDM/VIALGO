@@ -1,4 +1,4 @@
-package main.java.input_exception;
+package main.java.model.exception;
 
 public class MinMaxValueException extends Exception {
     public MinMaxValueException(String message) {
