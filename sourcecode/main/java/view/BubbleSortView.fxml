@@ -38,7 +38,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button id="menuActionPane" fx:id="sortedArrayButton" layoutX="258.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="84.0" stylesheets="@../../resources/style/sort.css" text="Sorted" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="sortedArrayButton" layoutX="258.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateSortedArray" prefHeight="40.0" prefWidth="84.0" stylesheets="@../../resources/style/sort.css" text="Sorted" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
