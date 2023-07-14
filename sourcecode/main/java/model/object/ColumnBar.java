@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javafx.animation.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -22,6 +25,7 @@ public class ColumnBar extends Rectangle {
     private Text valueText;
     private int value;
     private double xCoordinate;
+    private double yCoordinate;
 
     // Constructor
     public ColumnBar(int value) {
@@ -29,12 +33,6 @@ public class ColumnBar extends Rectangle {
         this.setHeight(getHeight(value));
         this.setFill(DEFAULT_COLOR);
         this.value = value;
-
-        // Create text value at the bottom center of the column bar
-        valueText = new Text(String.valueOf(value));
-        valueText.setFont(Font.font(14));
-        valueText.setX(this.getX() + (COL_WIDTH / 2) - (valueText.getLayoutBounds().getWidth() / 2));
-        valueText.setY(this.getY());
     }
 
     public ColumnBar(int value, Color color) {
@@ -51,11 +49,12 @@ public class ColumnBar extends Rectangle {
         return this.xCoordinate;
     }
 
+    public double getYCoordinate() {
+        return this.yCoordinate;
+    }
+
     private double getHeight(int value) {
-        // log scale for accepting very large number
-        double log_scale;
-        log_scale = 36 * Math.log(value) + 10;
-        return log_scale;
+        return ((double) value) / MAX_VALUE * (MAX_HEIGHT - MIN_HEIGHT) + MIN_HEIGHT;
     }
 
     // Setter
@@ -63,12 +62,28 @@ public class ColumnBar extends Rectangle {
         this.xCoordinate = xCoordinate;
     }
 
+    public void setYCoordinate(double yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
+
+    public Text getTextvalue() {
+        // Create text value at the bottom center of the column bar
+        valueText = new Text(String.valueOf(this.value));
+        valueText.setFont(Font.font("Roboto", FontWeight.MEDIUM, 18));
+        valueText.setFill(Color.BLACK);
+        valueText.setLayoutX(this.xCoordinate + this.getWidth() / 2 - valueText.getLayoutBounds().getWidth() / 2);
+        valueText.setLayoutY(this.yCoordinate + this.getHeight() - 3);
+
+        // HBox columnsHBox = (HBox) this.getParent();
+        // AnchorPane anchorPane = (AnchorPane) columnsHBox.getParent();
+        // anchorPane.getChildren().add(valueText);
+
+        return valueText;
+    }
+
     public void swap(ColumnBar otherColumn, double duration, ArrayList<ColumnBar> columns) {
         double translateDistance1 = otherColumn.getXCoordinate() - this.getXCoordinate();
         double translateDistance2 = -translateDistance1;
-
-        // this.setFill(Color.GREEN);
-        // otherColumn.setFill(Color.GREEN);
 
         // Create the color change animation
         Duration colorChangeDuration = Duration.seconds(0.3);
@@ -92,7 +107,7 @@ public class ColumnBar extends Rectangle {
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         // Create the color change back transition
-        Duration colorChangeBackDelay = Duration.seconds(0.55);
+        Duration colorChangeBackDelay = Duration.seconds(0.5);
 
         PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
         delayTransition.setOnFinished(event -> {

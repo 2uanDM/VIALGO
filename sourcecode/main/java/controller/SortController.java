@@ -15,8 +15,11 @@ import javafx.application.Platform;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import main.java.Main;
@@ -29,6 +32,9 @@ public abstract class SortController implements Initializable {
     private boolean menuActionArrowPointRight;
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ImageView aEqualsImageView;
@@ -93,6 +99,10 @@ public abstract class SortController implements Initializable {
 
     ArrayList<ColumnBar> columns; // ArrayList store all columns created
 
+    ArrayList<Text> textValues; // ArrayList store all Text values created
+
+    Group textGroup = new Group(); // Group in Scene containing all Text values
+
     Random random = new Random();
 
     @Override
@@ -138,6 +148,9 @@ public abstract class SortController implements Initializable {
 
         // Spacing for columns in HBox
         columnsHBox.setSpacing(10);
+
+        // Add textValues Group to scene
+        anchorPane.getChildren().add(textGroup);
     }
 
     /*----------------------------------------Action Handler---------------------------------------- */
@@ -235,7 +248,7 @@ public abstract class SortController implements Initializable {
         // Generate a random array of integers
         ArrayList<Integer> arrayValue = new ArrayList<Integer>();
         for (int i = 1; i <= numberElements; ++i) {
-            int randomValue = random.nextInt(1, 1000);
+            int randomValue = random.nextInt(1, 50);
             arrayValue.add(randomValue);
         }
 
@@ -282,6 +295,7 @@ public abstract class SortController implements Initializable {
 
     private void addColumnBarToHBox(ArrayList<Integer> arrayValue) {
         columns = new ArrayList<ColumnBar>();
+        textValues = new ArrayList<Text>();
 
         // Created list of ColumnBar object from list of integers
         for (int val : arrayValue) {
@@ -293,14 +307,23 @@ public abstract class SortController implements Initializable {
         columnsHBox.getChildren().setAll(columns);
         columnsHBox.layout();
 
-        // Add xCoordinate with respect to AnchorPane for each ColumnBar
+        // Add xCoordinate and Text value with respect to AnchorPane for each ColumnBar
         for (ColumnBar col : columns) {
             double xCoordinate = col.localToScene(col.getBoundsInLocal()).getMinX();
+            double yCoordinate = col.localToScene(col.getBoundsInLocal()).getMinY();
             col.setXCoordinate(xCoordinate);
+            col.setYCoordinate(yCoordinate);
+
+            // Add Text value to array
+            textValues.add(col.getTextvalue());
 
             // Check the xCoordinate of each object
-            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate());
+            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate() + " " + col.getYCoordinate());
         }
+
+        // Set Children for textGroup
+
+        textGroup.getChildren().setAll(textValues);
     }
 
     public abstract void swapping();
