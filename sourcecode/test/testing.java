@@ -5,18 +5,11 @@ import main.java.model.vialgo_utils.ArrayUtils;
 
 public class testing {
     public static void main(String[] args) {
-        int[] testArray = { 6, 5, 4, 3, 2, 1 };
-        int minEle = ArrayUtils.min(testArray);
-        int maxEle = ArrayUtils.max(testArray);
-        // System.out.println(minEle);
-        // System.out.println(maxEle);
-        // System.out.println(testArray.length);
-
-        // insertionSort obj = new insertionSort(testArray);
-        // System.out.println(Arrays.toString(testArray));
-        // obj.sort();
-
-        BubbleSort bubble = new BubbleSort(testArray);
-        bubble.sort();
+        String content = "1,3,4,14,,";
+        String[] values = content.split(",", -1);
+        for (String x : values) {
+            System.out.println(x);
+        }
+        System.out.println(values.length);
     }
 }

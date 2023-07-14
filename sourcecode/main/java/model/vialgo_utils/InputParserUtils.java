@@ -35,7 +35,7 @@ public class InputParserUtils {
     public void parse() {
         // First, split the input
         String content = this.input;
-        String[] splitedValues = content.split(",");
+        String[] splitedValues = content.split(",", -1);
 
         /*
          * Flow of catching errors from input:
