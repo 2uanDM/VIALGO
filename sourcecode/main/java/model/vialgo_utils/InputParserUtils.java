@@ -67,8 +67,8 @@ public class InputParserUtils {
             // Check valid range
             for (String value : splitedValues) {
                 int number = Integer.parseInt(value);
-                if (number < 1 || number > 1000) {
-                    throw new MinMaxValueException("The values should be between 0 and 1000: " + number);
+                if (number < 1 || number > 50) {
+                    throw new MinMaxValueException("The values should be between 1 and 50: " + number);
                 }
             }
 
