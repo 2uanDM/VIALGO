@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.java.controller.SortController;
 
 public class ColumnBar extends Rectangle {
 
@@ -74,16 +75,30 @@ public class ColumnBar extends Rectangle {
         valueText.setLayoutX(this.xCoordinate + this.getWidth() / 2 - valueText.getLayoutBounds().getWidth() / 2);
         valueText.setLayoutY(this.yCoordinate + this.getHeight() - 3);
 
-        // HBox columnsHBox = (HBox) this.getParent();
-        // AnchorPane anchorPane = (AnchorPane) columnsHBox.getParent();
-        // anchorPane.getChildren().add(valueText);
-
+        System.out.println(valueText.getLayoutX() + " " + valueText.getLayoutY());
         return valueText;
     }
 
-    public void swap(ColumnBar otherColumn, double duration, ArrayList<ColumnBar> columns) {
-        double translateDistance1 = otherColumn.getXCoordinate() - this.getXCoordinate();
-        double translateDistance2 = -translateDistance1;
+    public void swap(ColumnBar otherColumn, double duration, ArrayList<ColumnBar> columns,
+            ArrayList<Text> textValues) {
+        System.out.println("Before");
+        for (Text text : textValues) {
+            System.out.print(text.getText() + " ");
+        }
+        System.out.println();
+
+        double columnDistance1 = otherColumn.getXCoordinate() - this.getXCoordinate();
+        double columnDistance2 = -columnDistance1;
+
+        Text thisText = textValues.get(columns.indexOf(this));
+        Text otherText = textValues.get(columns.indexOf(otherColumn));
+
+        double thisTextX = thisText.getLayoutX();
+        double otherTextX = otherText.getLayoutX();
+
+        double textDistance1 = (otherTextX + (otherText.getLayoutBounds().getWidth() / 2))
+                - (thisTextX + (thisText.getLayoutBounds().getWidth() / 2));
+        double textDistance2 = -textDistance1;
 
         // Create the color change animation
         Duration colorChangeDuration = Duration.seconds(0.3);
@@ -99,17 +114,26 @@ public class ColumnBar extends Rectangle {
 
         // create the translation animation
         TranslateTransition thisTransition = new TranslateTransition(Duration.seconds(duration), this);
-        thisTransition.setByX(translateDistance1);
+        thisTransition.setByX(columnDistance1);
         thisTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         TranslateTransition otherTransition = new TranslateTransition(Duration.seconds(duration), otherColumn);
-        otherTransition.setByX(translateDistance2);
+        otherTransition.setByX(columnDistance2);
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+        TranslateTransition thisTextTransition = new TranslateTransition(Duration.seconds(duration), thisText);
+        thisTextTransition.setByX(textDistance1);
+        thisTextTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+        TranslateTransition otherTextTransition = new TranslateTransition(Duration.seconds(duration), otherText);
+        otherTextTransition.setByX(textDistance2);
+        otherTextTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         // Create the color change back transition
         Duration colorChangeBackDelay = Duration.seconds(0.5);
 
         PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
+
         delayTransition.setOnFinished(event -> {
             KeyValue thisColorBackKeyValue = new KeyValue(this.fillProperty(), DEFAULT_COLOR);
             KeyFrame thisColorBackKeyFrame = new KeyFrame(colorChangeDuration, thisColorBackKeyValue);
@@ -127,13 +151,24 @@ public class ColumnBar extends Rectangle {
         thisColorTimeline.setOnFinished(event -> {
             thisTransition.play();
             otherTransition.play();
+            thisTextTransition.play();
+            otherTextTransition.play();
             delayTransition.play();
 
             // Swap xCoordinate properties
-            this.swapXCoordinate(otherColumn);
+            this.swapColumnXCoordinate(otherColumn);
+            // swapTextXCoordinate(thisText, otherText);
 
             // Swap inside array
             Collections.swap(columns, columns.indexOf(this), columns.indexOf(otherColumn));
+            Collections.swap(textValues, textValues.indexOf(thisText), textValues.indexOf(otherText));
+
+            System.out.println("After");
+            for (Text text : textValues) {
+                System.out.print(text.getText() + " ");
+            }
+            System.out.println();
+
         });
 
         otherColorTimeline.play();
@@ -141,9 +176,15 @@ public class ColumnBar extends Rectangle {
 
     }
 
-    private void swapXCoordinate(ColumnBar otherColumnBar) {
+    private void swapColumnXCoordinate(ColumnBar otherColumnBar) {
         double tmp = this.getXCoordinate();
         this.setXCoordinate(otherColumnBar.getXCoordinate());
         otherColumnBar.setXCoordinate(tmp);
+    }
+
+    private void swapTextXCoordinate(Text thisText, Text otherText) {
+        double tmp = thisText.getLayoutX();
+        thisText.setLayoutX(otherText.getLayoutX());
+        otherText.setLayoutX(tmp);
     }
 }

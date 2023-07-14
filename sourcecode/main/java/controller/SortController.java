@@ -101,7 +101,7 @@ public abstract class SortController implements Initializable {
 
     ArrayList<Text> textValues; // ArrayList store all Text values created
 
-    Group textGroup = new Group(); // Group in Scene containing all Text values
+    public static Group textGroup = new Group(); // Group in Scene containing all Text values
 
     Random random = new Random();
 
@@ -324,6 +324,11 @@ public abstract class SortController implements Initializable {
         // Set Children for textGroup
 
         textGroup.getChildren().setAll(textValues);
+        System.out.println("--------------------------------------------");
+        for (Node node : textGroup.getChildren()) {
+            Text t = (Text) node;
+            System.out.println(t.getLayoutX() + " " + t.getLayoutY());
+        }
     }
 
     public abstract void swapping();
