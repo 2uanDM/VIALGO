@@ -33,9 +33,10 @@ public class BubbleSort extends SortingAlgorithm {
 
                     // add Logs
                     int[] arrayLog = newArray;
-                    int[] pointerLog = { j+ 1, j };
+                    int[] pointerLog = { j + 1, j };
                     int[] tempLog = {};
-                    String messageLog = String.format("Swap element %d with the element %d", newArray[j + 1],
+                    String messageLog = String.format("Since %d > %d, swap element %d with the element %d",
+                            newArray[j + 1],
                             newArray[j]);
 
                     this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
@@ -45,16 +46,10 @@ public class BubbleSort extends SortingAlgorithm {
 
                 }
             }
+
             if (swapped == false) {
                 break;
             }
         }
-
-        // System.out.println("START");
-        // for (int[] array: this.arrayLogs) {
-        // System.out.println(Arrays.toString(array));
-        // }
-
     }
-
 }

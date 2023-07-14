@@ -72,7 +72,7 @@ public class ColumnBar extends Rectangle {
 
         // Create the color change animation
         Duration colorChangeDuration = Duration.seconds(0.3);
-        Color newColor = Color.BEIGE;
+        Color newColor = Color.GREEN;
 
         KeyValue thisColorKeyValue = new KeyValue(this.fillProperty(), newColor);
         KeyFrame thisColorKeyFrame = new KeyFrame(colorChangeDuration, thisColorKeyValue);
@@ -121,6 +121,7 @@ public class ColumnBar extends Rectangle {
             Collections.swap(columns, columns.indexOf(this), columns.indexOf(otherColumn));
         });
 
+        otherColorTimeline.play();
         thisColorTimeline.play();
 
     }
