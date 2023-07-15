@@ -4,13 +4,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.AnimationUtils;
+import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.sorting_algo.BubbleSort;
 
 public class BubbleSortController extends SortController {
@@ -23,13 +26,17 @@ public class BubbleSortController extends SortController {
     private boolean isAnimating = false;
 
     public void sortButtonHandler() {
+        // Prevent many sort tasks run concurrently
+        if (sortingThread.isAlive()) {
+            return;
+        }
+
+        // Close all left panel and show all right panel
+        sidePanelActionBeforeSorting();
 
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                // Code de chay animation va sorting algorithm (Cho vong for trong nay va
-                // .swap())
-                // Neu muon them log vao thi se chay doan sau
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
                 int index = 0;
@@ -42,7 +49,12 @@ public class BubbleSortController extends SortController {
 
                 int[][] pointerLog = obj.getPointerLog();
 
+                Thread.sleep(1500);
+
                 for (int stepCount = 0; stepCount < pointerLog.length; stepCount++) {
+                    if (Thread.currentThread().isInterrupted()) {
+                        break;
+                    }
                     int index1 = pointerLog[stepCount][0];
                     int index2 = pointerLog[stepCount][1];
                     if (index1 == 0 && index2 == 0) {
@@ -59,15 +71,15 @@ public class BubbleSortController extends SortController {
                     if (pointerLog[stepCount][2] == 1) {
                         AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
 
-                        Platform.runLater(() -> sortExplainationTextField
-                                .setText(String.format("We swap column %d with the column %d.", index1, index2)));
+                        Platform.runLater(() -> sortExplainationTextField.setText(
+                                String.format("Since %d > %d, swap their position", col2.getValue(), col1.getValue())));
 
-                        Thread.sleep(700);
+                        Thread.sleep(600);
+
                         if (!isAnimating) {
                             isAnimating = true;
                             col1.swap(col2, 0.3, columns, textValues, () -> {
                                 isAnimating = false;
-
                             });
                         }
 
@@ -75,14 +87,15 @@ public class BubbleSortController extends SortController {
                         AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
 
                         Platform.runLater(() -> sortExplainationTextField
-                                .setText("Do not swap"));
-                        Thread.sleep(700);
+                                .setText(
+                                        String.format("Since %d <= %d, do nothing", col2.getValue(), col1.getValue())));
+
+                        Thread.sleep(500);
                     }
-                    Thread.sleep(700);
+                    Thread.sleep(600);
                     for (ColumnBar col : changeColorColumns) {
                         col.setFill(ColumnBar.DEFAULT_COLOR);
                     }
-                    // AnimationUtils.fadeColor(changeColorColumns, ColumnBar.DEFAULT_COLOR, 0.3);
                 }
 
                 Platform.runLater(() -> sortExplainationTextField.setText("Finish Sorting"));
