@@ -51,7 +51,13 @@ public class AnimationUtils {
          * This method is used for Insertion Sort, move down the ColumnBar to find the
          * right place to insert into
          */
-        double distanceMove = 100;
+        double distanceMove;
+        if (direction == "down") {
+            distanceMove = 100;
+        } else {
+            distanceMove = -100;
+        }
+
         TranslateTransition moveTranslateTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
         moveTranslateTransition.setByY(distanceMove);
         moveTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);

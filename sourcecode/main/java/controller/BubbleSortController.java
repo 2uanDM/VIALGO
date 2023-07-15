@@ -99,6 +99,7 @@ public class BubbleSortController extends SortController {
 
     public void swapping() {
         sortingThread.interrupt();
+
         Task<Void> nextTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
