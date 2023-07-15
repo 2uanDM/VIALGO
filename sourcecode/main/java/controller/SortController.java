@@ -33,6 +33,7 @@ public abstract class SortController implements Initializable {
     private boolean menuActionArrowPointRight;
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
+    public static int logStep = 1;
 
     @FXML
     private AnchorPane anchorPane;
@@ -107,6 +108,7 @@ public abstract class SortController implements Initializable {
     Random random = new Random();
 
     Thread sortingThread; // Thread for performing sorting algorithm
+    Thread nextThread; // Thread for running next Button
 
     Thread createArray; // Thread for performing creating Array
 
@@ -162,6 +164,7 @@ public abstract class SortController implements Initializable {
 
         // Create new sorting thread
         sortingThread = new Thread();
+        nextThread = new Thread();
 
         // Create new create Array thread
         createArray = new Thread();
@@ -256,6 +259,8 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateRandomArray() {
+        // initialize logStep = 1 again
+        logStep = 1;
         if (sortingThread.isAlive()) {
             sortingThread.interrupt();
         }
@@ -276,6 +281,8 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateSortedArray() {
+        // initialize logStep = 1 again
+        logStep = 1;
         if (sortingThread.isAlive()) {
             sortingThread.interrupt();
         }
@@ -304,6 +311,7 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateCustomArray() {
+        logStep = 1;
         if (sortingThread.isAlive()) {
             sortingThread.interrupt();
         }
