@@ -169,6 +169,8 @@ public class BubbleSortController extends SortController {
     }
 
     public void stopSorting() {
+        // stop the sorting process
+        sortingThread.interrupt();
 
     }
 

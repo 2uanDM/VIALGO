@@ -108,6 +108,7 @@ public abstract class SortController implements Initializable {
     Random random = new Random();
 
     Thread sortingThread; // Thread for performing sorting algorithm
+    boolean sortingThreadRunning = false;
     Thread nextThread; // Thread for running next Button
 
     Thread createArray; // Thread for performing creating Array
