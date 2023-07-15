@@ -65,7 +65,7 @@ public class TextValue extends Text {
 
         thisTextTransition.setOnFinished(e -> {
             // Swap xCoordinate properties
-            this.swapTextXCoordinate(otherText);
+            this.swapTextXCoordinate(otherText, textDistance1, textDistance2);
 
             // Swap inside array
             Collections.swap(textValues, textValues.indexOf(this), textValues.indexOf(otherText));
@@ -76,9 +76,10 @@ public class TextValue extends Text {
         otherTextTransition.play();
     }
 
-    private void swapTextXCoordinate(TextValue otherText) {
-        double tmp = this.getXCoordinate();
-        this.setXCoordinate(otherText.getXCoordinate());
-        otherText.setXCoordinate(tmp);
+    private void swapTextXCoordinate(TextValue otherText, double textDistance1, double textDistance2) {
+        double newPos1 = this.getXCoordinate() + textDistance1;
+        double newPos2 = otherText.getXCoordinate() + textDistance2;
+        this.setXCoordinate(newPos1);
+        otherText.setXCoordinate(newPos2);
     }
 }
