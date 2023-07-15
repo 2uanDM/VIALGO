@@ -11,6 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="..\..\resources\style\sort.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.BubbleSortController">
    <children>
@@ -91,12 +92,15 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>
-      <Button layoutX="616.0" layoutY="452.0" mnemonicParsing="false" onAction="#swapping" text="Swap" />
+      <Button layoutX="585.0" layoutY="478.0" mnemonicParsing="false" onAction="#swapping" text="Swap" />
       <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
-      <HBox fx:id="textHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="50.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
       <Label fx:id="exceptionLabel" layoutX="268.0" layoutY="617.0" prefHeight="30.0" prefWidth="530.0" textFill="RED">
          <font>
             <Font size="13.0" />
-         </font></Label>   
+         </font></Label>
+      <TextField fx:id="firstTextField" layoutX="405.0" layoutY="453.0" prefHeight="25.0" prefWidth="96.0" />
+      <Text layoutX="343.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First" wrappingWidth="44.0" />
+      <Text layoutX="343.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second" wrappingWidth="44.0" />
+      <TextField fx:id="secondTextField" layoutX="405.0" layoutY="506.0" prefHeight="25.0" prefWidth="96.0" />   
    </children>
 </AnchorPane>
