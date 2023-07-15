@@ -1,11 +1,10 @@
 package main.java.model.sorting_algo;
-import main.java.model.vialgo_utils.ArrayUtils;
-public class QuickSort extends SortingAlgorithm {
-    private int pivotChoice;
 
-    public QuickSort(int[] inputArray, int pivotChoice) {
+import main.java.model.vialgo_utils.ArrayUtils;
+
+public class QuickSortFirstPivot extends SortingAlgorithm {
+    public QuickSortFirstPivot(int[] inputArray) {
         super(inputArray);
-        this.pivotChoice = pivotChoice;
     }
 
     public void sort() {
@@ -18,30 +17,17 @@ public class QuickSort extends SortingAlgorithm {
 
     private void quicksort(int low, int high) {
         if (low < high) {
-            int pivotIndex;
-            if (pivotChoice == 0) {
-                pivotIndex = low;
-            } else if (pivotChoice == 1) {
-                pivotIndex = high;
-            } else {
-                pivotIndex = getRandomPivotIndex(low, high);
-            }
-            int partitionIndex = partition(low, high, pivotIndex);
+            int partitionIndex = partition(low, high);
 
             quicksort(low, partitionIndex - 1);
             quicksort(partitionIndex + 1, high);
         }
     }
 
-    private int getRandomPivotIndex(int low, int high) {
-        return (int) (Math.random() * (high - low + 1)) + low;
-    }
+    private int partition(int low, int high) {
 
-    private int partition(int low, int high, int pivotIndex) {
-        int pivot = inputArray[pivotIndex];
-        System.out.println("Pivot Selected: " + pivot);
-        swap(pivotIndex, low);
-
+        int pivot = inputArray[low];
+        System.out.println("Pivot Selected:" + pivot);
         int i = low + 1;
 
         for (int j = low + 1; j <= high; j++) {
@@ -51,6 +37,7 @@ public class QuickSort extends SortingAlgorithm {
             }
         }
         System.out.println("Done Partition");
+
         swap(low, i - 1);
         return i - 1;
     }
@@ -60,6 +47,8 @@ public class QuickSort extends SortingAlgorithm {
         inputArray[i] = inputArray[j];
         inputArray[j] = temp;
 
+        System.out.println(i +" "+ j);
+        System.out.println(ArrayUtils.toString(inputArray));
         // Update logs
         int[] arrayLog = ArrayUtils.copyArray(inputArray);
         String messageLog = String.format("Swapped elements: %d and %d", inputArray[i], inputArray[j]);

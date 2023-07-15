@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -12,27 +15,36 @@ import javafx.application.Platform;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
+
 import main.java.Main;
 import main.java.model.object.ColumnBar;
+import main.java.model.object.TextValue;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.vialgo_utils.InputParserUtils;
-
 
 public abstract class SortController implements Initializable {
 
     private boolean menuActionArrowPointRight;
     private boolean sortExplainArrowPointLeft;
     private boolean pseudoCodeArrowPointLeft;
-    public int[] arrayVal; // int[] arrayVal will store input when user generate custom array
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ImageView aEqualsImageView;
 
     @FXML
     private ImageView menuActionArrow;
+
+    @FXML
+    public Label exceptionLabel;
 
     @FXML
     protected TextField enterArrayTextField;
@@ -86,6 +98,14 @@ public abstract class SortController implements Initializable {
 
     SetVisibleUtils worker;
 
+    ArrayList<ColumnBar> columns; // ArrayList store all columns created
+
+    ArrayList<TextValue> textValues; // ArrayList store all Text values created
+
+    public static Group textGroup = new Group(); // Group in Scene containing all Text values
+
+    Random random = new Random();
+
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
         /*
@@ -129,6 +149,9 @@ public abstract class SortController implements Initializable {
 
         // Spacing for columns in HBox
         columnsHBox.setSpacing(10);
+
+        // Add textValues Group to scene
+        anchorPane.getChildren().add(textGroup);
     }
 
     /*----------------------------------------Action Handler---------------------------------------- */
@@ -219,33 +242,90 @@ public abstract class SortController implements Initializable {
         rotateTransition.play();
     }
 
-    public abstract void swapping();
-
     public void generateRandomArray() {
-        columnsHBox.getChildren().clear();
+        // Random number of elements
+        int numberElements = random.nextInt(5, 20);
+
+        // Generate a random array of integers
+        ArrayList<Integer> arrayValue = new ArrayList<Integer>();
+        for (int i = 1; i <= numberElements; ++i) {
+            int randomValue = random.nextInt(1, 50);
+            arrayValue.add(randomValue);
+        }
+
+        // Add ColumnBars to HBox with respect to these values
+        addColumnBarToHBox(arrayValue);
+    }
+
+    public void generateSortedArray() {
+        boolean isNonDecreasing = true;
         Random t = new Random();
         int numberElements = t.nextInt(5, 20);
         ArrayList<Integer> arrayVal = new ArrayList<Integer>();
 
         // Generate a random array of integers
         for (int i = 1; i <= numberElements; ++i) {
-            int randomValue = t.nextInt(1, 1000);
+            int randomValue = t.nextInt(1, 50);
             arrayVal.add(randomValue);
         }
 
-        // Add ColumnBars to HBox with respect to these values
-        for (int val : arrayVal) {
-            ColumnBar newColumn = new ColumnBar(val);
-            columnsHBox.getChildren().add(newColumn);
+        // Sort
+        if (isNonDecreasing) {
+            Collections.sort(arrayVal);
+        } else {
+            Collections.sort(arrayVal, Comparator.reverseOrder());
         }
 
-        // Update HBox Layout
+        // Add to HBox
+        addColumnBarToHBox(arrayVal);
+
+    }
+
+    public void generateCustomArray() {
+        String content = enterArrayTextField.getText();
+        exceptionLabel.setText("");
+
+        // Parse the string into ArrayList<Integer> with predefined types of exception
+        InputParserUtils parser = new InputParserUtils(exceptionLabel, content);
+        ArrayList<Integer> arrayVal = new ArrayList<Integer>();
+        arrayVal = parser.getArrayValue();
+
+        // Add ColumnBars to HBox with respect to these values
+        addColumnBarToHBox(arrayVal);
+    }
+
+    private void addColumnBarToHBox(ArrayList<Integer> arrayValue) {
+        columns = new ArrayList<ColumnBar>();
+        textValues = new ArrayList<TextValue>();
+
+        // Created list of ColumnBar object from list of integers
+        for (int val : arrayValue) {
+            ColumnBar newColumn = new ColumnBar(val);
+            columns.add(newColumn);
+        }
+
+        // Add list of Columnbar to HBox
+        columnsHBox.getChildren().setAll(columns);
         columnsHBox.layout();
+
+        // Add xCoordinate and Text value with respect to AnchorPane for each ColumnBar
+        for (ColumnBar col : columns) {
+            double xCoordinate = col.localToScene(col.getBoundsInLocal()).getMinX();
+            double yCoordinate = col.localToScene(col.getBoundsInLocal()).getMinY();
+            col.setXCoordinate(xCoordinate);
+            col.setYCoordinate(yCoordinate);
+
+            // Add Text value to array
+            textValues.add(new TextValue(col.getValue(), col));
+
+            // Check the xCoordinate of each object
+            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate() + " " + col.getYCoordinate());
+        }
+
+        // Set Children for textGroup
+
+        textGroup.getChildren().setAll(textValues);
     }
 
-    public void generateSortedArray() {
-        // Quốc code phần này nhé
-    }
-
-    public abstract void generateCustomArray();
+    public abstract void swapping();
 }
