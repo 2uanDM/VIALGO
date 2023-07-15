@@ -96,6 +96,22 @@ public class BubbleSortController extends SortController {
         sortingThread.start();
     }
 
+    // public void swapping() {
+    // sortingThread.interrupt();
+    // int index1 = Integer.parseInt(firstTextField.getText());
+    // int index2 = Integer.parseInt(secondTextField.getText());
+
+    // ColumnBar col1 = columns.get(index1);
+    // ColumnBar col2 = columns.get(index2);
+
+    // if (!isAnimating) {
+    // isAnimating = true;
+    // col1.swap(col2, 0.3, columns, textValues, () -> {
+    // isAnimating = false;
+    // });
+    // }
+    // }
+
     public void swapping() {
         sortingThread.interrupt();
         int index1 = Integer.parseInt(firstTextField.getText());
@@ -106,10 +122,11 @@ public class BubbleSortController extends SortController {
 
         if (!isAnimating) {
             isAnimating = true;
-            col1.swap(col2, 0.3, columns, textValues, () -> {
+            AnimationUtils.moveVertical(col2, "down", 0.3, () -> {
                 isAnimating = false;
             });
         }
+
     }
 
 }
