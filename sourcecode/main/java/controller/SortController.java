@@ -24,6 +24,7 @@ import javafx.util.Duration;
 
 import main.java.Main;
 import main.java.model.object.ColumnBar;
+import main.java.model.object.TextValue;
 import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.vialgo_utils.InputParserUtils;
 
@@ -99,7 +100,7 @@ public abstract class SortController implements Initializable {
 
     ArrayList<ColumnBar> columns; // ArrayList store all columns created
 
-    ArrayList<Text> textValues; // ArrayList store all Text values created
+    ArrayList<TextValue> textValues; // ArrayList store all Text values created
 
     public static Group textGroup = new Group(); // Group in Scene containing all Text values
 
@@ -295,7 +296,7 @@ public abstract class SortController implements Initializable {
 
     private void addColumnBarToHBox(ArrayList<Integer> arrayValue) {
         columns = new ArrayList<ColumnBar>();
-        textValues = new ArrayList<Text>();
+        textValues = new ArrayList<TextValue>();
 
         // Created list of ColumnBar object from list of integers
         for (int val : arrayValue) {
@@ -315,7 +316,7 @@ public abstract class SortController implements Initializable {
             col.setYCoordinate(yCoordinate);
 
             // Add Text value to array
-            textValues.add(col.getTextvalue());
+            textValues.add(new TextValue(col.getValue(), col));
 
             // Check the xCoordinate of each object
             System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate() + " " + col.getYCoordinate());
@@ -324,11 +325,6 @@ public abstract class SortController implements Initializable {
         // Set Children for textGroup
 
         textGroup.getChildren().setAll(textValues);
-        System.out.println("--------------------------------------------");
-        for (Node node : textGroup.getChildren()) {
-            Text t = (Text) node;
-            System.out.println(t.getLayoutX() + " " + t.getLayoutY());
-        }
     }
 
     public abstract void swapping();
