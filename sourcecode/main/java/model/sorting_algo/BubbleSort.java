@@ -32,7 +32,7 @@ public class BubbleSort extends SortingAlgorithm {
 
                     // add Logs
                     int[] arrayLog = newArray;
-                    int[] pointerLog = { j + 1, j };
+                    int[] pointerLog = { j + 1, j, 1 }; // 1 mean applying swap
                     int[] tempLog = {};
                     String messageLog = String.format("Since %d > %d, swap element %d with the element %d",
                             inputArray[j + 1],
@@ -42,12 +42,12 @@ public class BubbleSort extends SortingAlgorithm {
 
                     this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
-                    System.out.println(messageLog);
-                    System.out.println(Arrays.toString(newArray));
+                    // System.out.println(messageLog);
+                    // System.out.println(Arrays.toString(newArray));
                 } else {
 
                     int[] arrayLog = inputArray;
-                    int[] pointerLog = { j + 1, j };
+                    int[] pointerLog = { j + 1, j, 0 }; // 0 mean we only change the color, do not swap
                     int[] tempLog = {};
                     String messageLog = String.format("Since %d <= %d, we do nothing.",
                             inputArray[j],
@@ -57,13 +57,14 @@ public class BubbleSort extends SortingAlgorithm {
 
                     this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
-                    System.out.println(messageLog);
-                    System.out.println(Arrays.toString(inputArray));
+                    // System.out.println(messageLog);
+                    // System.out.println(Arrays.toString(inputArray));
+
                 }
             }
-            System.out.println("------------------------------------");
+            // System.out.println("------------------------------------");
             if (swapped == false) {
-                System.out.println(inputArray[i]);
+                // System.out.println(inputArray[i]);
                 break;
             }
         }

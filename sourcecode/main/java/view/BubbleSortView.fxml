@@ -92,15 +92,18 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>
-      <Button layoutX="533.0" layoutY="478.0" mnemonicParsing="false" onAction="#swapping" text="Swap" />
+      <Button layoutX="621.0" layoutY="506.0" mnemonicParsing="false" onAction="#swapping" text="NEXT" />
       <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
       <Label fx:id="exceptionLabel" layoutX="268.0" layoutY="617.0" prefHeight="30.0" prefWidth="530.0" textFill="RED">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <TextField fx:id="firstTextField" layoutX="405.0" layoutY="453.0" prefHeight="25.0" prefWidth="96.0" />
-      <Text layoutX="343.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First" wrappingWidth="44.0" />
-      <Text layoutX="343.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second" wrappingWidth="44.0" />
-      <TextField fx:id="secondTextField" layoutX="405.0" layoutY="506.0" prefHeight="25.0" prefWidth="96.0" />   
+      <TextField fx:id="firstTextField" layoutX="119.0" layoutY="448.0" prefHeight="25.0" prefWidth="96.0" />
+      <Text layoutX="90.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First" wrappingWidth="44.0" />
+      <Text layoutX="75.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second" wrappingWidth="44.0" />
+      <TextField fx:id="secondTextField" layoutX="119.0" layoutY="484.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button layoutX="229.0" layoutY="471.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="563.0" layoutY="506.0" mnemonicParsing="false" onAction="#stopSorting" text="STOP" />
+      <Button layoutX="497.0" layoutY="506.0" mnemonicParsing="false" onAction="#backStep" text="BACK" />   
    </children>
 </AnchorPane>

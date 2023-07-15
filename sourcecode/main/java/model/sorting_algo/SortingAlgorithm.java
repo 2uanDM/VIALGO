@@ -44,7 +44,7 @@ public abstract class SortingAlgorithm {
         this.inputArray = inputArray;
         this.arrayLogs = new int[1][inputArray.length];
         this.tempLogs = new int[1][inputArray.length];
-        this.pointerLogs = new int[1][2]; // depend on the sorting algorithms, we use up to 2 pointerLog
+        this.pointerLogs = new int[1][4]; // depend on the sorting algorithms, we use up to 4 pointerLog
         this.messageLogs = new String[1];
 
         this.arrayLogs[0] = inputArray;
