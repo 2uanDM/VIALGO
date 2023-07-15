@@ -314,7 +314,6 @@ public abstract class SortController implements Initializable {
             col.setYCoordinate(yCoordinate);
 
             // Add Text value to array
-            System.out.println(col.getValue());
             col.setTextValue(new TextValue(col.getValue(), col));
             textValues.add(col.getTextValue());
 
