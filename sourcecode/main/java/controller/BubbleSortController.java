@@ -24,6 +24,7 @@ public class BubbleSortController extends SortController {
 
     public void sortButtonHandler() {
 
+        nextThread.interrupt();
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -103,6 +104,7 @@ public class BubbleSortController extends SortController {
             @Override
             protected Void call() throws Exception {
 
+                SortController.logStep++;
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
                 int swap_index = 0;
@@ -114,6 +116,7 @@ public class BubbleSortController extends SortController {
                 obj.sort();
 
                 int[][] pointerLog = obj.getPointerLog();
+
                 // stepCount is a static variable, each time user press Next button, stepCount
                 // ++
                 int index1 = pointerLog[SortController.logStep][0];
@@ -156,8 +159,6 @@ public class BubbleSortController extends SortController {
                 // sorted.
                 if (index1 == 0 && index2 == 0) {
                     Platform.runLater(() -> sortExplainationTextField.setText("Finish Sorting"));
-                } else {
-                    SortController.logStep++;
                 }
                 return null;
             }

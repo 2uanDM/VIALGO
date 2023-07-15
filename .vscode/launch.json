@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "testing",
+      "request": "launch",
+      "mainClass": "main.java.model.sorting_algo.testing",
+      "projectName": "OOP.20222.17_6d30dfa4"
+    },
+    {
+      "type": "java",
       "name": "InputParserUtils",
       "request": "launch",
       "mainClass": "main.java.model.vialgo_utils.InputParserUtils",
