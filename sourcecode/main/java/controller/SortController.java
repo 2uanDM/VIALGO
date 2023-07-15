@@ -2,6 +2,7 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PageLayout;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -94,7 +96,7 @@ public abstract class SortController implements Initializable {
 
     ArrayList<Node> pseudoCodeButtonChilds = new ArrayList<Node>();
 
-    SetVisibleUtils worker;
+    SetVisibleUtils worker; // Executor for performing show or hide menu options animation
 
     ArrayList<ColumnBar> columns; // ArrayList store all columns created
 
@@ -103,6 +105,10 @@ public abstract class SortController implements Initializable {
     public static Group textGroup = new Group(); // Group in Scene containing all Text values
 
     Random random = new Random();
+
+    Thread sortingThread; // Thread for performing sorting algorithm
+
+    Thread createArray; // Thread for performing creating Array
 
     @Override
     public void initialize(URL url, ResourceBundle rBundle) {
@@ -150,6 +156,15 @@ public abstract class SortController implements Initializable {
 
         // Add textValues Group to scene
         anchorPane.getChildren().add(textGroup);
+
+        // Set the CSS style for sortExplainationTextField
+        sortExplainationTextField.setStyle("-fx-text-fill: white;");
+
+        // Create new sorting thread
+        sortingThread = new Thread();
+
+        // Create new create Array thread
+        createArray = new Thread();
     }
 
     /*----------------------------------------Action Handler---------------------------------------- */
@@ -241,6 +256,10 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateRandomArray() {
+        if (sortingThread.isAlive()) {
+            sortingThread.interrupt();
+        }
+
         // Random number of elements
         int numberElements = random.nextInt(5, 20);
 
@@ -253,9 +272,14 @@ public abstract class SortController implements Initializable {
 
         // Add ColumnBars to HBox with respect to these values
         addColumnBarToHBox(arrayValue);
+
     }
 
     public void generateSortedArray() {
+        if (sortingThread.isAlive()) {
+            sortingThread.interrupt();
+        }
+
         boolean isNonDecreasing = true;
         Random t = new Random();
         int numberElements = t.nextInt(5, 20);
@@ -280,6 +304,10 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateCustomArray() {
+        if (sortingThread.isAlive()) {
+            sortingThread.interrupt();
+        }
+
         String content = enterArrayTextField.getText();
         exceptionLabel.setText("");
 

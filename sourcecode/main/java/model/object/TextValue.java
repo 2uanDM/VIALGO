@@ -47,7 +47,7 @@ public class TextValue extends Text {
         return this.yCoordinate;
     }
 
-    public void swap(TextValue otherText, double duration, ArrayList<TextValue> textValues) {
+    public void swap(TextValue otherText, double duration, ArrayList<TextValue> textValues, Runnable callback) {
         double thisTextX = this.getXCoordinate();
         double otherTextX = otherText.getXCoordinate();
 
@@ -64,13 +64,14 @@ public class TextValue extends Text {
         otherTextTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         thisTextTransition.setOnFinished(e -> {
-            // Swap xCoordinate properties
-            this.swapTextXCoordinate(otherText, textDistance1, textDistance2);
-
-            // Swap inside array
-            Collections.swap(textValues, textValues.indexOf(this), textValues.indexOf(otherText));
-
+            callback.run();
         });
+
+        // Swap xCoordinate properties
+        this.swapTextXCoordinate(otherText, textDistance1, textDistance2);
+
+        // Swap inside array
+        Collections.swap(textValues, textValues.indexOf(this), textValues.indexOf(otherText));
 
         thisTextTransition.play();
         otherTextTransition.play();

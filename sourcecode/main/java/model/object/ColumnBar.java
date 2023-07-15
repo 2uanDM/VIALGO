@@ -70,21 +70,9 @@ public class ColumnBar extends Rectangle {
     }
 
     public void swap(ColumnBar otherColumn, double duration, ArrayList<ColumnBar> columns,
-            ArrayList<TextValue> textValues) {
+            ArrayList<TextValue> textValues, Runnable callback) {
         double columnDistance1 = otherColumn.getXCoordinate() - this.getXCoordinate();
         double columnDistance2 = -columnDistance1;
-
-        // Create the color change animation
-        Duration colorChangeDuration = Duration.seconds(0.3);
-        Color newColor = Color.GREEN;
-
-        KeyValue thisColorKeyValue = new KeyValue(this.fillProperty(), newColor);
-        KeyFrame thisColorKeyFrame = new KeyFrame(colorChangeDuration, thisColorKeyValue);
-        Timeline thisColorTimeline = new Timeline(thisColorKeyFrame);
-
-        KeyValue otherColorKeyValue = new KeyValue(otherColumn.fillProperty(), newColor);
-        KeyFrame otherColorKeyFrame = new KeyFrame(colorChangeDuration, otherColorKeyValue);
-        Timeline otherColorTimeline = new Timeline(otherColorKeyFrame);
 
         // create the translation animation
         TranslateTransition thisTransition = new TranslateTransition(Duration.seconds(duration), this);
@@ -95,46 +83,22 @@ public class ColumnBar extends Rectangle {
         otherTransition.setByX(columnDistance2);
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
 
-        // Create the color change back transition
-        // Duration colorChangeBackDelay = Duration.seconds(0.5);
-
-        // PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
-
-        // delayTransition.setOnFinished(event -> {
-        // KeyValue thisColorBackKeyValue = new KeyValue(this.fillProperty(),
-        // DEFAULT_COLOR);
-        // KeyFrame thisColorBackKeyFrame = new KeyFrame(colorChangeDuration,
-        // thisColorBackKeyValue);
-        // Timeline thisColorBackTimeline = new Timeline(thisColorBackKeyFrame);
-
-        // KeyValue otherColorBackKeyValue = new KeyValue(otherColumn.fillProperty(),
-        // DEFAULT_COLOR);
-        // KeyFrame otherColorBackKeyFrame = new KeyFrame(colorChangeDuration,
-        // otherColorBackKeyValue);
-        // Timeline otherColorBackTimeline = new Timeline(otherColorBackKeyFrame);
-
-        // thisColorBackTimeline.play();
-        // otherColorBackTimeline.play();
-        // });
-
-        // Play the color change animations
-        thisColorTimeline.setOnFinished(event -> {
-            thisTransition.play();
-            otherTransition.play();
-            // delayTransition.play();
-            this.getTextValue().swap(otherColumn.getTextValue(), duration, textValues);
-
-            // Swap xCoordinate properties
-            this.swapColumnXCoordinate(otherColumn);
-
-            // Swap inside array
-            Collections.swap(columns, columns.indexOf(this), columns.indexOf(otherColumn));
-
+        // set up a callback function to be executed when the animation is finished
+        thisTransition.setOnFinished(event -> {
+            callback.run();
         });
 
-        otherColorTimeline.play();
-        thisColorTimeline.play();
+        // Perfrom xCoordinate properties
+        this.getTextValue().swap(otherColumn.getTextValue(), duration, textValues, callback);
 
+        // Swap xCoordinate properties
+        this.swapColumnXCoordinate(otherColumn);
+
+        // Swap inside array
+        Collections.swap(columns, columns.indexOf(this), columns.indexOf(otherColumn));
+
+        thisTransition.play();
+        otherTransition.play();
     }
 
     private void swapColumnXCoordinate(ColumnBar otherColumnBar) {
