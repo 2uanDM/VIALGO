@@ -10,10 +10,8 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.AnimationUtils;
-import main.java.model.vialgo_utils.SetVisibleUtils;
 import main.java.model.sorting_algo.BubbleSort;
 
 public class BubbleSortController extends SortController {
@@ -22,8 +20,6 @@ public class BubbleSortController extends SortController {
 
     @FXML
     private TextField secondTextField;
-
-    private boolean isAnimating = false;
 
     public void sortButtonHandler() {
         // Prevent many sort tasks run concurrently
@@ -111,7 +107,15 @@ public class BubbleSortController extends SortController {
     }
 
     public void swapping() {
-        sortingThread.interrupt();
+        // Interrupt the current sorting thread and wait for it to terminate
+        if (sortingThread != null && sortingThread.isAlive()) {
+            sortingThread.interrupt();
+            try {
+                sortingThread.join();
+            } catch (InterruptedException e) {
+                // Handle the exception if necessary
+            }
+        }
 
         Task<Void> nextTask = new Task<Void>() {
             @Override

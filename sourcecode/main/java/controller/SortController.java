@@ -33,6 +33,7 @@ public abstract class SortController implements Initializable {
     protected boolean menuActionArrowPointRight;
     protected boolean sortExplainArrowPointLeft;
     protected boolean pseudoCodeArrowPointLeft;
+    protected boolean isAnimating = false;
     public static int logStep = 1;
 
     @FXML
@@ -185,6 +186,17 @@ public abstract class SortController implements Initializable {
          * The .notStartApp() method tells the program that it backs
          * to the HomePage from a sorting view, so the startup sound will not be played.
          */
+
+        // Interrupt the current sorting thread and wait for it to terminate
+        if (sortingThread != null && sortingThread.isAlive()) {
+            sortingThread.interrupt();
+            try {
+                sortingThread.join();
+            } catch (InterruptedException e) {
+                // Handle the exception if necessary
+            }
+        }
+
         try {
             HomeController.notStartApp();
             Main.setRoot("./view/HomeView.fxml");

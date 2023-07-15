@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,8 +11,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="..\..\resources\style\sort.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.BubbleSortController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="..\..\resources\style\sort.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.InsertionSortController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" stroke="#1b1b1b" strokeType="INSIDE" strokeWidth="0.0" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="640.0" layoutX="12.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="..\..\resources\style\sort.css" width="1220.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0" />
@@ -20,7 +22,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button id="menuActionPane" fx:id="sortButton" layoutX="32.0" layoutY="612.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Sort" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="sortButton" layoutX="32.0" layoutY="612.0" mnemonicParsing="false" onAction="#sortButtonHandler" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Sort" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -32,13 +34,12 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow.png" />
          </image>
       </ImageView>
-      <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
-      <Button id="menuActionPane" fx:id="randomArrayButton" layoutX="145.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Random" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="randomArrayButton" layoutX="145.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateRandomArray" prefHeight="40.0" prefWidth="110.0" stylesheets="@../../resources/style/sort.css" text="Random" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button id="menuActionPane" fx:id="sortedArrayButton" layoutX="258.0" layoutY="572.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="84.0" stylesheets="@../../resources/style/sort.css" text="Sorted" textFill="WHITE">
+      <Button id="menuActionPane" fx:id="sortedArrayButton" layoutX="258.0" layoutY="572.0" mnemonicParsing="false" onAction="#generateSortedArray" prefHeight="40.0" prefWidth="84.0" stylesheets="@../../resources/style/sort.css" text="Sorted" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -64,9 +65,9 @@
             <Image url="@../../resources/assets/SortView/small%20logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="140.0" layoutX="573.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="166.0" layoutX="563.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/assets/SortView/Bubble%20Sort.png" />
+            <Image url="@../../resources/assets/SortView/Insertion%20Sort.png" />
          </image>
       </ImageView>
       <TextField id="sortExplainationTextField" fx:id="sortExplainationTextField" editable="false" layoutX="813.0" layoutY="421.0" prefHeight="40.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css">
@@ -90,6 +91,22 @@
          <image>
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
-      </ImageView>   
+      </ImageView>
+      <Button layoutX="621.0" layoutY="506.0" mnemonicParsing="false" text="NEXT" />
+      <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
+      <Label fx:id="exceptionLabel" layoutX="268.0" layoutY="617.0" prefHeight="30.0" prefWidth="530.0" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <TextField fx:id="firstTextField" layoutX="119.0" layoutY="448.0" prefHeight="25.0" prefWidth="96.0" />
+      <Text layoutX="90.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First" wrappingWidth="44.0" />
+      <Text layoutX="75.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second" wrappingWidth="44.0" />
+      <TextField fx:id="secondTextField" layoutX="119.0" layoutY="484.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button layoutX="232.0" layoutY="484.0" mnemonicParsing="false" onAction="#testDown" text="Down" />
+      <Button layoutX="563.0" layoutY="506.0" mnemonicParsing="false" text="STOP" />
+      <Button layoutX="497.0" layoutY="506.0" mnemonicParsing="false" text="BACK" />
+      <Button layoutX="300.0" layoutY="484.0" mnemonicParsing="false" onAction="#testUp" prefHeight="25.0" prefWidth="58.0" text="Up" />
+      <Button layoutX="300.0" layoutY="447.0" mnemonicParsing="false" onAction="#testRight" text="Right" />
+      <Button layoutX="240.0" layoutY="447.0" mnemonicParsing="false" onAction="#testLeft" text="Left" />   
    </children>
 </AnchorPane>

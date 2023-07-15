@@ -1,6 +1,5 @@
 package main.java.model.vialgo_utils;
 
-import java.net.Inet4Address;
 import java.util.ArrayList;
 
 import javafx.animation.Interpolator;
@@ -62,8 +61,8 @@ public class AnimationUtils {
 
     public static void moveVertical(ColumnBar columnBar, String direction, double duration, Runnable callback) {
         /*
-         * This method is used for Insertion Sort, move down the ColumnBar to find the
-         * right place to insert into
+         * This method is used for Insertion Sort, move down or up the ColumnBar to find
+         * the right place to insert into
          */
         double distanceMove;
         if (direction == "down") {
@@ -93,4 +92,38 @@ public class AnimationUtils {
         textTranslateTransition.play();
     }
 
+    public static void moveHorizontal(ColumnBar columnBar, String direction, double duration, Runnable callBack) {
+        /*
+         * This method is used for Insertion Sort, move left of right by ONE STEP the
+         * ColumnBar to
+         * find the right place to insert into
+         */
+
+        double distanceMove;
+        if (direction == "left") {
+            distanceMove = -50;
+        } else {
+            distanceMove = 50;
+        }
+
+        TranslateTransition columnTranslateTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
+        columnTranslateTransition.setByX(distanceMove);
+        columnTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+        TranslateTransition textTranslateTransition = new TranslateTransition(Duration.seconds(duration),
+                columnBar.getTextValue());
+        textTranslateTransition.setByX(distanceMove);
+        textTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+        // Set the new postion for xCoordinate
+        columnBar.setXCoordinate(columnBar.getXCoordinate() + distanceMove);
+        columnBar.getTextValue().setXCoordinate(columnBar.getTextValue().getXCoordinate() + distanceMove);
+
+        columnTranslateTransition.setOnFinished((event) -> {
+            callBack.run();
+        });
+
+        columnTranslateTransition.play();
+        textTranslateTransition.play();
+    }
 }
