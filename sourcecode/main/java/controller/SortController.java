@@ -30,22 +30,22 @@ import main.java.model.vialgo_utils.InputParserUtils;
 
 public abstract class SortController implements Initializable {
 
-    private boolean menuActionArrowPointRight;
-    private boolean sortExplainArrowPointLeft;
-    private boolean pseudoCodeArrowPointLeft;
+    protected boolean menuActionArrowPointRight;
+    protected boolean sortExplainArrowPointLeft;
+    protected boolean pseudoCodeArrowPointLeft;
     public static int logStep = 1;
 
     @FXML
-    private AnchorPane anchorPane;
+    protected AnchorPane anchorPane;
 
     @FXML
-    private ImageView aEqualsImageView;
+    protected ImageView aEqualsImageView;
 
     @FXML
-    private ImageView menuActionArrow;
+    protected ImageView menuActionArrow;
 
     @FXML
-    public Label exceptionLabel;
+    protected Label exceptionLabel;
 
     @FXML
     protected TextField enterArrayTextField;
@@ -54,40 +54,40 @@ public abstract class SortController implements Initializable {
     protected TextField sortExplainationTextField;
 
     @FXML
-    private TextArea pseudoCodeTextArea;
+    protected TextArea pseudoCodeTextArea;
 
     @FXML
-    private ImageView pseudoCodeArrow;
+    protected ImageView pseudoCodeArrow;
 
     @FXML
-    private ImageView sortExplainArrow;
+    protected ImageView sortExplainArrow;
 
     @FXML
     protected HBox columnsHBox;
 
     @FXML
-    private Button createArrayButton;
+    protected Button createArrayButton;
 
     @FXML
-    private Button goButton;
+    protected Button goButton;
 
     @FXML
-    private Button menuActionButton;
+    protected Button menuActionButton;
 
     @FXML
-    private Button randomArrayButton;
+    protected Button randomArrayButton;
 
     @FXML
-    private Button sortButton;
+    protected Button sortButton;
 
     @FXML
-    private Button sortedArrayButton;
+    protected Button sortedArrayButton;
 
     @FXML
-    private Button sortExplainButton;
+    protected Button sortExplainButton;
 
     @FXML
-    private Button pseudoCodeButton;
+    protected Button pseudoCodeButton;
 
     ArrayList<Node> menuActionOptionsChilds = new ArrayList<Node>();
 
@@ -168,6 +168,13 @@ public abstract class SortController implements Initializable {
 
         // Create new create Array thread
         createArray = new Thread();
+
+        // Create a random array and show MenuActionOptions
+        Platform.runLater(() -> {
+            generateRandomArray();
+            showMenuActionOptions();
+        });
+
     }
 
     /*----------------------------------------Action Handler---------------------------------------- */
@@ -259,11 +266,21 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateRandomArray() {
+        // Interrupt the current sorting thread and wait for it to terminate
+        if (sortingThread != null && sortingThread.isAlive()) {
+            sortingThread.interrupt();
+            try {
+                sortingThread.join();
+            } catch (InterruptedException e) {
+                // Handle the exception if necessary
+            }
+        }
+
+        // Set sortExplainationTextField to blank
+        sortExplainationTextField.setText("");
+
         // initialize logStep = 1 again
         logStep = 1;
-        if (sortingThread.isAlive()) {
-            sortingThread.interrupt();
-        }
 
         // Random number of elements
         int numberElements = random.nextInt(5, 20);
@@ -281,11 +298,21 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateSortedArray() {
+        // Interrupt the current sorting thread and wait for it to terminate
+        if (sortingThread != null && sortingThread.isAlive()) {
+            sortingThread.interrupt();
+            try {
+                sortingThread.join();
+            } catch (InterruptedException e) {
+                // Handle the exception if necessary
+            }
+        }
+
+        // Set sortExplainationTextField to blank
+        sortExplainationTextField.setText("");
+
         // initialize logStep = 1 again
         logStep = 1;
-        if (sortingThread.isAlive()) {
-            sortingThread.interrupt();
-        }
 
         boolean isNonDecreasing = true;
         Random t = new Random();
@@ -311,10 +338,21 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateCustomArray() {
-        logStep = 1;
-        if (sortingThread.isAlive()) {
+        // Interrupt the current sorting thread and wait for it to terminate
+        if (sortingThread != null && sortingThread.isAlive()) {
             sortingThread.interrupt();
+            try {
+                sortingThread.join();
+            } catch (InterruptedException e) {
+                // Handle the exception if necessary
+            }
         }
+
+        // Set sortExplainationTextField to blank
+        sortExplainationTextField.setText("");
+
+        // initialize logStep = 1 again
+        logStep = 1;
 
         String content = enterArrayTextField.getText();
         exceptionLabel.setText("");
@@ -357,6 +395,33 @@ public abstract class SortController implements Initializable {
 
         // Set Children for textGroup
         textGroup.getChildren().setAll(textValues);
+    }
+
+    protected void sidePanelActionBeforeSorting() {
+        // Close left panel
+        worker = new SetVisibleUtils(this.menuActionOptionsChilds);
+        worker.changeVisibleStatus(true, false, "translate");
+
+        worker = new SetVisibleUtils(this.createArrayButtonChilds);
+        worker.changeVisibleStatus(true, false, "fade");
+
+        // Show all right panel
+        worker = new SetVisibleUtils(this.sortExplainButtonChilds);
+        worker.changeVisibleStatus(false, true, "translate");
+
+        worker = new SetVisibleUtils(this.pseudoCodeButtonChilds);
+        worker.changeVisibleStatus(false, true, "translate");
+
+        // Rotating the arrow 180 degrees when being clicked
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), menuActionArrow);
+        if (menuActionArrowPointRight) {
+            rotateTransition.setByAngle(180);
+            menuActionArrowPointRight = false;
+        } else {
+            rotateTransition.setByAngle(-180);
+            menuActionArrowPointRight = true;
+        }
+        rotateTransition.play();
     }
 
     public abstract void sortButtonHandler();

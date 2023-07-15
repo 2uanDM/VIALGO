@@ -12,6 +12,19 @@ import javafx.util.Duration;
 import main.java.model.object.ColumnBar;
 
 public class AnimationUtils {
+    public static void fadeColor(ColumnBar changeColumn, Color newColor, double duration) {
+        /*
+         * This method is used for change the color of a list of ColumnBar to a
+         * particular color with fade animation
+         */
+        Timeline changeColorTimeline = new Timeline();
+        KeyValue colorKeyValue = new KeyValue(changeColumn.fillProperty(), newColor);
+        KeyFrame colorKeyFrame = new KeyFrame(Duration.seconds(duration), colorKeyValue);
+        changeColorTimeline.getKeyFrames().add(colorKeyFrame);
+
+        changeColorTimeline.play();
+    }
+
     public static void fadeColor(ArrayList<ColumnBar> changeColumns, Color newColor, double duration) {
         /*
          * This method is used for change the color of a list of ColumnBar to a
