@@ -1,13 +1,12 @@
 package test;
 
 import main.java.model.sorting_algo.BubbleSort;
-import main.java.model.vialgo_utils.ArrayUtils;
 
 public class testing {
     public static void main(String[] args) {
-        String a = "      4";
-        System.out.println(a.trim());
+        int[] arr = { 3, 13, 42, 12, 4, 11, 22, 34 };
 
-        System.out.println(Integer.parseInt(a.trim()));
+        BubbleSort bubbleSort = new BubbleSort(arr);
+        bubbleSort.sort();
     }
 }
