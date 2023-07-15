@@ -49,10 +49,10 @@ public class InputParserUtils {
         int[] numberArray;
         numberArray = new int[splitArray.length];
 
+        // first, remove all the space in the string
         int index = 0;
         for (String strPart: splitArray) {
 
-            // first, remove all the space in the string
             strPart = strPart.replaceAll("\\s", "");
             splitArray[index] = strPart;
             index ++;
