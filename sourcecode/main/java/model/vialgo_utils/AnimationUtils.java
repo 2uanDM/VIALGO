@@ -1,5 +1,6 @@
 package main.java.model.vialgo_utils;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 
 import javafx.animation.Interpolator;
@@ -66,23 +67,30 @@ public class AnimationUtils {
          */
         double distanceMove;
         if (direction == "down") {
-            distanceMove = 100;
+            distanceMove = 50 + columnBar.getHeight();
         } else {
-            distanceMove = -100;
+            distanceMove = -50 - columnBar.getHeight();
         }
 
-        TranslateTransition moveTranslateTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
-        moveTranslateTransition.setByY(distanceMove);
-        moveTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
+        TranslateTransition columnTranslateTransition = new TranslateTransition(Duration.seconds(duration), columnBar);
+        columnTranslateTransition.setByY(distanceMove);
+        columnTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
+
+        TranslateTransition textTranslateTransition = new TranslateTransition(Duration.seconds(duration),
+                columnBar.getTextValue());
+        textTranslateTransition.setByY(distanceMove);
+        textTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         // Set the new postion for xCoordinate
         columnBar.setYCoordinate(columnBar.getYCoordinate() + distanceMove);
+        columnBar.getTextValue().setYCoordinate(columnBar.getTextValue().getYCoordinate() + distanceMove);
 
-        moveTranslateTransition.setOnFinished((event) -> {
+        columnTranslateTransition.setOnFinished((event) -> {
             callback.run();
         });
 
-        moveTranslateTransition.play();
+        columnTranslateTransition.play();
+        textTranslateTransition.play();
     }
 
 }
