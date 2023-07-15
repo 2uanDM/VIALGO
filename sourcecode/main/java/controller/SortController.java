@@ -48,7 +48,7 @@ public abstract class SortController implements Initializable {
     protected TextField enterArrayTextField;
 
     @FXML
-    private TextField sortExplainationTextField;
+    protected TextField sortExplainationTextField;
 
     @FXML
     private TextArea pseudoCodeTextArea;
@@ -323,5 +323,5 @@ public abstract class SortController implements Initializable {
         textGroup.getChildren().setAll(textValues);
     }
 
-    public abstract void swapping();
+    public abstract void sortButtonHandler();
 }

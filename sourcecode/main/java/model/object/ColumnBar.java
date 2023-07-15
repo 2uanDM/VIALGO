@@ -96,28 +96,32 @@ public class ColumnBar extends Rectangle {
         otherTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         // Create the color change back transition
-        Duration colorChangeBackDelay = Duration.seconds(0.5);
+        // Duration colorChangeBackDelay = Duration.seconds(0.5);
 
-        PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
+        // PauseTransition delayTransition = new PauseTransition(colorChangeBackDelay);
 
-        delayTransition.setOnFinished(event -> {
-            KeyValue thisColorBackKeyValue = new KeyValue(this.fillProperty(), DEFAULT_COLOR);
-            KeyFrame thisColorBackKeyFrame = new KeyFrame(colorChangeDuration, thisColorBackKeyValue);
-            Timeline thisColorBackTimeline = new Timeline(thisColorBackKeyFrame);
+        // delayTransition.setOnFinished(event -> {
+        // KeyValue thisColorBackKeyValue = new KeyValue(this.fillProperty(),
+        // DEFAULT_COLOR);
+        // KeyFrame thisColorBackKeyFrame = new KeyFrame(colorChangeDuration,
+        // thisColorBackKeyValue);
+        // Timeline thisColorBackTimeline = new Timeline(thisColorBackKeyFrame);
 
-            KeyValue otherColorBackKeyValue = new KeyValue(otherColumn.fillProperty(), DEFAULT_COLOR);
-            KeyFrame otherColorBackKeyFrame = new KeyFrame(colorChangeDuration, otherColorBackKeyValue);
-            Timeline otherColorBackTimeline = new Timeline(otherColorBackKeyFrame);
+        // KeyValue otherColorBackKeyValue = new KeyValue(otherColumn.fillProperty(),
+        // DEFAULT_COLOR);
+        // KeyFrame otherColorBackKeyFrame = new KeyFrame(colorChangeDuration,
+        // otherColorBackKeyValue);
+        // Timeline otherColorBackTimeline = new Timeline(otherColorBackKeyFrame);
 
-            thisColorBackTimeline.play();
-            otherColorBackTimeline.play();
-        });
+        // thisColorBackTimeline.play();
+        // otherColorBackTimeline.play();
+        // });
 
         // Play the color change animations
         thisColorTimeline.setOnFinished(event -> {
             thisTransition.play();
             otherTransition.play();
-            delayTransition.play();
+            // delayTransition.play();
             this.getTextValue().swap(otherColumn.getTextValue(), duration, textValues);
 
             // Swap xCoordinate properties

@@ -4,9 +4,16 @@ import main.java.model.sorting_algo.BubbleSort;
 
 public class testing {
     public static void main(String[] args) {
-        int[] arr = { 3, 13, 42, 12, 4, 11, 22, 34 };
-
-        BubbleSort bubbleSort = new BubbleSort(arr);
-        bubbleSort.sort();
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j < 4; j++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                System.out.println(i + " " + j);
+            }
+        }
     }
 }

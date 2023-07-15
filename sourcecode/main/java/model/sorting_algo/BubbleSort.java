@@ -43,7 +43,6 @@ public class BubbleSort extends SortingAlgorithm {
                     this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
                     System.out.println(messageLog);
-                    System.out.println(Arrays.toString(tempLog));
                     System.out.println(Arrays.toString(newArray));
                 } else {
 
@@ -59,7 +58,6 @@ public class BubbleSort extends SortingAlgorithm {
                     this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
                     System.out.println(messageLog);
-                    System.out.println(Arrays.toString(tempLog));
                     System.out.println(Arrays.toString(inputArray));
                 }
             }
