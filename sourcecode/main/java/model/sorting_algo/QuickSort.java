@@ -5,7 +5,12 @@ import java.util.Arrays;
 import main.java.model.vialgo_utils.ArrayUtils;
 
 public class QuickSort extends SortingAlgorithm {
-    private int pivotChoice;
+    private int[] tempLog = { 0 }; // tempLog store the pivot during sorting process. We choosing the first index
+                                   // is pivot, so initialze = 0
+    private int[] arrayLog = inputArray;
+    private int[] pointerLog = { 0, 0, 0 };
+    String messageLog = "";
+    private int swapped = 0;
 
     public QuickSort(int[] inputArray) {
         super(inputArray);
@@ -37,15 +42,48 @@ public class QuickSort extends SortingAlgorithm {
     private int partition(int low, int high) {
         // first element as the pivot
         int pivotIndex = low;
+        this.tempLog = new int[] { pivotIndex, 0 };
         int storeIndex = pivotIndex + 1;
         for (int i = pivotIndex + 1; i <= high; i++) {
             if (inputArray[i] <= inputArray[pivotIndex]) {
+
+                // check for actual swapping
+                if (i == storeIndex) {
+                    this.swapped = 0; // 2 numbers not swapped
+                } else {
+                    this.swapped = 1; // Here, actually swap 2 number
+                }
+
                 swap(i, storeIndex);
                 storeIndex++;
+            } else {
+                this.swapped = 0;
             }
-        }
-        swap(pivotIndex, storeIndex - 1);
 
+            this.pointerLog = new int[] { i, storeIndex, this.swapped };
+            this.arrayLog = inputArray;
+
+            // add log each time check for swap or not
+            this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
+            System.out.println(Arrays.toString(pointerLog) + "pointer");
+            System.out.println(Arrays.toString(tempLog) + "temp");
+
+        }
+
+        swap(pivotIndex, storeIndex - 1);
+        // store log when swap pivotIndex with storeIndex
+        this.arrayLog = inputArray;
+        this.tempLog = new int[] { storeIndex - 1, 1 };
+
+        if (pivotIndex == storeIndex - 1) {
+            this.swapped = 0;
+        } else {
+            this.swapped = 1;
+        }
+        this.pointerLog = new int[] { pivotIndex, storeIndex - 1, this.swapped };
+        this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
+        System.out.println(Arrays.toString(pointerLog) + "pointer");
+        System.out.println(Arrays.toString(tempLog) + "temp");
         return storeIndex - 1;
     }
 
@@ -53,14 +91,7 @@ public class QuickSort extends SortingAlgorithm {
         int temp = inputArray[i];
         inputArray[i] = inputArray[j];
         inputArray[j] = temp;
-        System.out.println(Arrays.toString(inputArray));
 
-        // Update logs
-        // int[] arrayLog = ArrayUtils.copyArray(inputArray);
-        // String messageLog = String.format("Swapped elements: %d and %d",
-        // inputArray[i], inputArray[j]);
-        // int[] pointerLog = { inputArray[i], inputArray[j] };
-        // int[] tempLog = ArrayUtils.copyArray(inputArray, i, j + 1);
-        // this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
     }
+
 }
