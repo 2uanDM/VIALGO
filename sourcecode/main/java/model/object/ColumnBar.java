@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javafx.animation.*;
-import javafx.beans.binding.Bindings;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
-import main.java.controller.SortController;
 
 public class ColumnBar extends Rectangle {
 
@@ -31,6 +24,7 @@ public class ColumnBar extends Rectangle {
 
     // Constructor
     public ColumnBar(int value) {
+        this.value = value;
         this.setWidth(COL_WIDTH);
         this.setHeight(getHeight(value));
         this.setFill(DEFAULT_COLOR);
@@ -69,6 +63,10 @@ public class ColumnBar extends Rectangle {
 
     public void setYCoordinate(double yCoordinate) {
         this.yCoordinate = yCoordinate;
+    }
+
+    public void setTextValue(TextValue textValue) {
+        this.textValue = textValue;
     }
 
     public void swap(ColumnBar otherColumn, double duration, ArrayList<ColumnBar> columns,

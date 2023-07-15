@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +18,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import main.java.Main;
@@ -316,14 +314,13 @@ public abstract class SortController implements Initializable {
             col.setYCoordinate(yCoordinate);
 
             // Add Text value to array
-            textValues.add(new TextValue(col.getValue(), col));
+            System.out.println(col.getValue());
+            col.setTextValue(new TextValue(col.getValue(), col));
+            textValues.add(col.getTextValue());
 
-            // Check the xCoordinate of each object
-            System.out.println(columns.indexOf(col) + ": " + col.getXCoordinate() + " " + col.getYCoordinate());
         }
 
         // Set Children for textGroup
-
         textGroup.getChildren().setAll(textValues);
     }
 

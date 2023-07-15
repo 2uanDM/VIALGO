@@ -39,11 +39,7 @@ public class BubbleSortController extends SortController {
         ColumnBar col1 = columns.get(col1Index);
         ColumnBar col2 = columns.get(col2Index);
 
-        TextValue text1 = textValues.get(col1Index);
-        TextValue text2 = textValues.get(col2Index);
-
-        col1.swap(col2, 0.3, columns);
-        text1.swap(text2, 0.3, textValues);
+        col1.swap(col2, 0.3, columns, textValues);
 
     }
 
