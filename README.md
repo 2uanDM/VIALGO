@@ -31,10 +31,10 @@ With this program, users can visualize the sorting process in action, gaining a 
 ## Member
 
 | Member          | Github                                                   |
-| :-------------- | :------------------------------------------------------- | --- |
+| :-------------- | :------------------------------------------------------- |
 | Duong Minh Quan | [@2uanDM](https://github.com/2uanDM)                     |
 | Pham Ngoc Quan  | [@ngocquanofficial](https://github.com/ngocquanofficial) |
-| Nguyen Van Quoc | [@quocnv20214926](https://github.com/quocnv20214926)     |     |
+| Nguyen Van Quoc | [@quocnv20214926](https://github.com/quocnv20214926)     |
 | Bui Minh Quang  | [@bmquang-20214925](https://github.com/bmquang-20214925) |
 
 ---
