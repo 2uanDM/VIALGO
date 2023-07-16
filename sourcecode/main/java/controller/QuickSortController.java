@@ -70,10 +70,14 @@ public class QuickSortController extends SortController {
                                 col1.swap(col2, animationTime / sortingSpeed, columns, textValues, () -> {
                                 });
                             }
+                            Thread.sleep(intervalTime);
                             int pivotIndex = tempLog[stepCount][0];
                             ColumnBar pivotColumn = columns.get(pivotIndex);
                             AnimationUtils.fadeColor(pivotColumn, Color.ORANGE, animationTime / sortingSpeed);
                             pivotColumn.setFill(Color.ORANGE);
+                            Platform.runLater(() -> sortExplainationTextField
+                                    .setText(String.format("The element at index %d move to the right place",
+                                            pivotIndex)));
 
                             isAnimating = false;
                             Thread.sleep(intervalTime);
@@ -89,6 +93,8 @@ public class QuickSortController extends SortController {
                         int pivotIndex = tempLog[stepCount][0];
                         ColumnBar pivotColumn = columns.get(pivotIndex);
                         AnimationUtils.fadeColor(pivotColumn, Color.YELLOW, animationTime / sortingSpeed);
+                        Platform.runLater(() -> sortExplainationTextField
+                                .setText(String.format("Set element at index %d as the pivot", pivotIndex)));
                         Thread.sleep(intervalTime);
                         // swap two column in PointerLog
 
