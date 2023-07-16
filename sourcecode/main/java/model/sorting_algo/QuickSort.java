@@ -67,6 +67,7 @@ public class QuickSort extends SortingAlgorithm {
             this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
             System.out.println(Arrays.toString(pointerLog) + "pointer");
             System.out.println(Arrays.toString(tempLog) + "temp");
+            System.out.println(Arrays.toString(arrayLog));
 
         }
 
@@ -82,8 +83,10 @@ public class QuickSort extends SortingAlgorithm {
         }
         this.pointerLog = new int[] { pivotIndex, storeIndex - 1, this.swapped };
         this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
+        System.out.println("CHANGE PIVOT");
         System.out.println(Arrays.toString(pointerLog) + "pointer");
         System.out.println(Arrays.toString(tempLog) + "temp");
+        System.out.println(Arrays.toString(arrayLog));
         return storeIndex - 1;
     }
 

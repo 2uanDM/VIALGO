@@ -19,4 +19,13 @@ public class AnimationUtils {
         }
         changeColorTimeline.play();
     }
+
+    public static void fadeColor(ColumnBar column, Color newColor, double duration) {
+        Timeline changeColorTimeline = new Timeline();
+        KeyValue colorKeyValue = new KeyValue(column.fillProperty(), newColor);
+        KeyFrame colorKeyFrame = new KeyFrame(Duration.seconds(duration), colorKeyValue);
+        changeColorTimeline.getKeyFrames().add(colorKeyFrame);
+
+        changeColorTimeline.play();
+    }
 }

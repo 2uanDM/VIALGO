@@ -45,69 +45,85 @@ public class QuickSortController extends SortController {
                 for (int stepCount = 1; stepCount < pointerLog.length; stepCount++) {
                     int index1 = pointerLog[stepCount][0];
                     int index2 = pointerLog[stepCount][1];
-
+                    int pivotIndex = tempLog[stepCount][0];
                     // fix bug: poiterLog store some invalid index due to for loop, just ignore it
                     if (index1 >= columns.size() || index2 >= columns.size()) {
                         continue;
                     }
-                    ArrayList<ColumnBar> changeColorColumns = new ArrayList<ColumnBar>();
-
                     ColumnBar col1 = columns.get(index1);
                     ColumnBar col2 = columns.get(index2);
+                    ColumnBar pivotColumn = columns.get(pivotIndex);
 
-                    changeColorColumns.add(col1);
-                    changeColorColumns.add(col2);
-                    System.out.println(index1 + "!");
-                    System.out.println(index2 + "!!");
-                    System.out.println(pointerLog[stepCount][2] + "log");
-                    if (pointerLog[stepCount][2] == 1) {
-                        AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
+                    if (tempLog[stepCount][1] == 1) {
+                        // this is the step that we change Pivot column, after that the pivot is in the
+                        // right place
 
-                        Platform.runLater(() -> sortExplainationTextField
-                                .setText(String.format("We swap column %d with the column %d.", index1,
-                                        index2)));
-
-                        Thread.sleep(700);
+                        // swap current pivot with the new pivot
                         if (!isAnimating) {
                             isAnimating = true;
-                            col1.swap(col2, 0.3, columns, textValues, () -> {
+                            if (index1 == index2) {
+                                // Here, we do not swap any thing, just change pivot color to ORANGE
+                                AnimationUtils.fadeColor(pivotColumn, Color.ORANGE, 0.3);
+                                pivotColumn.setFill(Color.ORANGE);
                                 isAnimating = false;
+                            } else {
+                                col1.swap(col2, 0.3, columns, textValues, () -> {
+                                    isAnimating = false;
+                                });
+                                AnimationUtils.fadeColor(col2, Color.ORANGE, 0.3);
+                                col2.setFill(Color.ORANGE);
 
-                            });
+                            }
+
                         }
+                        // set color for the new pivot
 
-                    } else {
-                        AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
+                    }
 
-                        Platform.runLater(() -> sortExplainationTextField
-                                .setText("Do not swap"));
+                    else { // Here, current pivot Column(yellow) not change
+
+                        // FOR PIVOT ANIMATION
+                        AnimationUtils.fadeColor(pivotColumn, Color.YELLOW, 0.3);
+                        System.out.println("END");
+
+                        ArrayList<ColumnBar> changeColorColumns = new ArrayList<ColumnBar>();
+
+                        changeColorColumns.add(col1);
+                        changeColorColumns.add(col2);
+                        // System.out.println(index1 + "!");
+                        // System.out.println(index2 + "!!");
+                        // System.out.println(pointerLog[stepCount][2] + "log");
+                        if (pointerLog[stepCount][2] == 1) {
+                            AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
+
+                            Platform.runLater(() -> sortExplainationTextField
+                                    .setText(String.format("We swap column %d with the column %d.", index1,
+                                            index2)));
+
+                            Thread.sleep(700);
+                            if (!isAnimating) {
+                                isAnimating = true;
+                                col1.swap(col2, 0.3, columns, textValues, () -> {
+                                    isAnimating = false;
+
+                                });
+                            }
+
+                        } else {
+                            AnimationUtils.fadeColor(changeColorColumns, Color.GREEN, 0.3);
+
+                            Platform.runLater(() -> sortExplainationTextField
+                                    .setText("Do not swap"));
+                            Thread.sleep(700);
+                        }
                         Thread.sleep(700);
-                    }
-                    Thread.sleep(700);
-                    for (ColumnBar col : changeColorColumns) {
-                        col.setFill(ColumnBar.DEFAULT_COLOR);
-                    }
-                    AnimationUtils.fadeColor(changeColorColumns, ColumnBar.DEFAULT_COLOR,
-                            0.3);
-                    System.out.println("END");
-                    // FOR PIVOT ANIMATION
-                    int pivotIndex = tempLog[stepCount][0];
-                    ColumnBar pivotColumn = columns.get(pivotIndex);
-                    pivotColumn.setFill(Color.YELLOW);
-                    System.out.println("END");
-                    System.out.println(tempLog[stepCount][1] + "HEYYY");
-                    if (tempLog[stepCount][1] == 1) {
-                        System.out.println("INNER");
-                        // pivotColumn.setFill(Color.BLACK);
-                        System.out.println("INNER");
-                        int oldPivot = tempLog[logStep - 1][0];
 
-                        // ColumnBar prevPivotColumn = columns.get(oldPivot);
-                        // System.out.println("INNER");
-                        // prevPivotColumn.setFill(ColumnBar.DEFAULT_COLOR);
+                        AnimationUtils.fadeColor(changeColorColumns, ColumnBar.DEFAULT_COLOR,
+                                0.3);
+                        System.out.println("END");
 
                     }
-                    System.out.println("END");
+
                 }
                 Platform.runLater(() -> sortExplainationTextField.setText("Finish Sorting"));
                 Thread.sleep(1000);
