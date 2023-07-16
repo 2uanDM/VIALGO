@@ -1,7 +1,5 @@
 package main.java.model.sorting_algo;
 
-import java.util.Arrays;
-
 import main.java.model.vialgo_utils.ArrayUtils;
 
 public class InsertionSort extends SortingAlgorithm {
@@ -10,59 +8,40 @@ public class InsertionSort extends SortingAlgorithm {
     }
 
     public void sort() {
-        int sortedPart = 1; // the number of element in the sorted part, and also is the index of first
-                            // element in unsorted part
-        // When sortedPart = inputArray.length, which means entire array is in
-        // SortedPart
-
+        int sortedPart = 1;
         while (sortedPart < inputArray.length) {
-            boolean isChange = false;
-            // start changing the array, then we need add 1 to this.stepCount
             int[] newArray = ArrayUtils.copyArray(inputArray);
-            int element = inputArray[sortedPart]; // element variable is the first element in unsorted part
-            int elementIndex = -1; // tracking where to put element in new array
+            int element = inputArray[sortedPart];
+            int elementIndex = sortedPart;
+
             for (int i = 0; i < sortedPart; i++) {
-                if (element > inputArray[i]) {
-                    // nothing happen, we need to move to the right of the array
-                } else { // element < this.inputArray[i] and element > this.inputArray[i+1]
-                    // We need to put element at the elementIndex of the Array, then break to for
-                    // loop
+                if (element < inputArray[i]) {
                     newArray[i] = element;
                     elementIndex = i;
-                    isChange = true; // the array is changed
                     break;
                 }
             }
 
-            if (isChange) {
-                // we add Log to Logs
-
+            if (elementIndex != sortedPart) {
                 int[] arrayLog = newArray;
-                String messageLog = String.format("We move the element %d to the index %d", element, elementIndex);
-                // System.out.println(messageLog); // for testing
-                int[] pointerLog = { element, elementIndex };
+                String messageLog = String.format("We insert the value %d to the index %d", element, elementIndex);
+                int[] pointerLog = { element, sortedPart, elementIndex, 1 };
                 int[] tempLog = ArrayUtils.copyArray(inputArray, elementIndex, sortedPart + 1);
                 this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
 
-                // copy inputArray to newArray
                 for (int i = elementIndex + 1; i < sortedPart + 1; i++) {
                     newArray[i] = inputArray[i - 1];
                 }
                 inputArray = newArray;
-                // System.out.println(Arrays.toString(newArray)); // for testing
-
+            } else {
+                int[] arrayLog = newArray;
+                String messageLog = String.format("Since %d has been sorted, we do nothing", element);
+                int[] pointerLog = { element, sortedPart, elementIndex, 0 };
+                int[] tempLog = ArrayUtils.copyArray(inputArray, elementIndex, sortedPart + 1);
+                this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
             }
-
-            // Here, we ensure that the sortedPart increases by 1
             sortedPart++;
-            System.out.println(Arrays.toString(inputArray));
-
         }
-        System.out.println("Start");
-        for (int[] array : arrayLogs) {
-            System.out.println(Arrays.toString(array));
-        }
-
     }
 
 }
