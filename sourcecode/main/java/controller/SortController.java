@@ -183,7 +183,7 @@ public abstract class SortController implements Initializable {
         speedLabel.setText(Integer.toString(sortingSpeed) + "X");
         System.out.println("Sorting speed" + " " + sortingSpeed);
         animationTime = 0.3; // In second
-        intervalTime = (int) animationTime * 1000 + 500 * (1 / sortingSpeed); // In milisecond
+        intervalTime = (int) animationTime * 1000 + 1260 / sortingSpeed; // In milisecond
 
         // Add event listener for slider to change in real time
         speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -197,7 +197,7 @@ public abstract class SortController implements Initializable {
 
                 // Set the animation time
                 animationTime = 0.3; // In second
-                intervalTime = (int) animationTime * 1000 + 500 * (1 / sortingSpeed); // In milisecond
+                intervalTime = (int) animationTime * 1000 + 1260 / sortingSpeed; // In milisecond
 
                 System.out.println("Sorting speed" + " " + sortingSpeed);
             }

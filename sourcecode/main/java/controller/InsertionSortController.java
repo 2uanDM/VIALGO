@@ -116,7 +116,7 @@ public class InsertionSortController extends SortController {
                             }
 
                             Thread.sleep(intervalTime);
-                            AnimationUtils.fadeColor(moveRightColumnBar, Color.ORANGE, 0.2);
+                            AnimationUtils.fadeColor(moveRightColumnBar, Color.ORANGE, animationTime);
                             Thread.sleep(intervalTime);
                         }
 
