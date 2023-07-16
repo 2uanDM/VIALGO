@@ -139,6 +139,9 @@ public class InsertionSortController extends SortController {
                 Platform.runLater(() -> sortExplainationTextField
                         .setText("Finish Sorting"));
 
+                // Re-enable the speed slider after sorting
+                Platform.runLater(() -> speedSlider.setDisable(false));
+
                 return null;
             }
 
