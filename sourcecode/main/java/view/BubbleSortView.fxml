@@ -93,14 +93,11 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>
-      <Button layoutX="621.0" layoutY="506.0" mnemonicParsing="false" onAction="#swapping" text="NEXT" />
       <HBox fx:id="columnsHBox" alignment="BOTTOM_CENTER" mouseTransparent="true" prefHeight="250.0" prefWidth="1100.0" AnchorPane.bottomAnchor="369.6" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0" />
       <Label fx:id="exceptionLabel" layoutX="268.0" layoutY="617.0" prefHeight="30.0" prefWidth="530.0" textFill="RED">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Button layoutX="563.0" layoutY="506.0" mnemonicParsing="false" onAction="#stopSorting" text="STOP" />
-      <Button layoutX="497.0" layoutY="506.0" mnemonicParsing="false" onAction="#backStep" text="BACK" />
       <Text fill="WHITE" layoutX="107.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -111,7 +108,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Slider blockIncrement="1.0" layoutX="163.0" layoutY="691.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" prefHeight="21.0" prefWidth="218.0" snapToTicks="true" stylesheets="@../../resources/style/sort.css" value="1.0" /> 
+      <Slider fx:id="speedSlider" blockIncrement="1.0" layoutX="163.0" layoutY="691.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" prefHeight="21.0" prefWidth="218.0" snapToTicks="true" stylesheets="@../../resources/style/sort.css" value="1.0" /> 
       <Button id="restartButton" layoutX="624.0" layoutY="685.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" text="Button" />
    </children>
 </AnchorPane>

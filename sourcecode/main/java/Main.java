@@ -16,8 +16,16 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             scene = new Scene(loadFXML("./view/HomeView.fxml"), 1280, 720);
+            // Set the title of the stage
             stage.setTitle("VIALGO");
+
+            // Set the scene of the stage
             stage.setScene(scene);
+
+            // Prevent the stage from being resized
+            stage.setResizable(false);
+
+            // Show the stage
             stage.show();
         }
 
