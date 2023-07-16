@@ -46,7 +46,7 @@
 }
 
 #bubbleSortHover:hover {
-    -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
+    -fx-background-image: url("../assets/HomeView/bbsort_info.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
     -fx-cursor: hand;
@@ -54,7 +54,7 @@
 }
 
 #quickSortHover:hover {
-    -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
+    -fx-background-image: url("../assets/HomeView/quick_sort_info.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
     -fx-cursor: hand;
@@ -62,7 +62,7 @@
 }
 
 #insertionSortHover:hover {
-    -fx-background-image: url("../assets/HomeView/logo_VIALGO.png");
+    -fx-background-image: url("../assets/HomeView/insertion_info.png");
     -fx-border-color: gray;
     -fx-border-width: 2px;
     -fx-cursor: hand;
