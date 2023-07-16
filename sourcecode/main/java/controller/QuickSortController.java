@@ -71,6 +71,7 @@ public class QuickSortController extends SortController {
                                 });
                             }
                             Thread.sleep(intervalTime);
+
                             int pivotIndex = tempLog[stepCount][0];
                             ColumnBar pivotColumn = columns.get(pivotIndex);
                             AnimationUtils.fadeColor(pivotColumn, Color.ORANGE, animationTime / sortingSpeed);
@@ -130,7 +131,6 @@ public class QuickSortController extends SortController {
 
                         AnimationUtils.fadeColor(changeColorColumns, ColumnBar.DEFAULT_COLOR,
                                 animationTime / sortingSpeed);
-                        System.out.println("END");
 
                     }
 
