@@ -24,6 +24,9 @@ public class BubbleSortController extends SortController {
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                // Block the speed slider during sorting
+                Platform.runLater(() -> speedSlider.setDisable(true));
+
                 // Sort the array first
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
@@ -42,6 +45,8 @@ public class BubbleSortController extends SortController {
 
                 for (int stepCount = 0; stepCount < pointerLog.length; stepCount++) {
                     if (Thread.currentThread().isInterrupted()) {
+                        // Re-enable the speed slider after sorting
+                        Platform.runLater(() -> speedSlider.setDisable(false));
                         break;
                     }
                     int index1 = pointerLog[stepCount][0];

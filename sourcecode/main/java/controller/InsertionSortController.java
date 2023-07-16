@@ -24,6 +24,9 @@ public class InsertionSortController extends SortController {
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                // Block the speed slider during sorting
+                Platform.runLater(() -> speedSlider.setDisable(true));
+
                 // Sort the array first
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
@@ -42,6 +45,7 @@ public class InsertionSortController extends SortController {
 
                 for (int stepCount = 1; stepCount < pointerLog.length; stepCount++) {
                     if (Thread.currentThread().isInterrupted()) {
+                        // Re-enable the speed slider after sorting
                         break;
                     }
 

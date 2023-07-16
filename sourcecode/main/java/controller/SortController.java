@@ -220,6 +220,9 @@ public abstract class SortController implements Initializable {
          * to the HomePage from a sorting view, so the startup sound will not be played.
          */
 
+        // Re-enable the speed slider after sorting
+        Platform.runLater(() -> speedSlider.setDisable(false));
+
         // Interrupt the current sorting thread and wait for it to terminate
         if (sortingThread != null && sortingThread.isAlive()) {
             sortingThread.interrupt();
@@ -311,6 +314,9 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateRandomArray() {
+        // Re-enable the speed slider after sorting
+        Platform.runLater(() -> speedSlider.setDisable(false));
+
         // Interrupt the current sorting thread and wait for it to terminate
         if (sortingThread != null && sortingThread.isAlive()) {
             sortingThread.interrupt();
@@ -355,6 +361,9 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateSortedArray() {
+        // Re-enable the speed slider after sorting
+        Platform.runLater(() -> speedSlider.setDisable(false));
+
         // Interrupt the current sorting thread and wait for it to terminate
         if (sortingThread != null && sortingThread.isAlive()) {
             sortingThread.interrupt();
@@ -406,6 +415,9 @@ public abstract class SortController implements Initializable {
     }
 
     public void generateCustomArray() {
+        // Re-enable the speed slider after sorting
+        Platform.runLater(() -> speedSlider.setDisable(false));
+
         // Interrupt the current sorting thread and wait for it to terminate
         if (sortingThread != null && sortingThread.isAlive()) {
             sortingThread.interrupt();
