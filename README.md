@@ -212,9 +212,9 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/controller/InsertionSortController.java`](./sourcecode/main/java/controller/InsertionSortController.java) | `100%`     |
 | [`sourcecode/main/java/controller/QuickSortController.java`](./sourcecode/main/java/controller/QuickSortController.java)         | `15%`      |
 | [`sourcecode/main/java/view/HomeView.fxml`](./sourcecode/main/java/view/HomeView.fxml)                                           | `100%`     |
-| [`sourcecode/main/java/view/BubbleSortView.fxml`](./sourcecode/main/java/view/BubbleSortView.fxml)                               | `70%`      |
-| [`sourcecode/main/java/view/InsertionSortView.fxml`](./sourcecode/main/java/view/InsertionSortView.fxml)                         | `70%`      |
-| [`sourcecode/main/java/view/QuickSortView.fxml`](./sourcecode/main/java/view/QuickSortView.fxml)                                 | `70%`      |
+| [`sourcecode/main/java/view/BubbleSortView.fxml`](./sourcecode/main/java/view/BubbleSortView.fxml)                               | `50%`      |
+| [`sourcecode/main/java/view/InsertionSortView.fxml`](./sourcecode/main/java/view/InsertionSortView.fxml)                         | `50%`      |
+| [`sourcecode/main/java/view/QuickSortView.fxml`](./sourcecode/main/java/view/QuickSortView.fxml)                                 | `50%`      |
 | [`sourcecode/main/java/Main.java`](./sourcecode/main/java/Main.java)                                                             | `100%`     |
 | [`sourcecode/main/java/model/object/ColumnBar.java`](./sourcecode/main/java/model/object/ColumnBar.java)                         | `100%`     |
 | [`sourcecode/main/java/model/object/TextValue.java`](./sourcecode/main/java/model/object/TextValue.java)                         | `70%`      |
@@ -260,9 +260,9 @@ With this program, users can visualize the sorting process in action, gaining a 
 
 | Work                                                                                                                 | Contribute |
 | :------------------------------------------------------------------------------------------------------------------- | :--------- |
-| [`sourcecode/main/java/view/BubbleSortView.fxml`](./sourcecode/main/java/view/BubbleSortView.fxml)                   | `30%`      |
-| [`sourcecode/main/java/view/InsertionSortView.fxml`](./sourcecode/main/java/view/InsertionSortView.fxml)             | `30%`      |
-| [`sourcecode/main/java/view/QuickSortView.fxml`](./sourcecode/main/java/view/QuickSortView.fxml)                     | `30%`      |
+| [`sourcecode/main/java/view/BubbleSortView.fxml`](./sourcecode/main/java/view/BubbleSortView.fxml)                   | `50%`      |
+| [`sourcecode/main/java/view/InsertionSortView.fxml`](./sourcecode/main/java/view/InsertionSortView.fxml)             | `50%`      |
+| [`sourcecode/main/java/view/QuickSortView.fxml`](./sourcecode/main/java/view/QuickSortView.fxml)                     | `50%`      |
 | [`sourcecode/main/java/model/sorting_algo/QuickSort.java`](./sourcecode/main/java/model/sorting_algo/QuickSort.java) | `50%`      |
 | [`design/GeneralClassDiagram.png`](./sourcecode/main/java/model/sorting_algo/QuickSort.java)                         | `100%`     |
 | [`slide`]()                                                                                                          | `60%`      |
