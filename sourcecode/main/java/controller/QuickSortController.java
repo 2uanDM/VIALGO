@@ -29,7 +29,7 @@ public class QuickSortController extends SortController {
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-
+                // initialize
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
                 int index = 0;
@@ -45,14 +45,14 @@ public class QuickSortController extends SortController {
                 for (int stepCount = 1; stepCount < pointerLog.length; stepCount++) {
                     int index1 = pointerLog[stepCount][0];
                     int index2 = pointerLog[stepCount][1];
-                    int pivotIndex = tempLog[stepCount][0];
+
                     // fix bug: poiterLog store some invalid index due to for loop, just ignore it
                     if (index1 >= columns.size() || index2 >= columns.size()) {
                         continue;
                     }
+
                     ColumnBar col1 = columns.get(index1);
                     ColumnBar col2 = columns.get(index2);
-                    ColumnBar pivotColumn = columns.get(pivotIndex);
 
                     if (tempLog[stepCount][1] == 1) {
                         // this is the step that we change Pivot column, after that the pivot is in the
@@ -63,28 +63,34 @@ public class QuickSortController extends SortController {
                             isAnimating = true;
                             if (index1 == index2) {
                                 // Here, we do not swap any thing, just change pivot color to ORANGE
-                                AnimationUtils.fadeColor(pivotColumn, Color.ORANGE, 0.3);
-                                pivotColumn.setFill(Color.ORANGE);
-                                isAnimating = false;
                             } else {
                                 col1.swap(col2, 0.3, columns, textValues, () -> {
-                                    isAnimating = false;
                                 });
-                                AnimationUtils.fadeColor(col2, Color.ORANGE, 0.3);
-                                col2.setFill(Color.ORANGE);
-
                             }
+                            int pivotIndex = tempLog[stepCount][0];
+                            ColumnBar pivotColumn = columns.get(pivotIndex);
+                            AnimationUtils.fadeColor(pivotColumn, Color.ORANGE, 0.3);
+                            pivotColumn.setFill(Color.ORANGE);
+
+                            isAnimating = false;
+                            Thread.sleep(700);
 
                         }
-                        // set color for the new pivot
 
                     }
 
                     else { // Here, current pivot Column(yellow) not change
 
-                        // FOR PIVOT ANIMATION
+                        if (index1 == index2) {
+                            // pivot not change, and do not swap, then
+                            continue;
+                        }
+                        // FOR PIVOT ANIMATION, change pivot color to YELLOW
+                        int pivotIndex = tempLog[stepCount][0];
+                        ColumnBar pivotColumn = columns.get(pivotIndex);
                         AnimationUtils.fadeColor(pivotColumn, Color.YELLOW, 0.3);
-                        System.out.println("END");
+                        Thread.sleep(700);
+                        // swap two column in PointerLog
 
                         ArrayList<ColumnBar> changeColorColumns = new ArrayList<ColumnBar>();
 
@@ -126,6 +132,8 @@ public class QuickSortController extends SortController {
 
                 }
                 Platform.runLater(() -> sortExplainationTextField.setText("Finish Sorting"));
+                AnimationUtils.fadeColor(columns, ColumnBar.DEFAULT_COLOR,
+                        0.3);
                 Thread.sleep(1000);
 
                 return null;

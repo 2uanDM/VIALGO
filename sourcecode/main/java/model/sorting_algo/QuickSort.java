@@ -42,33 +42,29 @@ public class QuickSort extends SortingAlgorithm {
     private int partition(int low, int high) {
         // first element as the pivot
         int pivotIndex = low;
-        this.tempLog = new int[] { pivotIndex, 0 };
         int storeIndex = pivotIndex + 1;
         for (int i = pivotIndex + 1; i <= high; i++) {
             if (inputArray[i] <= inputArray[pivotIndex]) {
 
                 // check for actual swapping
-                if (i == storeIndex) {
-                    this.swapped = 0; // 2 numbers not swapped
-                } else {
-                    this.swapped = 1; // Here, actually swap 2 number
-                }
-
+                this.swapped = 1;
                 swap(i, storeIndex);
+                this.pointerLog = new int[] { i, storeIndex, this.swapped };
                 storeIndex++;
             } else {
                 this.swapped = 0;
+                this.pointerLog = new int[] { i, storeIndex, this.swapped };
             }
-
-            this.pointerLog = new int[] { i, storeIndex, this.swapped };
+            this.tempLog = new int[] { pivotIndex, 0 };
             this.arrayLog = inputArray;
 
             // add log each time check for swap or not
             this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
-            System.out.println(Arrays.toString(pointerLog) + "pointer");
+            System.out.println(
+                    "[" + inputArray[pointerLog[0]] + " " + inputArray[pointerLog[1]] + " " + pointerLog[2] + "]"
+                            + "pointer");
             System.out.println(Arrays.toString(tempLog) + "temp");
             System.out.println(Arrays.toString(arrayLog));
-
         }
 
         swap(pivotIndex, storeIndex - 1);
@@ -76,15 +72,13 @@ public class QuickSort extends SortingAlgorithm {
         this.arrayLog = inputArray;
         this.tempLog = new int[] { storeIndex - 1, 1 };
 
-        if (pivotIndex == storeIndex - 1) {
-            this.swapped = 0;
-        } else {
-            this.swapped = 1;
-        }
+        this.swapped = 1;
         this.pointerLog = new int[] { pivotIndex, storeIndex - 1, this.swapped };
         this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
         System.out.println("CHANGE PIVOT");
-        System.out.println(Arrays.toString(pointerLog) + "pointer");
+        System.out.println(
+                "[" + inputArray[pointerLog[0]] + " " + inputArray[pointerLog[1]] + " " + pointerLog[2] + "]"
+                        + "pointer");
         System.out.println(Arrays.toString(tempLog) + "temp");
         System.out.println(Arrays.toString(arrayLog));
         return storeIndex - 1;
