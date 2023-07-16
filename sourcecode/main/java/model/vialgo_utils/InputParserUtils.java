@@ -48,6 +48,15 @@ public class InputParserUtils {
             if (content.isEmpty()) {
                 throw new NullException("The array should not be empty.");
             }
+    
+        // first, remove all the space in the string
+        int index = 0;
+        for (String strPart: splitedValues) {
+
+            strPart = strPart.replaceAll("\\s", "");
+            splitedValues[index] = strPart;
+            index ++;
+        }
 
             // Check correct data type
             for (String value : splitedValues) {
