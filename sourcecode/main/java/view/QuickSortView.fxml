@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="..\..\resources\style\sort.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.InsertionSortController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="..\..\resources\style\sort.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.QuickSortController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" stroke="#1b1b1b" strokeType="INSIDE" strokeWidth="0.0" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="640.0" layoutX="12.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="..\..\resources\style\sort.css" width="1220.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="40.0" />
@@ -66,12 +66,12 @@
             <Image url="@../../resources/assets/SortView/small%20logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="141.0" layoutX="565.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="166.0" layoutX="564.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/assets/SortView/Quick%20Sort.png" />
          </image>
       </ImageView>
-      <TextField id="sortExplainationTextField" fx:id="sortExplainationTextField" editable="false" layoutX="734.0" layoutY="421.0" prefHeight="40.0" prefWidth="513.0" stylesheets="@../../resources/style/sort.css">
+      <TextField id="sortExplainationTextField" fx:id="sortExplainationTextField" editable="false" layoutX="813.0" layoutY="421.0" prefHeight="40.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css">
          <font>
             <Font size="16.0" />
          </font>
@@ -82,9 +82,9 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>
-      <TextArea id="pseudoCodeTextArea" fx:id="pseudoCodeTextArea" editable="false" layoutX="734.0" layoutY="464.0" prefHeight="200.0" prefWidth="513.0" stylesheets="@../../resources/style/sort.css" text="for each (unsorted) partition&#10;randomly select pivot, swap with first element&#10;  storeIndex = pivotIndex+1&#10;  for i = pivotIndex+1 to rightmostIndex&#10;    if ((a[i] &lt; a[pivot]) or (equal but 50% lucky))&#10;      swap(i, storeIndex); ++storeIndex&#10;  swap(pivot, storeIndex-1)">
+      <TextArea id="pseudoCodeTextArea" fx:id="pseudoCodeTextArea" editable="false" layoutX="813.0" layoutY="464.0" prefHeight="200.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css" text="for each (unsorted) partition&#10;randomly select pivot, swap with first element&#10;  storeIndex = pivotIndex+1&#10;  for i = pivotIndex+1 to rightmostIndex&#10;    if ((a[i] &lt; a[pivot]) or (equal but 50% lucky))&#10;      swap(i, storeIndex); ++storeIndex&#10;  swap(pivot, storeIndex-1)">
          <font>
-            <Font name="Courier New" size="16.0" />
+            <Font name="Courier New" size="13.5" />
          </font>
       </TextArea>
       <Button id="showPseudoCodeButton" fx:id="pseudoCodeButton" layoutX="1250.0" layoutY="465.0" mnemonicParsing="false" onAction="#showPseudoCode" prefHeight="200.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" />
@@ -108,7 +108,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
-      </Label>   
-      <Button id="restartButton" layoutX="624.0" layoutY="685.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" text="Button" />
+      </Label>
+      <Button id="restartButton" layoutX="624.0" layoutY="685.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" text="Button" />   
    </children>
 </AnchorPane>
