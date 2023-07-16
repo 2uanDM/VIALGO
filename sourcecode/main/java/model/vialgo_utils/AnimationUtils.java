@@ -65,7 +65,7 @@ public class AnimationUtils {
          * right place to insert into
          */
         double distanceMove;
-        if (direction == "down") {
+        if (direction.equals("down")) {
             distanceMove = 100;
         } else {
             distanceMove = -100;
@@ -75,7 +75,7 @@ public class AnimationUtils {
         moveTranslateTransition.setByY(distanceMove);
         moveTranslateTransition.setInterpolator(Interpolator.EASE_BOTH);
 
-        // Set the new postion for xCoordinate
+        // Set the new position for yCoordinate
         columnBar.setYCoordinate(columnBar.getYCoordinate() + distanceMove);
 
         moveTranslateTransition.setOnFinished((event) -> {
@@ -84,5 +84,4 @@ public class AnimationUtils {
 
         moveTranslateTransition.play();
     }
-
 }

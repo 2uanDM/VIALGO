@@ -1,58 +1,40 @@
 package main.java.model.sorting_algo;
-import main.java.model.vialgo_utils.ArrayUtils;
-public class QuickSort extends SortingAlgorithm {
-    private int pivotChoice;
 
-    public QuickSort(int[] inputArray, int pivotChoice) {
+import java.util.Arrays;
+
+import main.java.model.vialgo_utils.ArrayUtils;
+
+public class QuickSort extends SortingAlgorithm {
+    public QuickSort(int[] inputArray) {
         super(inputArray);
-        this.pivotChoice = pivotChoice;
+        System.out.println(Arrays.toString(this.arrayLogs[0]));
     }
 
     public void sort() {
         quicksort(0, inputArray.length - 1);
-        System.out.println("Start");
-        for (int[] array : arrayLogs) {
-            System.out.println(ArrayUtils.toString(array));
-        }
     }
 
     private void quicksort(int low, int high) {
         if (low < high) {
-            int pivotIndex;
-            if (pivotChoice == 0) {
-                pivotIndex = low;
-            } else if (pivotChoice == 1) {
-                pivotIndex = high;
-            } else {
-                pivotIndex = getRandomPivotIndex(low, high);
-            }
-            int partitionIndex = partition(low, high, pivotIndex);
-
-            quicksort(low, partitionIndex - 1);
-            quicksort(partitionIndex + 1, high);
+            int pivotIndex = partition(low, high);
+            quicksort(low, pivotIndex - 1);
+            quicksort(pivotIndex + 1, high);
         }
     }
 
-    private int getRandomPivotIndex(int low, int high) {
-        return (int) (Math.random() * (high - low + 1)) + low;
-    }
+    private int partition(int low, int high) {
+        int pivot = inputArray[high];
+        int i = low - 1;
 
-    private int partition(int low, int high, int pivotIndex) {
-        int pivot = inputArray[pivotIndex];
-        System.out.println("Pivot Selected: " + pivot);
-        swap(pivotIndex, low);
-
-        int i = low + 1;
-
-        for (int j = low + 1; j <= high; j++) {
+        for (int j = low; j < high; j++) {
             if (inputArray[j] < pivot) {
-                swap(i, j);
                 i++;
+                swap(i, j);
             }
         }
-        System.out.println("Done Partition");
-        swap(low, i - 1);
-        return i - 1;
+
+        swap(i + 1, high);
+        return i + 1;
     }
 
     private void swap(int i, int j) {
@@ -60,11 +42,14 @@ public class QuickSort extends SortingAlgorithm {
         inputArray[i] = inputArray[j];
         inputArray[j] = temp;
 
-        // Update logs
         int[] arrayLog = ArrayUtils.copyArray(inputArray);
-        String messageLog = String.format("Swapped elements: %d and %d", inputArray[i], inputArray[j]);
-        int[] pointerLog = { inputArray[i], inputArray[j] };
-        int[] tempLog = ArrayUtils.copyArray(inputArray, i, j + 1);
+        int[] pointerLog = { i, j, 1 };
+        int[] tempLog = {};
+        String messageLog = String.format("Swapped elements %d and %d", inputArray[i], inputArray[j]);
         this.addLogs(arrayLog, tempLog, pointerLog, messageLog);
+    }
+
+    public int getPivotIndex() {
+        return inputArray.length - 1; // Pivot index is always the last index in the current implementation
     }
 }
