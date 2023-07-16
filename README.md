@@ -223,6 +223,7 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/model/sorting_algo/InsertionSort.java`](./sourcecode/main/java/model/sorting_algo/BubbleSort.java)        | `15%`      |
 | [`sourcecode/main/resources/`](./sourcecode/main/java/model/sorting_algo/BubbleSort.java)                                        | `100%`     |
 | [`design/main/java/model/`](./design/main/java/model/)                                                                           | `100%`     |
+| [`report`]()                                                                                                                     | `50%`      |
 
 ### 2. Pham Ngoc Quan
 
@@ -238,6 +239,7 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/model/sorting_algo/InsertionSort.java`](./sourcecode/main/java/model/sorting_algo/InsertionSort.java)       | `85%`      |
 | [`sourcecode/main/java/model/vialgo_utils/InputParserUtils.java`](./sourcecode/main/java/model/vialgo_utils/InputParserUtils.java) | `65%`      |
 | [`sourcecode/main/java/model/sorting_algo/QuickSort.java`](./sourcecode/main/java/model/sorting_algo/QuickSort.java)               | `25%`      |
+| [`report`]()                                                                                                                       | `50%`      |
 
 ### 3. Nguyen Van Quoc
 
@@ -252,6 +254,7 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/model/vialgo_utils/InputParserUtils.java`](./sourcecode/main/java/model/vialgo_utils/InputParserUtils.java)       | `35%`      |
 | [`sourcecode/main/java/model/sorting_algo/QuickSort.java`](./sourcecode/main/java/model/sorting_algo/QuickSort.java)                     | `25%`      |
 | [`design/main/java/controller`](./design/main/java/controller/)                                                                          | `100%`     |
+| [`slide`]()                                                                                                                              | `40%`      |
 
 ### 4. Bui Minh Quang
 
@@ -262,3 +265,4 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/view/QuickSortView.fxml`](./sourcecode/main/java/view/QuickSortView.fxml)                     | `30%`      |
 | [`sourcecode/main/java/model/sorting_algo/QuickSort.java`](./sourcecode/main/java/model/sorting_algo/QuickSort.java) | `50%`      |
 | [`design/GeneralClassDiagram.png`](./sourcecode/main/java/model/sorting_algo/QuickSort.java)                         | `100%`     |
+| [`slide`]()                                                                                                          | `60%`      |
