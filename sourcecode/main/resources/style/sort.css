@@ -39,6 +39,11 @@
     -fx-text-fill: white;
 }
 
+#restartButton {
+    -fx-background-image: url("../assets/SortView/restart.png");
+    -fx-background-color: black;
+}
+
 #backButton {
     -fx-background-image: url("../assets/SortView/backButton.png");
     -fx-background-color: black;

@@ -109,5 +109,6 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>   
+      <Button id="restartButton" layoutX="624.0" layoutY="685.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" text="Button" />
    </children>
 </AnchorPane>

@@ -112,5 +112,6 @@
          </font>
       </Label>
       <Slider blockIncrement="1.0" layoutX="163.0" layoutY="691.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" prefHeight="21.0" prefWidth="218.0" snapToTicks="true" stylesheets="@../../resources/style/sort.css" value="1.0" /> 
+      <Button id="restartButton" layoutX="624.0" layoutY="685.0" mnemonicParsing="false" onAction="#generateCustomArray" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../resources/style/sort.css" text="Button" />
    </children>
 </AnchorPane>
