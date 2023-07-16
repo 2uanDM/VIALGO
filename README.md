@@ -222,6 +222,7 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/model/vialgo_utils/SetVisibleUtils.java`](./sourcecode/main/java/model/vialgo_utils/SetVisibleUtils.java) | `100%`     |
 | [`sourcecode/main/java/model/sorting_algo/InsertionSort.java`](./sourcecode/main/java/model/sorting_algo/BubbleSort.java)        | `15%`      |
 | [`sourcecode/main/resources/`](./sourcecode/main/java/model/sorting_algo/BubbleSort.java)                                        | `100%`     |
+| [`design/main/java/model/`](./design/main/java/model/)                                                                           | `100%`     |
 
 ### 2. Pham Ngoc Quan
 
@@ -250,6 +251,7 @@ With this program, users can visualize the sorting process in action, gaining a 
 | [`sourcecode/main/java/model/exception/NumberOfValueException.java`](./sourcecode/main/java/model/exception/NumberOfValueException.java) | `100%`     |
 | [`sourcecode/main/java/model/vialgo_utils/InputParserUtils.java`](./sourcecode/main/java/model/vialgo_utils/InputParserUtils.java)       | `35%`      |
 | [`sourcecode/main/java/model/sorting_algo/QuickSort.java`](./sourcecode/main/java/model/sorting_algo/QuickSort.java)                     | `25%`      |
+| [`design/main/java/controller`](./design/main/java/controller/)                                                                          | `100%`     |
 
 ### 4. Bui Minh Quang
 
