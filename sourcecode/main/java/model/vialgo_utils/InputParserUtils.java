@@ -54,7 +54,7 @@ public class InputParserUtils {
                 try {
                     Integer.parseInt(value.trim());
                 } catch (NumberFormatException e) {
-                    if (value == "") {
+                    if (value.trim() == "") {
                         throw new DataTypeException(
                                 "There seems to be a missing element (a duplicate comma somewhere perhaps?)");
                     } else {

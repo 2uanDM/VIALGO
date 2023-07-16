@@ -2,17 +2,16 @@ package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.print.PageLayout;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.animation.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -34,6 +33,9 @@ public abstract class SortController implements Initializable {
     protected boolean sortExplainArrowPointLeft;
     protected boolean pseudoCodeArrowPointLeft;
     protected boolean isAnimating = false;
+    protected int sortingSpeed;
+    protected double animationTime;
+    protected int intervalTime;
     public static int logStep = 1;
 
     @FXML
@@ -89,6 +91,12 @@ public abstract class SortController implements Initializable {
 
     @FXML
     protected Button pseudoCodeButton;
+
+    @FXML
+    protected Label speedLabel;
+
+    @FXML
+    protected Slider speedSlider;
 
     ArrayList<Node> menuActionOptionsChilds = new ArrayList<Node>();
 
@@ -169,6 +177,31 @@ public abstract class SortController implements Initializable {
 
         // Create new create Array thread
         createArray = new Thread();
+
+        // Initial speed
+        sortingSpeed = 1;
+        speedLabel.setText(Integer.toString(sortingSpeed) + "X");
+        System.out.println("Sorting speed" + " " + sortingSpeed);
+        animationTime = 0.3; // In second
+        intervalTime = (int) animationTime * 1000 + 1260 / sortingSpeed; // In milisecond
+
+        // Add event listener for slider to change in real time
+        speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int intNewValue = newValue.intValue();
+            if (newValue.doubleValue() == intNewValue) {
+                // Get new value
+                sortingSpeed = (int) speedSlider.getValue();
+
+                // Show on the label
+                speedLabel.setText(Integer.toString(sortingSpeed) + "X");
+
+                // Set the animation time
+                animationTime = 0.3; // In second
+                intervalTime = (int) animationTime * 1000 + 1260 / sortingSpeed; // In milisecond
+
+                System.out.println("Sorting speed" + " " + sortingSpeed);
+            }
+        });
 
         // Create a random array and show MenuActionOptions
         Platform.runLater(() -> {
@@ -307,6 +340,18 @@ public abstract class SortController implements Initializable {
         // Add ColumnBars to HBox with respect to these values
         addColumnBarToHBox(arrayValue);
 
+        // Show array so that we can copy
+        int[] intArray = new int[columns.size()];
+        int i = 0;
+        for (ColumnBar col : columns) {
+            intArray[i] = col.getValue();
+            i++;
+        }
+        String stringArray = Arrays.toString(intArray);
+        stringArray = stringArray.replace('[', ' ');
+        stringArray = stringArray.replace(']', ' ');
+        enterArrayTextField.setText(stringArray);
+
     }
 
     public void generateSortedArray() {
@@ -347,6 +392,17 @@ public abstract class SortController implements Initializable {
         // Add to HBox
         addColumnBarToHBox(arrayVal);
 
+        // Show array so that we can copy
+        int[] intArray = new int[columns.size()];
+        int i = 0;
+        for (ColumnBar col : columns) {
+            intArray[i] = col.getValue();
+            i++;
+        }
+        String stringArray = Arrays.toString(intArray);
+        stringArray = stringArray.replace('[', ' ');
+        stringArray = stringArray.replace(']', ' ');
+        enterArrayTextField.setText(stringArray);
     }
 
     public void generateCustomArray() {

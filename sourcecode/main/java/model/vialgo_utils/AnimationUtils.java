@@ -92,7 +92,8 @@ public class AnimationUtils {
         textTranslateTransition.play();
     }
 
-    public static void moveHorizontal(ColumnBar columnBar, String direction, double duration, Runnable callBack) {
+    public static void moveHorizontal(ColumnBar columnBar, ArrayList<ColumnBar> columns, String direction,
+            double duration, Runnable callBack) {
         /*
          * This method is used for Insertion Sort, move left of right by ONE STEP the
          * ColumnBar to

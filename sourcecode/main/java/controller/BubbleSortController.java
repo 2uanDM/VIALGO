@@ -1,25 +1,16 @@
 package main.java.controller;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+
 import javafx.scene.paint.Color;
 import main.java.model.object.ColumnBar;
 import main.java.model.vialgo_utils.AnimationUtils;
 import main.java.model.sorting_algo.BubbleSort;
 
 public class BubbleSortController extends SortController {
-    @FXML
-    private TextField firstTextField;
-
-    @FXML
-    private TextField secondTextField;
 
     public void sortButtonHandler() {
         // Prevent many sort tasks run concurrently
@@ -33,6 +24,7 @@ public class BubbleSortController extends SortController {
         Task<Void> newTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                // Sort the array first
                 int arrLength = columns.size();
                 int[] intArray = new int[arrLength];
                 int index = 0;
@@ -43,6 +35,7 @@ public class BubbleSortController extends SortController {
                 BubbleSort obj = new BubbleSort(intArray);
                 obj.sort();
 
+                // Get the pointer log to perform animation step
                 int[][] pointerLog = obj.getPointerLog();
 
                 Thread.sleep(1500);
