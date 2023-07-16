@@ -30,12 +30,12 @@
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="475.0" layoutY="253.0" prefHeight="75.0" prefWidth="337.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="469.0">
          <children>
-            <Button id="aboutButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
+            <Button id="aboutButton" mnemonicParsing="false" onAction="#showAbout" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button id="helpButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
+            <Button id="helpButton" mnemonicParsing="false" onAction="#showHelp" prefHeight="31.0" prefWidth="71.0" stylesheets="@../../resources/style/home.css">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>

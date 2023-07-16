@@ -82,7 +82,7 @@
             <Image url="@../../resources/assets/SortView/menuActionArrow_left.png" />
          </image>
       </ImageView>
-      <TextArea id="pseudoCodeTextArea" fx:id="pseudoCodeTextArea" editable="false" layoutX="813.0" layoutY="464.0" prefHeight="200.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css" text="for each (unsorted) partition&#10;randomly select pivot, swap with first element&#10;  storeIndex = pivotIndex+1&#10;  for i = pivotIndex+1 to rightmostIndex&#10;    if ((a[i] &lt; a[pivot]) or (equal but 50% lucky))&#10;      swap(i, storeIndex); ++storeIndex&#10;  swap(pivot, storeIndex-1)">
+      <TextArea id="pseudoCodeTextArea" fx:id="pseudoCodeTextArea" editable="false" layoutX="813.0" layoutY="464.0" prefHeight="200.0" prefWidth="434.0" stylesheets="@../../resources/style/sort.css" text="for each (unsorted) partition&#10;set first element as pivot&#10;  storeIndex = pivotIndex+1&#10;  for i = pivotIndex+1 to rightmostIndex&#10;    if ((a[i] &lt; a[pivot]) or (equal but 50% lucky))&#10;      swap(i, storeIndex); ++storeIndex&#10;  swap(pivot, storeIndex-1)">
          <font>
             <Font name="Courier New" size="13.5" />
          </font>
